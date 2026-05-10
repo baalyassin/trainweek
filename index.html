@@ -8,490 +8,153 @@
 <meta name="apple-mobile-web-app-title" content="TrainWeek">
 <meta name="theme-color" content="#0a0a0a">
 <title>TrainWeek</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0a0a;
-  --bg2: #141414;
-  --bg3: #1e1e1e;
-  --bg4: #282828;
-  --text: #f0f0f0;
-  --text2: #999;
-  --text3: #555;
-  --accent: #c8f135;
-  --accent2: #a8d020;
-  --push: #ff6b35;
-  --pull: #3b9eff;
-  --legs: #22c55e;
-  --full: #f59e0b;
-  --arms: #a855f7;
-  --rest: #444;
-  --radius: 16px;
-  --radius-sm: 10px;
-  --safe-top: env(safe-area-inset-top, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --bg:#0a0a0a; --bg2:#141414; --bg3:#1e1e1e; --bg4:#282828;
+  --text:#f0f0f0; --text2:#999; --text3:#555;
+  --accent:#c8f135; --push:#ff6b35; --pull:#3b9eff;
+  --legs:#22c55e; --full:#f59e0b; --arms:#a855f7; --rest:#444;
+  --r:16px; --rs:10px;
+  --st: env(safe-area-inset-top,0px);
+  --sb: env(safe-area-inset-bottom,0px);
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  max-width: 430px;
-  margin: 0 auto;
-  overflow-x: hidden;
-}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;overflow-x:hidden}
 
 /* HEADER */
-.header {
-  padding: calc(var(--safe-top) + 16px) 20px 0;
-  background: var(--bg);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px;
-  letter-spacing: 2px;
-  color: var(--accent);
-}
-
-.week-nav {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.week-btn {
-  width: 34px; height: 34px;
-  background: var(--bg3);
-  border: none;
-  border-radius: 50%;
-  color: var(--text);
-  font-size: 16px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background 0.15s;
-}
-.week-btn:active { background: var(--bg4); transform: scale(0.93); }
-
-.week-label {
-  font-size: 13px;
-  color: var(--text2);
-  font-weight: 500;
-}
+.header{padding:calc(var(--st) + 14px) 18px 0;background:var(--bg);position:sticky;top:0;z-index:100}
+.header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--accent)}
+.week-nav{display:flex;align-items:center;gap:10px}
+.week-btn{width:34px;height:34px;background:var(--bg3);border:none;border-radius:50%;color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.week-btn:active{background:var(--bg4);transform:scale(0.93)}
+.week-label{font-size:12px;color:var(--text2);font-weight:500}
 
 /* DAY STRIP */
-.day-strip {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 16px;
-  scrollbar-width: none;
-}
-.day-strip::-webkit-scrollbar { display: none; }
-
-.day-pill {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: 10px 14px;
-  border-radius: 99px;
-  cursor: pointer;
-  transition: all 0.18s;
-  border: 1.5px solid transparent;
-  background: var(--bg2);
-  min-width: 56px;
-}
-
-.day-pill.active {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.day-pill.today-pill {
-  border-color: var(--accent);
-}
-
-.day-pill-name {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.day-pill.active .day-pill-name { color: #0a0a0a; }
-.day-pill.today-pill .day-pill-name { color: var(--accent); }
-
-.day-pill-num {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text);
-}
-.day-pill.active .day-pill-num { color: #0a0a0a; }
-
-.day-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--text3);
-}
-.day-pill.active .day-dot { background: #0a0a0a55; }
+.day-strip{display:flex;gap:7px;overflow-x:auto;padding-bottom:14px;scrollbar-width:none}
+.day-strip::-webkit-scrollbar{display:none}
+.day-pill{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 13px;border-radius:99px;cursor:pointer;transition:all .18s;border:1.5px solid transparent;background:var(--bg2);min-width:54px}
+.day-pill.active{background:var(--accent);border-color:var(--accent)}
+.day-pill.today-pill{border-color:var(--accent)}
+.dpn{font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
+.day-pill.active .dpn{color:#0a0a0a}
+.day-pill.today-pill .dpn{color:var(--accent)}
+.dnum{font-size:17px;font-weight:600;color:var(--text)}
+.day-pill.active .dnum{color:#0a0a0a}
+.ddot{width:5px;height:5px;border-radius:50%;background:var(--text3)}
+.day-pill.active .ddot{background:#0a0a0a55}
 
 /* MAIN */
-.main { padding: 0 16px calc(var(--safe-bottom) + 80px); }
+.main{padding:0 14px calc(var(--sb) + 80px)}
 
-/* HERO CARD */
-.hero-card {
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-bottom: 20px;
-  position: relative;
-  min-height: 200px;
-  background: var(--bg2);
-}
-
-.hero-img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
-  filter: brightness(0.55);
-}
-
-.hero-overlay {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 20px;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
-}
-
-.hero-tag {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 99px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.hero-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 36px;
-  letter-spacing: 1px;
-  line-height: 1;
-  color: #fff;
-  margin-bottom: 4px;
-}
-
-.hero-subtitle {
-  font-size: 13px;
-  color: rgba(255,255,255,0.7);
-}
-
-.hero-rest {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  gap: 12px;
-}
-
-.rest-icon { font-size: 52px; }
-
-.rest-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 32px;
-  letter-spacing: 1px;
-  color: var(--text2);
-}
-
-.rest-sub { font-size: 14px; color: var(--text3); text-align: center; }
+/* HERO */
+.hero-card{border-radius:var(--r);overflow:hidden;margin-bottom:16px;position:relative;background:var(--bg2)}
+.hero-img{width:100%;height:210px;object-fit:cover;display:block;filter:brightness(.5)}
+.hero-overlay{position:absolute;bottom:0;left:0;right:0;padding:18px;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 100%)}
+.hero-tag{display:inline-block;padding:3px 11px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:1px;line-height:1;color:#fff;margin-bottom:3px}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.65)}
 
 /* PROGRESS */
-.progress-section {
-  background: var(--bg2);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.progress-ring-wrap { flex-shrink: 0; }
-
-.progress-info { flex: 1; }
-
-.progress-pct {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px;
-  color: var(--accent);
-  line-height: 1;
-}
-
-.progress-text {
-  font-size: 12px;
-  color: var(--text2);
-  margin-top: 2px;
-}
-
-.progress-bar-wrap {
-  height: 4px;
-  background: var(--bg4);
-  border-radius: 99px;
-  margin-top: 8px;
-  overflow: hidden;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  border-radius: 99px;
-  background: var(--accent);
-  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
-}
+.progress-section{background:var(--bg2);border-radius:var(--rs);padding:13px 15px;margin-bottom:16px}
+.progress-pct{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--accent);line-height:1}
+.progress-text{font-size:12px;color:var(--text2);margin-top:2px}
+.progress-bar-wrap{height:4px;background:var(--bg4);border-radius:99px;margin-top:8px;overflow:hidden}
+.progress-bar-fill{height:100%;border-radius:99px;background:var(--accent);transition:width .4s cubic-bezier(.4,0,.2,1)}
 
 /* SECTION */
-.section-label {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text3);
-  margin: 20px 0 10px;
-  padding-left: 4px;
-}
+.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin:18px 0 9px;padding-left:2px}
 
 /* EXERCISE CARD */
-.ex-card {
-  background: var(--bg2);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  margin-bottom: 10px;
-  transition: transform 0.12s;
-  border: 1px solid transparent;
-}
+.ex-card{background:var(--bg2);border-radius:var(--rs);overflow:hidden;margin-bottom:9px;border:1px solid transparent;transition:border-color .15s}
+.ex-card.done-card{opacity:.5;border-color:var(--bg4)}
+.ex-card-inner{display:flex;align-items:stretch}
+.ex-thumb-wrap{width:78px;flex-shrink:0;overflow:hidden;position:relative;cursor:pointer}
+.ex-thumb{width:78px;height:78px;object-fit:cover;display:block;filter:brightness(.72);transition:filter .2s}
+.ex-thumb-wrap:active .ex-thumb{filter:brightness(.5)}
+.play-badge{position:absolute;bottom:5px;right:5px;width:22px;height:22px;background:rgba(0,0,0,.65);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.play-badge svg{width:11px;height:11px;fill:var(--accent)}
+.ex-body{flex:1;padding:11px 13px;display:flex;flex-direction:column;justify-content:center;gap:3px;cursor:pointer}
+.ex-name{font-size:13px;font-weight:600;color:var(--text);line-height:1.3}
+.ex-card.done-card .ex-name{text-decoration:line-through;color:var(--text3)}
+.ex-sets{font-size:12px;color:var(--accent);font-weight:500}
+.ex-note{font-size:11px;color:var(--text3);margin-top:1px}
+.ex-gif-hint{font-size:10px;color:var(--text3);margin-top:3px;display:flex;align-items:center;gap:3px}
+.ex-check-btn{width:50px;flex-shrink:0;background:none;border:none;border-left:1px solid var(--bg3);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:20px;transition:background .12s,color .12s}
+.ex-check-btn:active{background:var(--bg3)}
+.ex-check-btn.checked{color:var(--accent)}
 
-.ex-card.done-card {
-  opacity: 0.55;
-  border-color: var(--bg4);
-}
-
-.ex-card-inner {
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-}
-
-.ex-thumb-wrap {
-  width: 80px;
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.ex-thumb {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  display: block;
-  filter: brightness(0.75);
-}
-
-.ex-body {
-  flex: 1;
-  padding: 12px 14px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-}
-
-.ex-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1.3;
-}
-
-.ex-card.done-card .ex-name {
-  text-decoration: line-through;
-  color: var(--text3);
-}
-
-.ex-sets {
-  font-size: 12px;
-  color: var(--accent);
-  font-weight: 500;
-}
-
-.ex-note {
-  font-size: 11px;
-  color: var(--text3);
-  margin-top: 2px;
-}
-
-.ex-check-btn {
-  width: 52px;
-  flex-shrink: 0;
-  background: none;
-  border: none;
-  border-left: 1px solid var(--bg3);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text3);
-  font-size: 20px;
-  transition: background 0.12s, color 0.12s;
-}
-
-.ex-check-btn:active { background: var(--bg3); }
-.ex-check-btn.checked { color: var(--accent); }
-
-/* NOTE BOX */
-.note-box {
-  background: var(--bg2);
-  border-radius: var(--radius-sm);
-  padding: 12px 16px;
-  font-size: 13px;
-  color: var(--text2);
-  border-left: 3px solid var(--accent);
-  margin-top: 8px;
-  line-height: 1.5;
-}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-sheet{background:var(--bg2);border-radius:24px 24px 0 0;width:100%;max-width:430px;padding:0 0 calc(var(--sb) + 20px);max-height:90vh;overflow-y:auto;transform:translateY(40px);transition:transform .28s cubic-bezier(.4,0,.2,1)}
+.modal-overlay.open .modal-sheet{transform:translateY(0)}
+.modal-handle{width:40px;height:4px;background:var(--bg4);border-radius:99px;margin:14px auto 0}
+.modal-header{padding:16px 20px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.5px;color:var(--text);line-height:1.1;flex:1}
+.modal-close{width:32px;height:32px;background:var(--bg3);border:none;border-radius:50%;color:var(--text2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.modal-sets-badge{display:inline-block;padding:5px 14px;border-radius:99px;background:var(--accent);color:#0a0a0a;font-size:13px;font-weight:700;margin:10px 20px 0}
+.modal-gif-area{margin:14px 20px 0;border-radius:var(--rs);overflow:hidden;background:var(--bg3);min-height:200px;display:flex;align-items:center;justify-content:center;position:relative}
+.modal-gif{width:100%;max-height:280px;object-fit:contain;display:block}
+.modal-gif-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--text3);font-size:13px}
+.spinner{width:32px;height:32px;border:3px solid var(--bg4);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.modal-info{padding:14px 20px 0}
+.modal-info-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bg3)}
+.modal-info-row:last-child{border-bottom:none}
+.modal-info-icon{width:32px;height:32px;background:var(--bg3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.modal-info-label{font-size:12px;color:var(--text3)}
+.modal-info-val{font-size:13px;font-weight:600;color:var(--text)}
+.modal-done-btn{display:block;width:calc(100% - 40px);margin:16px 20px 0;padding:15px;background:var(--accent);border:none;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:#0a0a0a;cursor:pointer;letter-spacing:.02em}
+.modal-done-btn.already-done{background:var(--bg3);color:var(--text2)}
+.modal-gif-error{text-align:center;padding:20px;color:var(--text3);font-size:13px}
 
 /* BOTTOM NAV */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 430px;
-  background: rgba(10,10,10,0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 12px 20px calc(var(--safe-bottom) + 12px);
-  display: flex;
-  justify-content: space-around;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  z-index: 200;
-}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(10,10,10,.93);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:12px 20px calc(var(--sb) + 12px);display:flex;justify-content:space-around;border-top:1px solid rgba(255,255,255,.06);z-index:200}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;opacity:.4;transition:opacity .15s;font-size:10px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.05em;border:none;background:none}
+.nav-item.active-nav{opacity:1;color:var(--accent)}
+.nav-item svg{width:22px;height:22px}
 
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  opacity: 0.45;
-  transition: opacity 0.15s;
-  font-size: 10px;
-  color: var(--text2);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border: none;
-  background: none;
-}
-
-.nav-item.active-nav { opacity: 1; color: var(--accent); }
-.nav-item svg { width: 22px; height: 22px; }
-
-/* RESET WEEK BTN */
-.reset-btn {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  background: var(--bg2);
-  border: 1px solid var(--bg4);
-  border-radius: var(--radius-sm);
-  color: var(--text3);
-  font-size: 13px;
-  font-family: 'DM Sans', sans-serif;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background 0.15s;
-  text-align: center;
-}
-.reset-btn:active { background: var(--bg3); }
-
-/* INSTALL BANNER */
-.install-banner {
-  background: var(--accent);
-  color: #0a0a0a;
-  border-radius: var(--radius-sm);
-  padding: 12px 16px;
-  margin-bottom: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-}
-.install-banner span { flex:1; }
-.install-banner button {
-  background: #0a0a0a22;
-  border: none;
-  color: #0a0a0a;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 2px 6px;
-  border-radius: 6px;
-}
-
-/* STATS PAGE */
-.stats-page { padding: 20px 16px calc(var(--safe-bottom) + 80px); }
-.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-.stat-card {
-  background: var(--bg2);
-  border-radius: var(--radius-sm);
-  padding: 16px;
-  text-align: center;
-}
-.stat-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 40px;
-  color: var(--accent);
-  line-height: 1;
-}
-.stat-label { font-size: 12px; color: var(--text3); margin-top: 4px; }
-.week-history { margin-top: 8px; }
-.history-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--bg3);
-  font-size: 13px;
-}
-.history-row-day { color: var(--text2); }
-.history-row-pct { color: var(--accent); font-weight: 600; }
-
-.page { display: none; }
-.page.active-page { display: block; }
+/* MISC */
+.note-box{background:var(--bg2);border-radius:var(--rs);padding:12px 15px;font-size:13px;color:var(--text2);border-left:3px solid var(--accent);margin-top:8px;line-height:1.5}
+.reset-btn{display:block;width:100%;padding:13px;background:var(--bg2);border:1px solid var(--bg4);border-radius:var(--rs);color:var(--text3);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:18px;text-align:center}
+.install-banner{background:var(--accent);color:#0a0a0a;border-radius:var(--rs);padding:11px 15px;margin-bottom:16px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px;cursor:pointer}
+.install-banner span{flex:1}
+.install-banner button{background:#0a0a0a22;border:none;color:#0a0a0a;font-size:16px;cursor:pointer;padding:2px 6px;border-radius:6px}
+.stats-page{padding:18px 14px calc(var(--sb) + 80px)}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.stat-card{background:var(--bg2);border-radius:var(--rs);padding:15px;text-align:center}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--accent);line-height:1}
+.stat-label{font-size:12px;color:var(--text3);margin-top:3px}
+.history-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--bg3);font-size:13px}
+.history-row-day{color:var(--text2)}
+.history-row-pct{color:var(--accent);font-weight:600}
+.page{display:none}
+.page.active-page{display:block}
 </style>
 </head>
 <body>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal-sheet" id="modalSheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle"></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modalSets"></div>
+    <div class="modal-gif-area" id="modalGifArea">
+      <div class="modal-gif-loading" id="modalLoading">
+        <div class="spinner"></div>
+        <span>Chargement du GIF…</span>
+      </div>
+    </div>
+    <div class="modal-info" id="modalInfo"></div>
+    <button class="modal-done-btn" id="modalDoneBtn" onclick="toggleFromModal()"></button>
+  </div>
+</div>
 
 <div class="header">
   <div class="header-top">
@@ -508,7 +171,6 @@ body {
 <div id="pageHome" class="page active-page">
   <div class="main" id="mainContent"></div>
 </div>
-
 <div id="pageStats" class="page">
   <div class="stats-page" id="statsContent"></div>
 </div>
@@ -525,354 +187,434 @@ body {
 </nav>
 
 <script>
-const PROGRAM = {
-  0: {
-    name:"Lundi", label:"Push", tag:"push", color:"var(--push)",
-    subtitle:"Pecs · Épaules · Triceps",
-    note:"🛡️ Finition : 2×15 rotations externes poulie basse — protection coiffe des rotateurs",
-    img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
-    sections:[
-      {title:"Pectoraux", exercises:[
-        {name:"Développé couché barre", sets:"3 × 8-10", note:"Repos 2 min", img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=70"},
-        {name:"Développé incliné haltères", sets:"3 × 10-12", img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&q=70"},
-        {name:"Pec deck machine", sets:"3 × 12", img:"https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=400&q=70"},
-      ]},
-      {title:"Épaules", exercises:[
-        {name:"Développé militaire haltères", sets:"3 × 10-12", img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=70"},
-        {name:"Élévations latérales", sets:"3 × 12-15", img:"https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=400&q=70"},
-      ]},
-      {title:"Triceps", exercises:[
-        {name:"Poulie triceps corde", sets:"3 × 12", img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=400&q=70"},
-        {name:"Extension haltère une main", sets:"3 × 12", img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=400&q=70"},
-      ]},
-      {title:"Protection coiffe", exercises:[
-        {name:"Rotation externe poulie basse", sets:"2 × 15", img:"https://images.unsplash.com/photo-1576678927484-cc907957088c?w=400&q=70"},
-      ]},
-    ]
-  },
-  1: {
-    name:"Mardi", label:"Pull", tag:"pull", color:"var(--pull)",
-    subtitle:"Dos · Biceps",
-    img:"https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=800&q=80",
-    sections:[
-      {title:"Dos largeur", exercises:[
-        {name:"Tirage vertical", sets:"4 × 8-10", note:"Commence à 45-50 kg", img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=400&q=70"},
-        {name:"Tractions assistées", sets:"3 × max", img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=400&q=70"},
-      ]},
-      {title:"Dos épaisseur", exercises:[
-        {name:"Tirage horizontal", sets:"4 × 10", img:"https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&q=70"},
-        {name:"Low row", sets:"3 × 10", note:"60-65 kg", img:"https://images.unsplash.com/photo-1581009137042-c552e485697a?w=400&q=70"},
-        {name:"Lower back machine", sets:"3 × 12-15", img:"https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=400&q=70"},
-      ]},
-      {title:"Biceps", exercises:[
-        {name:"Curl barre", sets:"3 × 10", note:"24 kg", img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=70"},
-        {name:"Hammer curl", sets:"3 × 10", img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=400&q=70"},
-      ]},
-    ]
-  },
-  2: {
-    name:"Mercredi", label:"Repos actif", tag:"rest", color:"var(--rest)",
-    subtitle:"Récupération",
-    rest:true,
-    img:"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
-    note:"Marche · Mobilité · Étirements légers. Le muscle se construit au repos — c'est aussi important que la séance."
-  },
-  3: {
-    name:"Jeudi", label:"Jambes", tag:"legs", color:"var(--legs)",
-    subtitle:"Quadriceps · Ischios · Mollets",
-    img:"https://images.unsplash.com/photo-1434682966140-aba8208b7d55?w=800&q=80",
-    sections:[
-      {title:"Quadriceps", exercises:[
-        {name:"Squat", sets:"4 × 8", note:"50-60 kg, progression lente", img:"https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=400&q=70"},
-        {name:"Presse à cuisses", sets:"3 × 10", img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=400&q=70"},
-        {name:"Fentes marchées haltères", sets:"3 × 10 / jambe", img:"https://images.unsplash.com/photo-1597452485597-17b9c7ad5746?w=400&q=70"},
-      ]},
-      {title:"Ischios", exercises:[
-        {name:"Leg curl", sets:"3 × 12", note:"35 kg", img:"https://images.unsplash.com/photo-1576678927484-cc907957088c?w=400&q=70"},
-        {name:"Soulevé de terre jambes tendues", sets:"3 × 10", img:"https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=400&q=70"},
-      ]},
-      {title:"Mollets + Abdos", exercises:[
-        {name:"Mollets debout machine", sets:"3 × 15-20", img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=70"},
-        {name:"Crunch câble", sets:"3 × 15", img:"https://images.unsplash.com/photo-1544033527-b192daee1f5b?w=400&q=70"},
-      ]},
-    ]
-  },
-  4: {
-    name:"Vendredi", label:"Force", tag:"full", color:"var(--full)",
-    subtitle:"Force + Masse — Haut du corps",
-    note:"💪 Triceps retirés — ils récupèrent avant samedi. Focus sur la charge et la progression.",
-    img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80",
-    sections:[
-      {title:"Séance force 5×5", exercises:[
-        {name:"Développé couché", sets:"4 × 6-8", img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=70"},
-        {name:"Tirage vertical lourd", sets:"4 × 6-8", img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=400&q=70"},
-        {name:"Développé militaire", sets:"3 × 8", img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=70"},
-        {name:"Low row", sets:"3 × 8", img:"https://images.unsplash.com/photo-1581009137042-c552e485697a?w=400&q=70"},
-        {name:"Curl barre", sets:"3 × 8", img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=400&q=70"},
-      ]},
-    ]
-  },
-  5: {
-    name:"Samedi", label:"Bras", tag:"arms", color:"var(--arms)",
-    subtitle:"Bras · Épaules · Rappel pecs",
-    img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=800&q=80",
-    sections:[
-      {title:"Épaules", exercises:[
-        {name:"Élévations latérales", sets:"4 × 15", img:"https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=400&q=70"},
-        {name:"Oiseau haltères", sets:"3 × 12", img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=70"},
-      ]},
-      {title:"Biceps", exercises:[
-        {name:"Curl barre EZ", sets:"3 × 10", img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=400&q=70"},
-        {name:"Curl incliné haltères", sets:"3 × 12", img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=400&q=70"},
-      ]},
-      {title:"Triceps", exercises:[
-        {name:"Extension corde poulie", sets:"3 × 12", img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=400&q=70"},
-        {name:"Skull crusher léger", sets:"3 × 12", img:"https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&q=70"},
-      ]},
-      {title:"Rappel pecs", exercises:[
-        {name:"Écarté incliné haltères", sets:"3 × 15", img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&q=70"},
-      ]},
-    ]
-  },
-  6: {
-    name:"Dimanche", label:"Repos", tag:"rest", color:"var(--rest)",
-    subtitle:"Récupération complète",
-    rest:true,
-    img:"https://images.unsplash.com/photo-1540206395-68808572332f?w=800&q=80",
-    note:"Repos complet 💤 Le cycle hebdomadaire est terminé. Bien joué, la semaine prochaine reprend lundi !"
-  }
+/* ── GIF MAP via wger.de (open source fitness DB, no auth needed) ── */
+/* Format: exercise name → wger exercise ID */
+const WGER_IDS = {
+  "Développé couché barre": 192,
+  "Développé incliné haltères": 329,
+  "Pec deck machine": 118,
+  "Développé militaire haltères": 72,
+  "Élévations latérales": 77,
+  "Poulie triceps corde": 91,
+  "Extension haltère une main": 84,
+  "Rotation externe poulie basse": 126,
+  "Tirage vertical": 18,
+  "Tractions assistées": 31,
+  "Tirage horizontal": 21,
+  "Low row": 22,
+  "Lower back machine": 126,
+  "Curl barre": 5,
+  "Hammer curl": 8,
+  "Squat": 111,
+  "Presse à cuisses": 105,
+  "Fentes marchées haltères": 227,
+  "Leg curl": 110,
+  "Soulevé de terre jambes tendues": 38,
+  "Mollets debout machine": 69,
+  "Crunch câble": 124,
+  "Tirage vertical lourd": 18,
+  "Développé militaire": 72,
+  "Curl barre EZ": 5,
+  "Curl incliné haltères": 6,
+  "Extension corde poulie": 91,
+  "Skull crusher léger": 84,
+  "Écarté incliné haltères": 329,
+  "Oiseau haltères": 77,
 };
 
-const DAYS_SHORT = ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
-const MONTHS = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
+/* Fallback GIFs from open gym GIF sources */
+const FALLBACK_GIFS = {
+  "Développé couché barre": "https://media.giphy.com/media/3o7TKwmnDgQb5jemjK/giphy.gif",
+  "Développé incliné haltères": "https://media.giphy.com/media/l0HlHFRbmaZtBRhXG/giphy.gif",
+  "Développé militaire haltères": "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif",
+  "Élévations latérales": "https://media.giphy.com/media/l2JJKs3I69qfaQleE/giphy.gif",
+  "Curl barre": "https://media.giphy.com/media/l46CyJmS9KUbokzsI/giphy.gif",
+  "Squat": "https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif",
+  "Tractions assistées": "https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif",
+};
 
-let weekOffset = 0;
-let selectedDay = null;
+/* Exercise extra info */
+const EX_INFO = {
+  "Développé couché barre":    {muscles:"Pectoraux, Triceps, Épaules",tips:"Descends lentement, pousse explosif",repos:"2 min"},
+  "Développé incliné haltères":{muscles:"Pectoraux (haut), Épaules",tips:"Contrôle la descente",repos:"90 s"},
+  "Pec deck machine":          {muscles:"Pectoraux (isolation)",tips:"Squeeze au centre",repos:"60 s"},
+  "Développé militaire haltères":{muscles:"Épaules, Triceps",tips:"Core gainé, ne cambre pas",repos:"90 s"},
+  "Élévations latérales":      {muscles:"Deltoïde médial",tips:"Légère flexion du coude",repos:"60 s"},
+  "Poulie triceps corde":      {muscles:"Triceps (long, latéral)",tips:"Écarte la corde en bas",repos:"60 s"},
+  "Extension haltère une main":{muscles:"Triceps (chef long)",tips:"Coude fixe, pleine amplitude",repos:"60 s"},
+  "Rotation externe poulie basse":{muscles:"Coiffe des rotateurs",tips:"Mouvement lent et contrôlé",repos:"45 s"},
+  "Tirage vertical":           {muscles:"Grand dorsal, Biceps",tips:"Poitrine haute, omoplates ensemble",repos:"90 s"},
+  "Tractions assistées":       {muscles:"Grand dorsal, Biceps",tips:"Pleine amplitude obligatoire",repos:"90 s"},
+  "Tirage horizontal":         {muscles:"Dos milieu, Rhomboïdes",tips:"Coudes près du corps",repos:"90 s"},
+  "Low row":                   {muscles:"Dos épaisseur, Biceps",tips:"Assieds-toi droit, tire bas",repos:"90 s"},
+  "Lower back machine":        {muscles:"Lombaires, Érecteurs",tips:"Mouvement lent, pas de rebond",repos:"60 s"},
+  "Curl barre":                {muscles:"Biceps brachial",tips:"Coudes fixes, pleine amplitude",repos:"60 s"},
+  "Hammer curl":               {muscles:"Biceps, Brachioradial",tips:"Pouce vers le haut",repos:"60 s"},
+  "Squat":                     {muscles:"Quadriceps, Fessiers, Ischios",tips:"Genoux dans l'axe des pieds",repos:"2 min"},
+  "Presse à cuisses":          {muscles:"Quadriceps, Fessiers",tips:"Pieds à largeur d'épaules",repos:"90 s"},
+  "Fentes marchées haltères":  {muscles:"Quadriceps, Fessiers, Stabilisateurs",tips:"Grand pas, genou avant à 90°",repos:"90 s"},
+  "Leg curl":                  {muscles:"Ischio-jambiers",tips:"Hanche contre le banc",repos:"60 s"},
+  "Soulevé de terre jambes tendues":{muscles:"Ischios, Lombaires",tips:"Dos droit, barre près des jambes",repos:"90 s"},
+  "Mollets debout machine":    {muscles:"Gastrocnémiens, Soléaire",tips:"Pleine amplitude, pause en haut",repos:"45 s"},
+  "Crunch câble":              {muscles:"Abdominaux",tips:"Contracte l'abdo, pas le dos",repos:"45 s"},
+  "Tirage vertical lourd":     {muscles:"Grand dorsal, Biceps",tips:"Charge plus lourde, 6-8 reps",repos:"2 min"},
+  "Développé militaire":       {muscles:"Épaules, Triceps",tips:"Core gainé, presse verticalement",repos:"2 min"},
+  "Curl barre EZ":             {muscles:"Biceps, Brachial",tips:"Barre EZ réduit le stress du poignet",repos:"60 s"},
+  "Curl incliné haltères":     {muscles:"Biceps (chef long)",tips:"Banc à 45°, pleine étirement",repos:"60 s"},
+  "Extension corde poulie":    {muscles:"Triceps (les 3 chefs)",tips:"Écarte la corde en bas",repos:"60 s"},
+  "Skull crusher léger":       {muscles:"Triceps (chef long)",tips:"Coudes fixes, descends lentement",repos:"60 s"},
+  "Écarté incliné haltères":   {muscles:"Pectoraux (haut), Épaules",tips:"Légère flexion du coude",repos:"60 s"},
+  "Oiseau haltères":           {muscles:"Deltoïde postérieur, Rhomboïdes",tips:"Incliné avant, bras ouverts",repos:"60 s"},
+};
 
-function getMonday(offset) {
-  const today = new Date();
-  const dow = today.getDay();
-  const diff = dow === 0 ? -6 : 1 - dow;
-  const mon = new Date(today);
-  mon.setDate(today.getDate() + diff + offset * 7);
-  return mon;
+const PROGRAM = {
+  0:{name:"Lundi",label:"Push",tag:"push",color:"var(--push)",subtitle:"Pecs · Épaules · Triceps",
+    note:"🛡️ Finition : 2×15 rotations externes poulie basse — protection coiffe des rotateurs",
+    img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=75",
+    sections:[
+      {title:"Pectoraux",exercises:[
+        {name:"Développé couché barre",sets:"3 × 8-10",note:"Repos 2 min",img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=300&q=60"},
+        {name:"Développé incliné haltères",sets:"3 × 10-12",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=300&q=60"},
+        {name:"Pec deck machine",sets:"3 × 12",img:"https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=300&q=60"},
+      ]},
+      {title:"Épaules",exercises:[
+        {name:"Développé militaire haltères",sets:"3 × 10-12",img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=300&q=60"},
+        {name:"Élévations latérales",sets:"3 × 12-15",img:"https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=300&q=60"},
+      ]},
+      {title:"Triceps",exercises:[
+        {name:"Poulie triceps corde",sets:"3 × 12",img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=300&q=60"},
+        {name:"Extension haltère une main",sets:"3 × 12",img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=300&q=60"},
+      ]},
+      {title:"Protection coiffe",exercises:[
+        {name:"Rotation externe poulie basse",sets:"2 × 15",img:"https://images.unsplash.com/photo-1576678927484-cc907957088c?w=300&q=60"},
+      ]},
+    ]},
+  1:{name:"Mardi",label:"Pull",tag:"pull",color:"var(--pull)",subtitle:"Dos · Biceps",
+    img:"https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=800&q=75",
+    sections:[
+      {title:"Dos largeur",exercises:[
+        {name:"Tirage vertical",sets:"4 × 8-10",note:"45-50 kg",img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=300&q=60"},
+        {name:"Tractions assistées",sets:"3 × max",img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=300&q=60"},
+      ]},
+      {title:"Dos épaisseur",exercises:[
+        {name:"Tirage horizontal",sets:"4 × 10",img:"https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=300&q=60"},
+        {name:"Low row",sets:"3 × 10",note:"60-65 kg",img:"https://images.unsplash.com/photo-1581009137042-c552e485697a?w=300&q=60"},
+        {name:"Lower back machine",sets:"3 × 12-15",img:"https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=300&q=60"},
+      ]},
+      {title:"Biceps",exercises:[
+        {name:"Curl barre",sets:"3 × 10",note:"24 kg",img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=300&q=60"},
+        {name:"Hammer curl",sets:"3 × 10",img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=300&q=60"},
+      ]},
+    ]},
+  2:{name:"Mercredi",label:"Repos actif",tag:"rest",color:"var(--rest)",subtitle:"Récupération",rest:true,
+    img:"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=75",
+    note:"🚶 Marche · Mobilité · Étirements légers. Le muscle se construit au repos — aussi important que la séance."},
+  3:{name:"Jeudi",label:"Jambes",tag:"legs",color:"var(--legs)",subtitle:"Quadriceps · Ischios · Mollets",
+    img:"https://images.unsplash.com/photo-1434682966140-aba8208b7d55?w=800&q=75",
+    sections:[
+      {title:"Quadriceps",exercises:[
+        {name:"Squat",sets:"4 × 8",note:"50-60 kg",img:"https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=300&q=60"},
+        {name:"Presse à cuisses",sets:"3 × 10",img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=300&q=60"},
+        {name:"Fentes marchées haltères",sets:"3 × 10 / jambe",img:"https://images.unsplash.com/photo-1597452485597-17b9c7ad5746?w=300&q=60"},
+      ]},
+      {title:"Ischios",exercises:[
+        {name:"Leg curl",sets:"3 × 12",note:"35 kg",img:"https://images.unsplash.com/photo-1576678927484-cc907957088c?w=300&q=60"},
+        {name:"Soulevé de terre jambes tendues",sets:"3 × 10",img:"https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=300&q=60"},
+      ]},
+      {title:"Mollets + Abdos",exercises:[
+        {name:"Mollets debout machine",sets:"3 × 15-20",img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=300&q=60"},
+        {name:"Crunch câble",sets:"3 × 15",img:"https://images.unsplash.com/photo-1544033527-b192daee1f5b?w=300&q=60"},
+      ]},
+    ]},
+  4:{name:"Vendredi",label:"Force",tag:"full",color:"var(--full)",subtitle:"Force + Masse — Haut du corps",
+    note:"💪 Triceps retirés — récupèrent avant samedi. Focus sur la charge et la progression.",
+    img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=75",
+    sections:[
+      {title:"Séance force",exercises:[
+        {name:"Développé couché barre",sets:"4 × 6-8",img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=300&q=60"},
+        {name:"Tirage vertical lourd",sets:"4 × 6-8",img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=300&q=60"},
+        {name:"Développé militaire",sets:"3 × 8",img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=300&q=60"},
+        {name:"Low row",sets:"3 × 8",img:"https://images.unsplash.com/photo-1581009137042-c552e485697a?w=300&q=60"},
+        {name:"Curl barre",sets:"3 × 8",img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=300&q=60"},
+      ]},
+    ]},
+  5:{name:"Samedi",label:"Bras",tag:"arms",color:"var(--arms)",subtitle:"Bras · Épaules · Rappel pecs",
+    img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=800&q=75",
+    sections:[
+      {title:"Épaules",exercises:[
+        {name:"Élévations latérales",sets:"4 × 15",img:"https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=300&q=60"},
+        {name:"Oiseau haltères",sets:"3 × 12",img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=300&q=60"},
+      ]},
+      {title:"Biceps",exercises:[
+        {name:"Curl barre EZ",sets:"3 × 10",img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=300&q=60"},
+        {name:"Curl incliné haltères",sets:"3 × 12",img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=300&q=60"},
+      ]},
+      {title:"Triceps",exercises:[
+        {name:"Extension corde poulie",sets:"3 × 12",img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=300&q=60"},
+        {name:"Skull crusher léger",sets:"3 × 12",img:"https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=300&q=60"},
+      ]},
+      {title:"Rappel pecs",exercises:[
+        {name:"Écarté incliné haltères",sets:"3 × 15",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=300&q=60"},
+      ]},
+    ]},
+  6:{name:"Dimanche",label:"Repos",tag:"rest",color:"var(--rest)",subtitle:"Récupération complète",rest:true,
+    img:"https://images.unsplash.com/photo-1540206395-68808572332f?w=800&q=75",
+    note:"💤 Repos complet. Le cycle est terminé — bien joué ! La semaine reprend lundi."},
+};
+
+const DAYS_SHORT=["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
+const MONTHS=["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
+
+let weekOffset=0, selectedDay=null;
+let modalSi=null, modalEi=null;
+
+/* ── STORAGE ── */
+function storageKey(w,d){const m=getMonday(w);return`tw_${m.getFullYear()}_${m.getMonth()}_${m.getDate()}_d${d}`}
+function getChecked(w,d){try{return JSON.parse(localStorage.getItem(storageKey(w,d))||'{}')}catch{return{}}}
+function setChecked(w,d,o){try{localStorage.setItem(storageKey(w,d),JSON.stringify(o))}catch{}}
+
+/* ── DATE UTILS ── */
+function getMonday(off){
+  const t=new Date(), dow=t.getDay(), diff=dow===0?-6:1-dow;
+  const m=new Date(t); m.setDate(t.getDate()+diff+off*7); return m;
+}
+function isToday(d){const t=new Date();return d.getDate()===t.getDate()&&d.getMonth()===t.getMonth()&&d.getFullYear()===t.getFullYear()}
+
+/* ── MODAL ── */
+async function openModal(si, ei) {
+  modalSi=si; modalEi=ei;
+  const prog=PROGRAM[selectedDay];
+  const ex=prog.sections[si].exercises[ei];
+  const info=EX_INFO[ex.name]||{};
+  const obj=getChecked(weekOffset,selectedDay);
+  const done=!!obj[`${si}_${ei}`];
+
+  document.getElementById('modalTitle').textContent=ex.name;
+  document.getElementById('modalSets').innerHTML=`<div class="modal-sets-badge">${ex.sets}</div>`;
+
+  // Info rows
+  let infoHtml='';
+  if(info.muscles) infoHtml+=`<div class="modal-info-row"><div class="modal-info-icon">💪</div><div><div class="modal-info-label">Muscles</div><div class="modal-info-val">${info.muscles}</div></div></div>`;
+  if(info.tips)    infoHtml+=`<div class="modal-info-row"><div class="modal-info-icon">💡</div><div><div class="modal-info-label">Conseil</div><div class="modal-info-val">${info.tips}</div></div></div>`;
+  if(info.repos)   infoHtml+=`<div class="modal-info-row"><div class="modal-info-icon">⏱️</div><div><div class="modal-info-label">Repos</div><div class="modal-info-val">${info.repos}</div></div></div>`;
+  if(ex.note)      infoHtml+=`<div class="modal-info-row"><div class="modal-info-icon">📝</div><div><div class="modal-info-label">Note</div><div class="modal-info-val">${ex.note}</div></div></div>`;
+  document.getElementById('modalInfo').innerHTML=infoHtml;
+
+  const btn=document.getElementById('modalDoneBtn');
+  btn.textContent=done?'✓ Exercice terminé':'Marquer comme terminé ✓';
+  btn.className='modal-done-btn'+(done?' already-done':'');
+
+  // Show modal
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+
+  // Load GIF
+  const gifArea=document.getElementById('modalGifArea');
+  gifArea.innerHTML='<div class="modal-gif-loading"><div class="spinner"></div><span>Chargement du GIF…</span></div>';
+
+  const gifUrl=await fetchGif(ex.name);
+  if(gifUrl){
+    gifArea.innerHTML=`<img class="modal-gif" src="${gifUrl}" alt="${ex.name}" loading="lazy">`;
+  } else {
+    gifArea.innerHTML=`<div class="modal-gif-error">😕 GIF non disponible<br><span style="font-size:11px;margin-top:6px;display:block">Consulte YouTube pour la démonstration</span></div>`;
+  }
 }
 
-function isToday(d) {
-  const t = new Date();
-  return d.getDate() === t.getDate() && d.getMonth() === t.getMonth() && d.getFullYear() === t.getFullYear();
+async function fetchGif(exName) {
+  // Try wger.de API first
+  const wgerId=WGER_IDS[exName];
+  if(wgerId){
+    try{
+      const r=await fetch(`https://wger.de/api/v2/exerciseimage/?format=json&exercise_base=${wgerId}&is_main=true&language=2`,{signal:AbortSignal.timeout(5000)});
+      if(r.ok){
+        const d=await r.json();
+        if(d.results&&d.results.length>0) return d.results[0].image;
+      }
+    }catch{}
+    // Try without language filter
+    try{
+      const r=await fetch(`https://wger.de/api/v2/exerciseimage/?format=json&exercise_base=${wgerId}`,{signal:AbortSignal.timeout(5000)});
+      if(r.ok){
+        const d=await r.json();
+        if(d.results&&d.results.length>0) return d.results[0].image;
+      }
+    }catch{}
+  }
+  // Fallback static GIFs
+  return FALLBACK_GIFS[exName]||null;
 }
 
-function storageKey(weekOff, day) {
-  const mon = getMonday(weekOff);
-  return `tw_${mon.getFullYear()}_${mon.getMonth()}_${mon.getDate()}_d${day}`;
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+  modalSi=null; modalEi=null;
 }
 
-function getChecked(weekOff, day) {
-  try { return JSON.parse(localStorage.getItem(storageKey(weekOff, day)) || '{}'); }
-  catch { return {}; }
+function closeModalOutside(e){
+  if(e.target===document.getElementById('modal')) closeModal();
 }
 
-function setChecked(weekOff, day, obj) {
-  try { localStorage.setItem(storageKey(weekOff, day), JSON.stringify(obj)); }
-  catch {}
-}
-
-function toggleEx(si, ei) {
-  const obj = getChecked(weekOffset, selectedDay);
-  const k = `${si}_${ei}`;
-  obj[k] = !obj[k];
-  setChecked(weekOffset, selectedDay, obj);
+function toggleFromModal(){
+  if(modalSi===null||modalEi===null) return;
+  const obj=getChecked(weekOffset,selectedDay);
+  const k=`${modalSi}_${modalEi}`;
+  obj[k]=!obj[k];
+  setChecked(weekOffset,selectedDay,obj);
+  const done=obj[k];
+  const btn=document.getElementById('modalDoneBtn');
+  btn.textContent=done?'✓ Exercice terminé':'Marquer comme terminé ✓';
+  btn.className='modal-done-btn'+(done?' already-done':'');
   renderMain();
 }
 
-function changeWeek(dir) {
-  weekOffset += dir;
-  selectedDay = null;
-  render();
+/* ── NAV ── */
+function changeWeek(dir){weekOffset+=dir;selectedDay=null;render()}
+function selectDay(idx){selectedDay=idx;renderStrip();renderMain()}
+function showPage(page){
+  document.getElementById('pageHome').classList.toggle('active-page',page==='home');
+  document.getElementById('pageStats').classList.toggle('active-page',page==='stats');
+  document.getElementById('navHome').classList.toggle('active-nav',page==='home');
+  document.getElementById('navStats').classList.toggle('active-nav',page==='stats');
+  if(page==='stats') renderStats();
 }
 
-function selectDay(idx) {
-  selectedDay = idx;
-  renderStrip();
-  renderMain();
+/* ── PROGRESS ── */
+function getDayProgress(w,d){
+  const p=PROGRAM[d]; if(p.rest) return null;
+  const obj=getChecked(w,d); let total=0,done=0;
+  p.sections.forEach((s,si)=>s.exercises.forEach((_,ei)=>{total++;if(obj[`${si}_${ei}`])done++;}));
+  return{total,done,pct:total>0?Math.round(done/total*100):0};
 }
 
-function showPage(page) {
-  document.getElementById('pageHome').classList.toggle('active-page', page === 'home');
-  document.getElementById('pageStats').classList.toggle('active-page', page === 'stats');
-  document.getElementById('navHome').classList.toggle('active-nav', page === 'home');
-  document.getElementById('navStats').classList.toggle('active-nav', page === 'stats');
-  if (page === 'stats') renderStats();
-}
-
-function getDayProgress(wOff, day) {
-  const prog = PROGRAM[day];
-  if (prog.rest) return null;
-  const obj = getChecked(wOff, day);
-  let total = 0, done = 0;
-  prog.sections.forEach((s, si) => s.exercises.forEach((_, ei) => {
-    total++;
-    if (obj[`${si}_${ei}`]) done++;
-  }));
-  return { total, done, pct: total > 0 ? Math.round(done / total * 100) : 0 };
-}
-
-function renderStrip() {
-  const mon = getMonday(weekOffset);
-  const strip = document.getElementById('dayStrip');
-  strip.innerHTML = '';
-  for (let i = 0; i < 7; i++) {
-    const d = new Date(mon); d.setDate(mon.getDate() + i);
-    const prog = PROGRAM[i];
-    const isSelected = selectedDay === i;
-    const isTod = isToday(d) && weekOffset === 0;
-    const pill = document.createElement('div');
-    pill.className = 'day-pill' + (isSelected ? ' active' : '') + (isTod && !isSelected ? ' today-pill' : '');
-    pill.onclick = () => selectDay(i);
-    const pr = getDayProgress(weekOffset, i);
-    const dotColor = pr && pr.pct === 100 ? 'var(--accent)' : (pr ? 'var(--text3)' : '#333');
-    pill.innerHTML = `
-      <span class="day-pill-name">${DAYS_SHORT[i]}</span>
-      <span class="day-pill-num">${d.getDate()}</span>
-      <div class="day-dot" style="background:${isSelected ? '#0a0a0a55' : dotColor}"></div>`;
+/* ── RENDER STRIP ── */
+function renderStrip(){
+  const mon=getMonday(weekOffset);
+  const strip=document.getElementById('dayStrip');
+  strip.innerHTML='';
+  for(let i=0;i<7;i++){
+    const d=new Date(mon); d.setDate(mon.getDate()+i);
+    const isSel=selectedDay===i, isTod=isToday(d)&&weekOffset===0;
+    const pill=document.createElement('div');
+    pill.className='day-pill'+(isSel?' active':'')+(isTod&&!isSel?' today-pill':'');
+    pill.onclick=()=>selectDay(i);
+    const pr=getDayProgress(weekOffset,i);
+    const dotC=pr&&pr.pct===100?'var(--accent)':(pr?'var(--text3)':'#333');
+    pill.innerHTML=`<span class="dpn">${DAYS_SHORT[i]}</span><span class="dnum">${d.getDate()}</span><div class="ddot" style="background:${isSel?'#0a0a0a55':dotC}"></div>`;
     strip.appendChild(pill);
   }
-  const mon2 = getMonday(weekOffset);
-  const sun = new Date(mon2); sun.setDate(mon2.getDate() + 6);
-  document.getElementById('weekLabel').textContent = `${mon2.getDate()} ${MONTHS[mon2.getMonth()]} – ${sun.getDate()} ${MONTHS[sun.getMonth()]}`;
+  const mon2=getMonday(weekOffset), sun=new Date(mon2); sun.setDate(mon2.getDate()+6);
+  document.getElementById('weekLabel').textContent=`${mon2.getDate()} ${MONTHS[mon2.getMonth()]} – ${sun.getDate()} ${MONTHS[sun.getMonth()]}`;
 }
 
-function renderMain() {
-  const prog = PROGRAM[selectedDay];
-  const main = document.getElementById('mainContent');
+/* ── RENDER MAIN ── */
+function renderMain(){
+  const prog=PROGRAM[selectedDay];
+  const main=document.getElementById('mainContent');
 
-  // Install banner (iOS)
-  const isIos = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
-  const isStandalone = window.navigator.standalone;
-  const bannerDismissed = localStorage.getItem('tw_banner') === '1';
-  let bannerHtml = '';
-  if (isIos && !isStandalone && !bannerDismissed) {
-    bannerHtml = `<div class="install-banner" onclick="dismissBanner()">
-      <span>📲 Installe l'app : Partage → "Sur l'écran d'accueil"</span>
-      <button onclick="event.stopPropagation();dismissBanner()">✕</button>
-    </div>`;
+  const isIos=/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+  const isStandalone=window.navigator.standalone;
+  const bannerDismissed=localStorage.getItem('tw_banner')==='1';
+  let bannerHtml='';
+  if(isIos&&!isStandalone&&!bannerDismissed){
+    bannerHtml=`<div class="install-banner" onclick="dismissBanner()"><span>📲 Partage → "Sur l'écran d'accueil" pour installer</span><button onclick="event.stopPropagation();dismissBanner()">✕</button></div>`;
   }
 
-  if (prog.rest) {
-    main.innerHTML = `${bannerHtml}
-      <div class="hero-card">
-        <img class="hero-img" src="${prog.img}" alt="${prog.label}" loading="lazy">
-        <div class="hero-overlay">
-          <span class="hero-tag" style="background:${prog.color}22;color:${prog.color}">${prog.tag.toUpperCase()}</span>
-          <div class="hero-title">${prog.name}</div>
-          <div class="hero-subtitle">${prog.subtitle}</div>
-        </div>
-      </div>
-      <div class="note-box" style="border-color:${prog.color}">${prog.note || ''}</div>`;
+  if(prog.rest){
+    main.innerHTML=`${bannerHtml}
+      <div class="hero-card"><img class="hero-img" src="${prog.img}" alt="${prog.label}" loading="lazy">
+        <div class="hero-overlay"><span class="hero-tag" style="background:${prog.color}22;color:${prog.color}">${prog.tag.toUpperCase()}</span>
+          <div class="hero-title">${prog.name}</div><div class="hero-sub">${prog.subtitle}</div></div></div>
+      <div class="note-box" style="border-color:${prog.color}">${prog.note||''}</div>`;
     return;
   }
 
-  const pr = getDayProgress(weekOffset, selectedDay);
-  const obj = getChecked(weekOffset, selectedDay);
+  const pr=getDayProgress(weekOffset,selectedDay);
+  const obj=getChecked(weekOffset,selectedDay);
+  let sectionsHtml='';
 
-  let sectionsHtml = '';
-  prog.sections.forEach((sec, si) => {
-    let exHtml = '';
-    sec.exercises.forEach((ex, ei) => {
-      const done = !!obj[`${si}_${ei}`];
-      exHtml += `
-        <div class="ex-card ${done ? 'done-card' : ''}">
+  prog.sections.forEach((sec,si)=>{
+    let exHtml='';
+    sec.exercises.forEach((ex,ei)=>{
+      const done=!!obj[`${si}_${ei}`];
+      exHtml+=`
+        <div class="ex-card ${done?'done-card':''}">
           <div class="ex-card-inner">
-            <div class="ex-thumb-wrap">
+            <div class="ex-thumb-wrap" onclick="openModal(${si},${ei})">
               <img class="ex-thumb" src="${ex.img}" alt="${ex.name}" loading="lazy">
+              <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
             </div>
-            <div class="ex-body">
+            <div class="ex-body" onclick="openModal(${si},${ei})">
               <div class="ex-name">${ex.name}</div>
               <div class="ex-sets">${ex.sets}</div>
-              ${ex.note ? `<div class="ex-note">${ex.note}</div>` : ''}
+              ${ex.note?`<div class="ex-note">${ex.note}</div>`:''}
+              <div class="ex-gif-hint">▶ Voir le GIF</div>
             </div>
-            <button class="ex-check-btn ${done ? 'checked' : ''}" onclick="toggleEx(${si},${ei})" aria-label="Marquer comme fait">
-              ${done ? '✓' : '○'}
+            <button class="ex-check-btn ${done?'checked':''}" onclick="toggleEx(${si},${ei})" aria-label="Marquer comme fait">
+              ${done?'✓':'○'}
             </button>
           </div>
         </div>`;
     });
-    sectionsHtml += `<div class="section-label">${sec.title}</div>${exHtml}`;
+    sectionsHtml+=`<div class="section-label">${sec.title}</div>${exHtml}`;
   });
 
-  main.innerHTML = `${bannerHtml}
-    <div class="hero-card">
-      <img class="hero-img" src="${prog.img}" alt="${prog.label}" loading="lazy">
-      <div class="hero-overlay">
-        <span class="hero-tag" style="background:${prog.color}33;color:${prog.color}">${prog.label.toUpperCase()}</span>
-        <div class="hero-title">${prog.name}</div>
-        <div class="hero-subtitle">${prog.subtitle}</div>
-      </div>
-    </div>
+  main.innerHTML=`${bannerHtml}
+    <div class="hero-card"><img class="hero-img" src="${prog.img}" alt="${prog.label}" loading="lazy">
+      <div class="hero-overlay"><span class="hero-tag" style="background:${prog.color}33;color:${prog.color}">${prog.label.toUpperCase()}</span>
+        <div class="hero-title">${prog.name}</div><div class="hero-sub">${prog.subtitle}</div></div></div>
     <div class="progress-section">
-      <div class="progress-info">
-        <div class="progress-pct">${pr.pct}%</div>
-        <div class="progress-text">${pr.done}/${pr.total} exercices complétés</div>
-        <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${pr.pct}%"></div></div>
-      </div>
+      <div class="progress-pct">${pr.pct}%</div>
+      <div class="progress-text">${pr.done}/${pr.total} exercices complétés</div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${pr.pct}%"></div></div>
     </div>
     ${sectionsHtml}
-    ${prog.note ? `<div class="note-box">${prog.note}</div>` : ''}
+    ${prog.note?`<div class="note-box">${prog.note}</div>`:''}
     <button class="reset-btn" onclick="resetDay()">Réinitialiser cette séance</button>`;
 }
 
-function resetDay() {
-  setChecked(weekOffset, selectedDay, {});
-  renderMain();
+function toggleEx(si,ei){
+  const obj=getChecked(weekOffset,selectedDay);
+  const k=`${si}_${ei}`; obj[k]=!obj[k];
+  setChecked(weekOffset,selectedDay,obj); renderMain();
 }
 
-function dismissBanner() {
-  localStorage.setItem('tw_banner','1');
-  renderMain();
-}
+function resetDay(){setChecked(weekOffset,selectedDay,{});renderMain()}
+function dismissBanner(){localStorage.setItem('tw_banner','1');renderMain()}
 
-function renderStats() {
-  const content = document.getElementById('statsContent');
-  let totalSessions = 0, totalEx = 0;
-
-  let histHtml = '';
-  for (let w = 0; w >= -4; w--) {
-    const mon = getMonday(w);
-    const label = w === 0 ? 'Cette semaine' : `Semaine du ${mon.getDate()} ${MONTHS[mon.getMonth()]}`;
-    let weekDone = 0, weekTotal = 0;
-    for (let d = 0; d < 7; d++) {
-      const pr = getDayProgress(w, d);
-      if (pr) { weekDone += pr.done; weekTotal += pr.total; totalEx += pr.done; if(pr.done>0) totalSessions++; }
-    }
-    const pct = weekTotal > 0 ? Math.round(weekDone / weekTotal * 100) : 0;
-    if (weekTotal > 0) {
-      histHtml += `<div class="history-row">
-        <span class="history-row-day">${label}</span>
-        <span class="history-row-pct">${pct}% <span style="color:var(--text3);font-weight:400">(${weekDone}/${weekTotal})</span></span>
-      </div>`;
-    }
+/* ── STATS ── */
+function renderStats(){
+  const content=document.getElementById('statsContent');
+  let totalSessions=0,totalEx=0,histHtml='';
+  for(let w=0;w>=-4;w--){
+    const mon=getMonday(w);
+    const label=w===0?'Cette semaine':`Semaine du ${mon.getDate()} ${MONTHS[mon.getMonth()]}`;
+    let wd=0,wt=0;
+    for(let d=0;d<7;d++){const pr=getDayProgress(w,d);if(pr){wd+=pr.done;wt+=pr.total;totalEx+=pr.done;if(pr.done>0)totalSessions++;}}
+    const pct=wt>0?Math.round(wd/wt*100):0;
+    if(wt>0) histHtml+=`<div class="history-row"><span class="history-row-day">${label}</span><span class="history-row-pct">${pct}% <span style="color:var(--text3);font-weight:400">(${wd}/${wt})</span></span></div>`;
   }
-
-  content.innerHTML = `
+  content.innerHTML=`
     <div class="section-label" style="margin-top:8px">Vue d'ensemble</div>
     <div class="stats-grid">
       <div class="stat-card"><div class="stat-num">${totalSessions}</div><div class="stat-label">Séances actives</div></div>
       <div class="stat-card"><div class="stat-num">${totalEx}</div><div class="stat-label">Exercices complétés</div></div>
     </div>
     <div class="section-label">Historique</div>
-    <div class="week-history">${histHtml || '<p style="color:var(--text3);font-size:13px;padding:12px 0">Aucune donnée encore.</p>'}</div>`;
+    <div class="week-history">${histHtml||'<p style="color:var(--text3);font-size:13px;padding:12px 0">Aucune donnée encore.</p>'}</div>`;
 }
 
-function render() {
-  if (selectedDay === null) {
-    const today = new Date();
-    const dow = today.getDay();
-    selectedDay = dow === 0 ? 6 : dow - 1;
-  }
-  renderStrip();
-  renderMain();
+/* ── INIT ── */
+function render(){
+  if(selectedDay===null){const t=new Date(),dow=t.getDay();selectedDay=dow===0?6:dow-1;}
+  renderStrip(); renderMain();
 }
+
+// Swipe to close modal
+let touchStartY=0;
+document.getElementById('modalSheet').addEventListener('touchstart',e=>{touchStartY=e.touches[0].clientY},{passive:true});
+document.getElementById('modalSheet').addEventListener('touchmove',e=>{
+  if(e.touches[0].clientY-touchStartY>80) closeModal();
+},{passive:true});
 
 render();
 </script>
