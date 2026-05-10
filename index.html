@@ -38,6 +38,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);min-h
   100% { transform: scale(1); opacity: 1; }
 }
 @keyframes fadeIn {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes rotation { 0% { transform: rotate(0deg) } 100% { transform: rotate(360deg) } }
 
 /* ── LOGIN ── */
 #loginPage{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;background:var(--bg);overflow-y:auto}
@@ -158,6 +159,14 @@ select.fi option{background:#1c1c1e}
 .ex-save{background:var(--ac);color:#050508;border:none;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;width:100%}
 .ex-save:active{transform:scale(.98)}
 
+/* ZONE IA */
+.ai-box{background:rgba(212,255,51,0.05); border:1px dashed var(--ac); border-radius:16px; padding:14px; margin:16px 20px 0; display:none;}
+.ai-box.on{display:block; animation:fadeIn 0.4s ease;}
+.ai-header{display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:var(--ac); text-transform:uppercase; margin-bottom:10px;}
+.ai-content{font-size:14px; line-height:1.5; color:var(--t1);}
+.ai-content b{color:#fff;}
+.loader-ia {width:14px; height:14px; border:2px solid var(--ac); border-bottom-color:transparent; border-radius:50%; display:inline-block; animation:rotation 1s linear infinite;}
+
 .mir{padding:10px 20px 0}
 .irow{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--b1)}
 .irow:last-child{border-bottom:none}
@@ -272,7 +281,7 @@ select.fi option{background:#1c1c1e}
     
     <div class="mga" id="emG"></div>
 
-    <!-- NOUVEAU : ZONE D'ÉDITION SÉRIES/POIDS -->
+    <!-- ZONE D'ÉDITION SÉRIES/POIDS -->
     <div class="ex-edit">
       <div class="ex-edit-title"><span class="mi" style="font-size:16px">tune</span> Personnaliser cet exercice</div>
       <div class="ex-edit-row">
@@ -280,6 +289,16 @@ select.fi option{background:#1c1c1e}
         <input type="text" id="editWeight" class="ex-inp" placeholder="Poids (ex: 60 kg)">
       </div>
       <button class="ex-save" onclick="saveExDetails()"><span class="mi" style="font-size:18px">save</span> Enregistrer</button>
+    </div>
+
+    <!-- ZONE COACH IA -->
+    <button class="mab ds" style="border-color:var(--ac); color:var(--ac); background:rgba(212,255,51,0.05); margin-top:16px;" onclick="getAICounsel()">
+      <span class="mi">psychology</span> Demander conseil au Coach IA
+    </button>
+    
+    <div class="ai-box" id="aiBox">
+      <div class="ai-header"><span class="mi" style="font-size:16px">smart_toy</span> Coach IA</div>
+      <div class="ai-content" id="aiContent">Analyse en cours...</div>
     </div>
 
     <div class="mir" id="emI"></div>
@@ -310,26 +329,21 @@ select.fi option{background:#1c1c1e}
    Sinon on utilise un ID Unsplash approprié.
    ═══════════════════════════════════════════════════ */
 const PX = {
-  /* PECTORAUX */
   "Développé couché barre":          "photo-1571019613454-1cb2f99b2d8b",
   "Développé couché haltères":       "photo-1581009146145-b5ef050c2e1e",
   "Développé incliné haltères":      "photo-1534438327276-14e5300c3a48",
   "Pec deck machine":                "photo-1574680178050-55c6a6a96e0a",
   "Écarté incliné haltères":         "photo-1517836357463-d25dfeac3438",
-  /* ÉPAULES */
   "Développé militaire haltères":    "photo-1583454110551-21f2fa2afe61",
   "Développé militaire":             "photo-1526506118085-60ce8714f8c5",
   "Élévations latérales":            "photo-1532029837206-abbe2b7620e3",
   "Oiseau haltères":                 "photo-1590487988256-9ed24133863e",
   "Face pull":                       "photo-1597452485669-2c7bb5fef90d",
-  /* TRICEPS */
   "Poulie triceps corde":            "photo-1598971639058-fab3c3109a00",
   "Extension haltère une main":      "photo-1574680096145-d05b474e2155",
   "Extension corde poulie":          "photo-1581009146145-b5ef050c2e1e",
   "Skull crusher léger":             "photo-1534438327276-14e5300c3a48",
-  /* COIFFE */
   "Rotation externe poulie basse":   "photo-1576678927484-cc907957088c",
-  /* DOS */
   "Tirage vertical":                 "photo-1603287681836-b174ce5074c2",
   "Tirage vertical lourd":           "photo-1598971639058-fab3c3109a00",
   "Tractions assistées":             "photo-1598971639058-fab3c3109a00",
@@ -337,12 +351,10 @@ const PX = {
   "Low row":                         "photo-1581009137042-c552e485697a",
   "Rowing haltère":                  "photo-1506126613408-eca07ce68773",
   "Lower back machine":              "photo-1534258936925-c58bed479fcb",
-  /* BICEPS */
   "Curl barre":                      "photo-1583454110551-21f2fa2afe61",
   "Curl barre EZ":                   "photo-1541534741688-6078c6bfb5c5",
   "Curl incliné haltères":           "photo-1590487988256-9ed24133863e",
   "Hammer curl":                     "photo-1541534741688-6078c6bfb5c5",
-  /* JAMBES */
   "Squat":                           "photo-1574680178050-55c6a6a96e0a",
   "Presse à cuisses":                "photo-1597452485669-2c7bb5fef90d",
   "Fentes marchées haltères":        "photo-1597452485597-17b9c7ad5746",
@@ -355,10 +367,9 @@ const PX = {
   "Planche":                         "photo-1544033527-b192daee1f5b",
 };
 
-// Fonction pour récupérer l'image (Supporte les vrais URLs GIF ou les IDs Unsplash)
 function getImgSrc(name, isModal) {
   const v = PX[name] || "photo-1534258936925-c58bed479fcb";
-  if(v.startsWith('http')) return v; // Si c'est un lien direct (ex: .gif)
+  if(v.startsWith('http')) return v;
   const size = isModal ? "w=600&q=80" : "w=120&q=70";
   return `https://images.unsplash.com/${v}?${size}&fit=crop`;
 }
@@ -435,37 +446,36 @@ const ALTS=[
   {name:"Planche",muscle:"Abdominaux · Core"},
 ].map(e=>({...e,img:getImgSrc(e.name, false)}));
 
-const U="https://images.unsplash.com/";
 function ex(name,sets,note){return{name,sets,customSets:'',customWeight:'',note:note||'',img:getImgSrc(name, false)}}
 
 const DEF={
-  0:{name:"Lundi",label:"Push",tag:"push",color:"var(--push)",subtitle:"Pecs · Épaules · Triceps",note:"Finition : 2×15 rotations externes poulie basse — protection coiffe des rotateurs",img:U+"photo-1534438327276-14e5300c3a48?w=800&q=70",sections:[
+  0:{name:"Lundi",label:"Push",tag:"push",color:"var(--push)",subtitle:"Pecs · Épaules · Triceps",note:"Finition : 2×15 rotations externes poulie basse — protection coiffe des rotateurs",img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=70",sections:[
     {title:"Pectoraux",exercises:[ex("Développé couché barre","3 × 8-10","Repos 2 min"),ex("Développé incliné haltères","3 × 10-12"),ex("Pec deck machine","3 × 12")]},
     {title:"Épaules",exercises:[ex("Développé militaire haltères","3 × 10-12"),ex("Élévations latérales","3 × 12-15")]},
     {title:"Triceps",exercises:[ex("Poulie triceps corde","3 × 12"),ex("Extension haltère une main","3 × 12")]},
     {title:"Protection coiffe",exercises:[ex("Rotation externe poulie basse","2 × 15")]},
   ]},
-  1:{name:"Mardi",label:"Pull",tag:"pull",color:"var(--pull)",subtitle:"Dos · Biceps",img:U+"photo-1603287681836-b174ce5074c2?w=800&q=70",sections:[
+  1:{name:"Mardi",label:"Pull",tag:"pull",color:"var(--pull)",subtitle:"Dos · Biceps",img:"https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=800&q=70",sections:[
     {title:"Dos largeur",exercises:[ex("Tirage vertical","4 × 8-10","45-50 kg"),ex("Tractions assistées","3 × max")]},
     {title:"Dos épaisseur",exercises:[ex("Tirage horizontal","4 × 10"),ex("Low row","3 × 10","60-65 kg"),ex("Lower back machine","3 × 12-15")]},
     {title:"Biceps",exercises:[ex("Curl barre","3 × 10","24 kg"),ex("Hammer curl","3 × 10")]},
   ]},
-  2:{name:"Mercredi",label:"Repos actif",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération",rest:true,img:U+"photo-1506126613408-eca07ce68773?w=800&q=70",note:"Marche · Mobilité · Étirements légers. Le muscle se construit au repos."},
-  3:{name:"Jeudi",label:"Jambes",tag:"legs",color:"var(--legs)",subtitle:"Quadriceps · Ischios · Mollets",img:U+"photo-1434682966140-aba8208b7d55?w=800&q=70",sections:[
+  2:{name:"Mercredi",label:"Repos actif",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération",rest:true,img:"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=70",note:"Marche · Mobilité · Étirements légers. Le muscle se construit au repos."},
+  3:{name:"Jeudi",label:"Jambes",tag:"legs",color:"var(--legs)",subtitle:"Quadriceps · Ischios · Mollets",img:"https://images.unsplash.com/photo-1434682966140-aba8208b7d55?w=800&q=70",sections:[
     {title:"Quadriceps",exercises:[ex("Squat","4 × 8","50-60 kg"),ex("Presse à cuisses","3 × 10"),ex("Fentes marchées haltères","3 × 10 / jambe")]},
     {title:"Ischios",exercises:[ex("Leg curl","3 × 12","35 kg"),ex("Soulevé de terre jambes tendues","3 × 10")]},
     {title:"Mollets + Abdos",exercises:[ex("Mollets debout machine","3 × 15-20"),ex("Crunch câble","3 × 15")]},
   ]},
-  4:{name:"Vendredi",label:"Force",tag:"full",color:"var(--full)",subtitle:"Force + Masse — Haut du corps",note:"Triceps retirés — récupèrent avant samedi. Focus sur la charge.",img:U+"photo-1526506118085-60ce8714f8c5?w=800&q=70",sections:[
+  4:{name:"Vendredi",label:"Force",tag:"full",color:"var(--full)",subtitle:"Force + Masse — Haut du corps",note:"Triceps retirés — récupèrent avant samedi. Focus sur la charge.",img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=70",sections:[
     {title:"Séance force",exercises:[ex("Développé couché barre","4 × 6-8"),ex("Tirage vertical lourd","4 × 6-8"),ex("Développé militaire","3 × 8"),ex("Low row","3 × 8"),ex("Curl barre","3 × 8")]},
   ]},
-  5:{name:"Samedi",label:"Bras",tag:"arms",color:"var(--arms)",subtitle:"Bras · Épaules · Rappel pecs",img:U+"photo-1590487988256-9ed24133863e?w=800&q=70",sections:[
+  5:{name:"Samedi",label:"Bras",tag:"arms",color:"var(--arms)",subtitle:"Bras · Épaules · Rappel pecs",img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=800&q=70",sections:[
     {title:"Épaules",exercises:[ex("Élévations latérales","4 × 15"),ex("Oiseau haltères","3 × 12")]},
     {title:"Biceps",exercises:[ex("Curl barre EZ","3 × 10"),ex("Curl incliné haltères","3 × 12")]},
     {title:"Triceps",exercises:[ex("Extension corde poulie","3 × 12"),ex("Skull crusher léger","3 × 12")]},
     {title:"Rappel pecs",exercises:[ex("Écarté incliné haltères","3 × 15")]},
   ]},
-  6:{name:"Dimanche",label:"Repos",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération complète",rest:true,img:U+"photo-1540206395-68808572332f?w=800&q=70",note:"Repos complet. Le cycle est terminé — bien joué ! La semaine reprend lundi."},
+  6:{name:"Dimanche",label:"Repos",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération complète",rest:true,img:"https://images.unsplash.com/photo-1540206395-68808572332f?w=800&q=70",note:"Repos complet. Le cycle est terminé — bien joué ! La semaine reprend lundi."},
 };
 
 const DS=["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
@@ -556,15 +566,16 @@ function openEx(si,ei){
   const done=!!gck(wOff,selDay)[`${si}_${ei}`];
   
   document.getElementById('emT').textContent=ex.name;
-  
-  // Image Grande (Prêt pour GIF si URL fournie dans PX)
   document.getElementById('emG').innerHTML=`<img src="${getImgSrc(ex.name, true)}" alt="${ex.name}"><div class="mga-label"><span class="mi">photo_camera</span>${ex.name}</div>`;
   
-  // Peupler les champs d'édition
+  // Édition
   document.getElementById('editSets').value = ex.customSets || ex.sets;
   document.getElementById('editWeight').value = ex.customWeight || '';
 
-  // Infos texte
+  // Masquer l'IA au lancement
+  document.getElementById('aiBox').classList.remove('on');
+  document.getElementById('aiContent').innerHTML = '';
+
   const rows=[inf.m&&{ic:'exercise',lb:'Muscles ciblés',v:inf.m},inf.t&&{ic:'lightbulb',lb:'Conseil technique',v:inf.t},inf.r&&{ic:'timer',lb:'Temps de repos',v:inf.r},inf.d&&{ic:'signal_cellular_alt',lb:'Niveau',v:inf.d},ex.note&&{ic:'edit_note',lb:'Note perso',v:ex.note}].filter(Boolean);
   document.getElementById('emI').innerHTML=rows.map(r=>`<div class="irow"><div class="iico"><span class="mi">${r.ic}</span></div><div><div class="ilb">${r.lb}</div><div class="iv">${r.v}</div></div></div>`).join('');
   
@@ -581,17 +592,63 @@ function saveExDetails() {
   PROG[selDay].sections[mSi].exercises[mEi].customWeight = newWeight;
   sProg();
   
-  // Animation visuelle bouton de sauvegarde
   const btn = document.querySelector('.ex-save');
   const oldHtml = btn.innerHTML;
   btn.innerHTML = `<span class="mi" style="font-size:18px">check</span> Enregistré !`;
-  btn.style.background = "var(--legs)"; // Vert
-  
+  btn.style.background = "var(--legs)";
   setTimeout(() => {
     btn.innerHTML = oldHtml;
     btn.style.background = "var(--ac)";
     renderMain();
   }, 800);
+}
+
+// ── APPEL API GROQ ──
+async function getAICounsel() {
+  const box = document.getElementById('aiBox');
+  const content = document.getElementById('aiContent');
+  const prof = ls('tw_profile') || {};
+  const ex = PROG[selDay].sections[mSi].exercises[mEi];
+  
+  const apiKey = ls('tw_groq_key'); 
+  
+  if(!apiKey) {
+    alert("Veuillez d'abord renseigner votre Clé API Groq dans l'onglet Profil (bouton avec l'initiale en haut à droite).");
+    return;
+  }
+
+  box.classList.add('on');
+  content.innerHTML = '<span class="loader-ia"></span> Analyse en cours...';
+
+  const systemPrompt = `Tu es un coach sportif expert en musculation, clair et direct. L'utilisateur est ${prof.prenom}, ${prof.age} ans, pèse ${prof.poids}kg pour ${prof.taille}cm. Son objectif est : ${prof.objectif}. Réponds de manière très concise (2 ou 3 phrases maximum) et utilise un ton encourageant. Évite les retours à la ligne inutiles.`;
+  const userPrompt = `Je suis sur l'exercice "${ex.name}" avec pour objectif de faire : ${ex.customSets || ex.sets} à ${ex.customWeight || 'poids libre'}. Donne-moi un conseil technique vital pour cet exercice ou une alternative pertinente.`;
+
+  try {
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "llama-3.3-70b-versatile",
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: userPrompt }
+        ],
+        temperature: 0.7,
+        max_tokens: 150
+      })
+    });
+
+    if(!response.ok) throw new Error("Erreur de l'API");
+    const data = await response.json();
+    const advice = data.choices[0].message.content;
+    content.innerHTML = advice.replace(/\n/g, '<br>');
+  } catch (error) {
+    content.innerHTML = "Désolé, le coach est indisponible. Vérifie ta connexion internet ou la validité de ta clé API Groq dans ton Profil.";
+    console.error(error);
+  }
 }
 
 function updDB(done){
@@ -623,6 +680,7 @@ function openProfile(){
   let tE=0;for(let w=0;w>=-4;w--)for(let d=0;d<7;d++){const pr=gPr(w,d);if(pr)tE+=pr.don}
   const ini=((p.prenom?.[0]||'')+(p.nom?.[0]||'')).toUpperCase()||'?';
   const imc=p.poids&&p.taille?(p.poids/((p.taille/100)**2)).toFixed(1):'—';
+  
   document.getElementById('prC').innerHTML=`
     <div class="mh"></div>
     <div class="mhdr" style="justify-content:flex-end;padding-top:12px"><button class="mc" onclick="closeM('prMo')"><span class="mi">close</span></button></div>
@@ -634,6 +692,15 @@ function openProfile(){
       <div class="pst"><div class="pstv">${imc}</div><div class="pstl">IMC</div></div>
       <div class="pst"><div class="pstv">${p.poids?p.poids+'kg':'—'}</div><div class="pstl">Poids</div></div>
     </div>
+    
+    <div class="psec">
+      <div class="psect">Paramètres API IA</div>
+      <div style="margin-bottom: 12px;">
+        <input type="password" id="groqKey" class="ex-inp" style="width:100%; background:rgba(255,255,255,0.05)" placeholder="Colle ta clé API Groq ici" value="${ls('tw_groq_key') || ''}" onchange="lss('tw_groq_key', this.value)">
+        <div style="font-size:11px; color:var(--t3); margin-top:6px; text-align:center;">Nécessaire pour activer le Coach IA. Ta clé reste locale sur ton appareil.</div>
+      </div>
+    </div>
+
     <div class="psec">
       <div class="psect">Informations</div>
       ${[{ic:'person',lb:'Prénom',v:p.prenom||'—'},{ic:'badge',lb:'Nom',v:p.nom||'—'},{ic:'cake',lb:'Âge',v:p.age?p.age+' ans':'—'},{ic:'height',lb:'Taille',v:p.taille?p.taille+' cm':'—'},{ic:'monitor_weight',lb:'Poids',v:p.poids?p.poids+' kg':'—'},{ic:'wc',lb:'Sexe',v:p.sexe==='H'?'Homme':p.sexe==='F'?'Femme':p.sexe||'—'},{ic:'flag',lb:'Objectif',v:p.objectif||'—'}].map(r=>`<div class="pf"><div class="pfl"><span class="mi">${r.ic}</span>${r.lb}</div><div class="pfv">${r.v}</div></div>`).join('')}
@@ -641,9 +708,12 @@ function openProfile(){
     <button class="plb" onclick="doLogout()"><span class="mi">logout</span>Réinitialiser le profil</button>`;
   openM('prMo');
 }
+
 function doLogout(){
-  if(confirm('Réinitialiser le profil ?')){
-    localStorage.removeItem('tw_profile');closeM('prMo');
+  if(confirm('Réinitialiser le profil ? L\'historique et la clé API seront effacés.')){
+    localStorage.removeItem('tw_profile');
+    localStorage.removeItem('tw_groq_key');
+    closeM('prMo');
     document.getElementById('app').classList.remove('on');
     document.getElementById('loginPage').style.display='flex';
     ['ip','in2','ia','iw','ih'].forEach(id=>document.getElementById(id).value='');
