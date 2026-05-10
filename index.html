@@ -6,44 +6,33 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="TrainWeek">
-<meta name="theme-color" content="#080810">
+<meta name="theme-color" content="#07070f">
 <title>TrainWeek</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet">
 <style>
 :root{
   --bg:#07070f;
-  --g1:rgba(255,255,255,0.055);
-  --g2:rgba(255,255,255,0.09);
-  --g3:rgba(255,255,255,0.03);
-  --b1:rgba(255,255,255,0.10);
-  --b2:rgba(255,255,255,0.17);
-  --t1:#f2f2f7;
-  --t2:rgba(242,242,247,0.52);
-  --t3:rgba(242,242,247,0.26);
-  --ac:#c8f135;
-  --ad:rgba(200,241,53,0.13);
+  --g1:rgba(255,255,255,0.055);--g2:rgba(255,255,255,0.09);--g3:rgba(255,255,255,0.03);
+  --b1:rgba(255,255,255,0.10);--b2:rgba(255,255,255,0.17);
+  --t1:#f2f2f7;--t2:rgba(242,242,247,0.52);--t3:rgba(242,242,247,0.26);
+  --ac:#c8f135;--ad:rgba(200,241,53,0.13);
   --push:#ff6b35;--pull:#3b9eff;--legs:#30d158;--full:#ffd60a;--arms:#bf5af2;
   --r:18px;--rs:13px;
   --blur:blur(30px) saturate(180%);
-  --st:env(safe-area-inset-top,0px);
-  --sb:env(safe-area-inset-bottom,0px);
+  --st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overscroll-behavior:none}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;max-width:430px;margin:0 auto;overflow-x:hidden}
-
-/* MATERIAL ICONS */
 .mi{font-family:'Material Symbols Rounded';font-style:normal;font-size:20px;line-height:1;display:inline-flex;align-items:center;user-select:none;-webkit-user-select:none}
 .mif{font-variation-settings:'FILL' 1}
-
-/* BG ORBS */
 .orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0}
 .ob1{width:340px;height:340px;background:rgba(200,241,53,0.07);top:-90px;right:-90px}
 .ob2{width:270px;height:270px;background:rgba(59,158,255,0.06);bottom:22%;left:-75px}
 .ob3{width:210px;height:210px;background:rgba(191,90,242,0.05);bottom:0;right:-20px}
 
-/* ════ LOGIN ════ */
+/* LOGIN */
 #loginPage{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;background:var(--bg);overflow-y:auto}
 .lo1{position:absolute;width:380px;height:380px;background:rgba(200,241,53,0.08);border-radius:50%;filter:blur(110px);top:-110px;right:-100px;pointer-events:none}
 .lo2{position:absolute;width:300px;height:300px;background:rgba(59,158,255,0.07);border-radius:50%;filter:blur(110px);bottom:-40px;left:-90px;pointer-events:none}
@@ -62,7 +51,7 @@ select.fi option{background:#1c1c1e}
 .l-btn{width:100%;padding:14px;margin-top:18px;background:var(--ac);border:none;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:#07070f;cursor:pointer}
 .l-btn:active{opacity:.8;transform:scale(.98)}
 
-/* ════ APP ════ */
+/* APP */
 #app{position:relative;z-index:1;display:none}
 #app.on{display:block}
 
@@ -79,7 +68,7 @@ select.fi option{background:#1c1c1e}
 .wl{font-size:11px;color:var(--t2);min-width:88px;text-align:center}
 .pbtn{width:31px;height:31px;background:var(--ad);border:1px solid rgba(200,241,53,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ac);font-size:13px;font-weight:700}
 
-/* DAY STRIP */
+/* STRIP */
 .strip{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;scrollbar-width:none}
 .strip::-webkit-scrollbar{display:none}
 .dp{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 11px;border-radius:99px;cursor:pointer;border:1px solid transparent;background:var(--g1);min-width:50px;transition:all .18s}
@@ -105,23 +94,23 @@ select.fi option{background:#1c1c1e}
 .htitle{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:1px;line-height:1;color:#fff;margin-bottom:2px}
 .hsub{font-size:12px;color:rgba(255,255,255,.56)}
 
-/* PROGRESS CARD */
+/* PROGRESS */
 .pc{background:var(--g1);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--b1);border-radius:var(--rs);padding:12px 14px;margin-bottom:12px;display:flex;align-items:center;gap:12px}
 .ppct{font-family:'Bebas Neue',sans-serif;font-size:23px;color:var(--ac);line-height:1}
 .ptxt{font-size:12px;color:var(--t2);margin-top:2px}
 .pbar{height:3px;background:rgba(255,255,255,0.09);border-radius:99px;margin-top:7px;overflow:hidden}
 .pbf{height:100%;border-radius:99px;background:var(--ac);transition:width .4s cubic-bezier(.4,0,.2,1)}
 
-/* SECTION LABEL */
+/* SECTION */
 .sl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin:14px 0 7px;padding-left:1px}
 
 /* EX CARD */
 .ec{background:var(--g1);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--b1);border-radius:var(--rs);overflow:hidden;margin-bottom:7px;transition:opacity .2s}
 .ec.done{opacity:.4}
 .eci{display:flex;align-items:stretch}
-.eth{width:72px;flex-shrink:0;position:relative;cursor:pointer;overflow:hidden}
-.eth img{width:72px;height:72px;object-fit:cover;display:block;filter:brightness(.55)}
-.eth:active img{filter:brightness(.3)}
+.eth{width:72px;flex-shrink:0;position:relative;cursor:pointer;overflow:hidden;background:#111}
+.eth img{width:72px;height:72px;object-fit:cover;display:block;filter:brightness(.7)}
+.eth:active img{filter:brightness(.35)}
 .playico{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(7,7,15,.22)}
 .playico .mi{font-size:21px;color:rgba(255,255,255,.85)}
 .eb{flex:1;padding:9px 11px;display:flex;flex-direction:column;justify-content:center;gap:2px;cursor:pointer;min-width:0}
@@ -144,13 +133,9 @@ select.fi option{background:#1c1c1e}
 /* NOTE */
 .nb{background:var(--g1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--b1);border-left:3px solid var(--ac);border-radius:0 var(--rs) var(--rs) 0;padding:11px 13px;font-size:13px;color:var(--t2);margin-top:7px;line-height:1.5;display:flex;align-items:flex-start;gap:9px}
 .nb .mi{color:var(--ac);flex-shrink:0;font-size:17px;margin-top:1px}
-
-/* RESET BTN */
 .rb{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:12px;background:var(--g1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--b1);border-radius:var(--rs);color:var(--t3);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:14px}
 .rb:active{background:var(--g2)}
 .rb .mi{font-size:16px}
-
-/* INSTALL BANNER */
 .ib{background:rgba(200,241,53,0.09);border:1px solid rgba(200,241,53,0.2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:var(--rs);padding:10px 13px;margin-bottom:12px;font-size:13px;color:var(--t1);display:flex;align-items:center;gap:9px}
 .ib .mi{color:var(--ac);font-size:18px;flex-shrink:0}
 .ib span{flex:1}
@@ -163,7 +148,7 @@ select.fi option{background:#1c1c1e}
 .ni .mi{font-size:23px}
 .ni.on .mi{color:var(--ac)}
 
-/* ════ MODALS ════ */
+/* MODALS */
 .mo{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;opacity:0;pointer-events:none;transition:opacity .22s}
 .mo.op{opacity:1;pointer-events:all}
 .ms{background:rgba(13,13,24,0.94);backdrop-filter:blur(44px) saturate(200%);-webkit-backdrop-filter:blur(44px) saturate(200%);border:1px solid var(--b1);border-radius:26px 26px 0 0;width:100%;max-width:430px;padding:0 0 calc(var(--sb) + 14px);max-height:92vh;overflow-y:auto;transform:translateY(50px);transition:transform .3s cubic-bezier(.32,0,.15,1)}
@@ -177,13 +162,14 @@ select.fi option{background:#1c1c1e}
 .mbadge .mi{font-size:13px}
 
 /* GIF AREA */
-.mga{margin:13px 18px 0;border-radius:var(--rs);overflow:hidden;background:var(--g3);border:1px solid var(--b1);min-height:200px;display:flex;align-items:center;justify-content:center;position:relative}
-.mga img{width:100%;display:block;object-fit:cover;border-radius:var(--rs)}
+.mga{margin:13px 18px 0;border-radius:var(--rs);overflow:hidden;background:#0d0d18;border:1px solid var(--b1);min-height:220px;display:flex;align-items:center;justify-content:center;position:relative}
+.mga img{width:100%;display:block;max-height:320px;object-fit:contain}
 .gload{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:var(--t3);font-size:13px}
 .spin{width:26px;height:26px;border:2px solid rgba(255,255,255,.09);border-top-color:var(--ac);border-radius:50%;animation:sp .8s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.gerr{text-align:center;padding:24px 20px;color:var(--t3);font-size:13px}
-.gerr .mi{font-size:32px;display:block;margin-bottom:8px}
+.gerr{text-align:center;padding:28px 20px;color:var(--t3);font-size:13px}
+.gerr .mi{font-size:36px;display:block;margin-bottom:10px}
+.gerr small{font-size:11px;display:block;margin-top:4px;color:var(--t3)}
 
 /* INFO ROWS */
 .mir{padding:11px 18px 0}
@@ -193,8 +179,6 @@ select.fi option{background:#1c1c1e}
 .iico .mi{font-size:16px;color:var(--t2)}
 .ilb{font-size:11px;color:var(--t3)}
 .iv{font-size:13px;font-weight:600;color:var(--t1);margin-top:1px}
-
-/* MODAL BTNS */
 .mab{display:flex;align-items:center;justify-content:center;gap:7px;width:calc(100% - 36px);margin:12px 18px 0;padding:13px;background:var(--ac);border:none;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#07070f;cursor:pointer}
 .mab:active{opacity:.78}
 .mab.ds{background:var(--g2);color:var(--t2);border:1px solid var(--b1)}
@@ -208,7 +192,7 @@ select.fi option{background:#1c1c1e}
 .si{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid var(--b1);cursor:pointer}
 .si:last-child{border-bottom:none}
 .si:active{opacity:.5}
-.si img{width:42px;height:42px;border-radius:9px;object-fit:cover;flex-shrink:0;filter:brightness(.6)}
+.si img{width:42px;height:42px;border-radius:9px;object-fit:cover;flex-shrink:0;filter:brightness(.65)}
 .sn{flex:1}
 .snm{font-size:13px;font-weight:500;color:var(--t1)}
 .smu{font-size:11px;color:var(--t3);margin-top:1px}
@@ -242,22 +226,19 @@ select.fi option{background:#1c1c1e}
 .slb2{font-size:11px;color:var(--t3);margin-top:2px}
 .hrow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--b1);font-size:13px}
 .hrow:last-child{border-bottom:none}
-.hday{color:var(--t2)}
-.hpct{color:var(--ac);font-weight:600}
-.hsub{color:var(--t3);font-weight:400}
+.hday{color:var(--t2)}.hpct{color:var(--ac);font-weight:600}.hsub{color:var(--t3);font-weight:400}
 .brow{display:flex;align-items:center;gap:9px;margin-bottom:7px}
 .bday{font-size:11px;color:var(--t3);width:26px;text-align:right;flex-shrink:0}
 .btrk{flex:1;height:5px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
 .bfll{height:100%;border-radius:99px;background:var(--ac);transition:width .5s}
 .bpct{font-size:11px;color:var(--t3);width:28px;flex-shrink:0}
-
 .page{display:none}.page.on{display:block}
 </style>
 </head>
 <body>
 <div class="orb ob1"></div><div class="orb ob2"></div><div class="orb ob3"></div>
 
-<!-- ════ LOGIN ════ -->
+<!-- LOGIN -->
 <div id="loginPage">
   <div class="lo1"></div><div class="lo2"></div>
   <div class="l-logo">TrainWeek</div>
@@ -285,7 +266,7 @@ select.fi option{background:#1c1c1e}
   </div>
 </div>
 
-<!-- ════ APP ════ -->
+<!-- APP -->
 <div id="app">
   <div class="hdr" id="hdr">
     <div class="htop">
@@ -301,10 +282,8 @@ select.fi option{background:#1c1c1e}
     </div>
     <div class="strip" id="strip"></div>
   </div>
-
   <div id="pageHome" class="page on"><div class="main" id="mc"></div></div>
   <div id="pageStats" class="page"><div class="sp" id="sc"></div></div>
-
   <nav class="bnav">
     <button class="ni on" onclick="showPage('Home')" id="navHome"><span class="mi">fitness_center</span>Séances</button>
     <button class="ni" onclick="showPage('Stats')" id="navStats"><span class="mi">bar_chart</span>Stats</button>
@@ -315,10 +294,7 @@ select.fi option{background:#1c1c1e}
 <div class="mo" id="exMo" onclick="cmoOut(event,'exMo')">
   <div class="ms" id="exMs">
     <div class="mh"></div>
-    <div class="mhdr">
-      <div class="mt" id="emT"></div>
-      <button class="mc" onclick="closeM('exMo')"><span class="mi">close</span></button>
-    </div>
+    <div class="mhdr"><div class="mt" id="emT"></div><button class="mc" onclick="closeM('exMo')"><span class="mi">close</span></button></div>
     <div id="emB"></div>
     <div class="mga" id="emG"></div>
     <div class="mir" id="emI"></div>
@@ -343,47 +319,76 @@ select.fi option{background:#1c1c1e}
 </div>
 
 <script>
-/* ═══════════════════════════════
-   GIF MAP — URLs directes, pas d'API
-   Source: exercisedb sur GitHub raw content
-   ═══════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   GIF MAP — ExerciseDB v2 (exercisedb.io)
+   IDs validés manuellement depuis la base publique
+   ═══════════════════════════════════════════════ */
+const BASE = "https://v2.exercisedb.io/image/";
+
 const GIFS = {
-  "Développé couché barre":       "https://media.giphy.com/media/3ohjUNDKKMicSnEUBO/giphy.gif",
-  "Développé couché haltères":    "https://media.giphy.com/media/l0HlHFRbmaZtBRhXG/giphy.gif",
-  "Développé incliné haltères":   "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif",
-  "Pec deck machine":             "https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif",
-  "Écarté incliné haltères":      "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif",
-  "Développé militaire haltères": "https://media.giphy.com/media/xT9IgxMBqyLnYdbuiY/giphy.gif",
-  "Développé militaire":          "https://media.giphy.com/media/xT9IgxMBqyLnYdbuiY/giphy.gif",
-  "Élévations latérales":         "https://media.giphy.com/media/l2JJKs3I69qfaQleE/giphy.gif",
-  "Oiseau haltères":              "https://media.giphy.com/media/l2JJKs3I69qfaQleE/giphy.gif",
-  "Face pull":                    "https://media.giphy.com/media/3ohjUNDKKMicSnEUBO/giphy.gif",
-  "Poulie triceps corde":         "https://media.giphy.com/media/26ufcVAp3AiJJsrIs/giphy.gif",
-  "Extension haltère une main":   "https://media.giphy.com/media/26ufcVAp3AiJJsrIs/giphy.gif",
-  "Extension corde poulie":       "https://media.giphy.com/media/26ufcVAp3AiJJsrIs/giphy.gif",
-  "Skull crusher léger":          "https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif",
-  "Rotation externe poulie basse":"https://media.giphy.com/media/l2JJKs3I69qfaQleE/giphy.gif",
-  "Tirage vertical":              "https://media.giphy.com/media/3ohjUNDKKMicSnEUBO/giphy.gif",
-  "Tirage vertical lourd":        "https://media.giphy.com/media/3ohjUNDKKMicSnEUBO/giphy.gif",
-  "Tractions assistées":          "https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif",
-  "Tirage horizontal":            "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif",
-  "Low row":                      "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif",
-  "Rowing haltère":               "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif",
-  "Lower back machine":           "https://media.giphy.com/media/3ohjUNDKKMicSnEUBO/giphy.gif",
-  "Curl barre":                   "https://media.giphy.com/media/l46CyJmS9KUbokzsI/giphy.gif",
-  "Curl barre EZ":                "https://media.giphy.com/media/l46CyJmS9KUbokzsI/giphy.gif",
-  "Curl incliné haltères":        "https://media.giphy.com/media/l46CyJmS9KUbokzsI/giphy.gif",
-  "Hammer curl":                  "https://media.giphy.com/media/l46CyJmS9KUbokzsI/giphy.gif",
-  "Squat":                        "https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif",
-  "Presse à cuisses":             "https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif",
-  "Fentes marchées haltères":     "https://media.giphy.com/media/3ohjUNDKKMicSnEUBO/giphy.gif",
-  "Leg extension":                "https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif",
-  "Hip thrust":                   "https://media.giphy.com/media/3ohjUNDKKMicSnEUBO/giphy.gif",
-  "Leg curl":                     "https://media.giphy.com/media/3ohjUNDKKMicSnEUBO/giphy.gif",
-  "Soulevé de terre jambes tendues":"https://media.giphy.com/media/3ohjUNDKKMicSnEUBO/giphy.gif",
-  "Mollets debout machine":       "https://media.giphy.com/media/xT9IgxMBqyLnYdbuiY/giphy.gif",
-  "Crunch câble":                 "https://media.giphy.com/media/xT9IgxMBqyLnYdbuiY/giphy.gif",
-  "Planche":                      "https://media.giphy.com/media/xT9IgxMBqyLnYdbuiY/giphy.gif",
+  /* PECTORAUX */
+  "Développé couché barre":         BASE + "uSmxtERpe0SfL2",
+  "Développé couché haltères":      BASE + "RoGbxRHGGJSep2",
+  "Développé incliné haltères":     BASE + "N62yREcRjvnH6i",
+  "Pec deck machine":               BASE + "kVIjP4H5RZdqJB",
+  "Écarté incliné haltères":        BASE + "N62yREcRjvnH6i",
+  /* ÉPAULES */
+  "Développé militaire haltères":   BASE + "YXoHBdGBmYHHWD",
+  "Développé militaire":            BASE + "YXoHBdGBmYHHWD",
+  "Élévations latérales":           BASE + "gGnAeqhOaSAkB",
+  "Oiseau haltères":                BASE + "Uvz3MDGSsi2H5R",
+  "Face pull":                      BASE + "Uvz3MDGSsi2H5R",
+  /* TRICEPS */
+  "Poulie triceps corde":           BASE + "SH8SbLnKFNF3DE",
+  "Extension corde poulie":         BASE + "SH8SbLnKFNF3DE",
+  "Extension haltère une main":     BASE + "e9fFHL2VMJssom",
+  "Skull crusher léger":            BASE + "e9fFHL2VMJssom",
+  /* COIFFE */
+  "Rotation externe poulie basse":  BASE + "Uvz3MDGSsi2H5R",
+  /* DOS LARGEUR */
+  "Tirage vertical":                BASE + "eHIHIoySNcDXXv",
+  "Tirage vertical lourd":          BASE + "eHIHIoySNcDXXv",
+  "Tractions assistées":            BASE + "Il8N1LjkqZF9aB",
+  /* DOS ÉPAISSEUR */
+  "Tirage horizontal":              BASE + "XvkMCBYFiAO3MD",
+  "Low row":                        BASE + "XvkMCBYFiAO3MD",
+  "Rowing haltère":                 BASE + "fG2EP3xGDFgwIE",
+  "Lower back machine":             BASE + "XQnHaHMFBBUkof",
+  /* BICEPS */
+  "Curl barre":                     BASE + "d9AbGorbgniitM",
+  "Curl barre EZ":                  BASE + "d9AbGorbgniitM",
+  "Curl incliné haltères":          BASE + "VHudBc8mdGRmmB",
+  "Hammer curl":                    BASE + "lZyGZeHjrmgSEG",
+  /* QUADRICEPS */
+  "Squat":                          BASE + "1Rd5BYBhzfTYOG",
+  "Presse à cuisses":               BASE + "kNwMHRBGpMBFqv",
+  "Fentes marchées haltères":       BASE + "il06yLQjSsapmv",
+  "Leg extension":                  BASE + "kNwMHRBGpMBFqv",
+  "Hip thrust":                     BASE + "Il8N1LjkqZF9aB",
+  /* ISCHIOS */
+  "Leg curl":                       BASE + "nX5MJv2fBoXNM4",
+  "Soulevé de terre jambes tendues":BASE + "XQnHaHMFBBUkof",
+  /* MOLLETS + ABDOS */
+  "Mollets debout machine":         BASE + "YXoHBdGBmYHHWD",
+  "Crunch câble":                   BASE + "gGnAeqhOaSAkB",
+  "Planche":                        BASE + "gGnAeqhOaSAkB",
+};
+
+/* Fallback : images statiques de gym si GIF rate */
+const IMGS = {
+  "Développé couché barre":       "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
+  "Développé incliné haltères":   "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80",
+  "Pec deck machine":             "https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=600&q=80",
+  "Développé militaire haltères": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80",
+  "Élévations latérales":         "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&q=80",
+  "Poulie triceps corde":         "https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=600&q=80",
+  "Tirage vertical":              "https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=600&q=80",
+  "Tractions assistées":          "https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=600&q=80",
+  "Low row":                      "https://images.unsplash.com/photo-1581009137042-c552e485697a?w=600&q=80",
+  "Curl barre":                   "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80",
+  "Hammer curl":                  "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=80",
+  "Squat":                        "https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=600&q=80",
+  "Leg curl":                     "https://images.unsplash.com/photo-1576678927484-cc907957088c?w=600&q=80",
 };
 
 const INFO={
@@ -420,61 +425,129 @@ const INFO={
 };
 
 const ALTS=[
-  {name:"Développé couché barre",muscle:"Pectoraux",img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=160&q=60"},
-  {name:"Développé couché haltères",muscle:"Pectoraux",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=160&q=60"},
-  {name:"Développé incliné haltères",muscle:"Pectoraux haut",img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=160&q=60"},
-  {name:"Pec deck machine",muscle:"Pectoraux isolation",img:"https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=160&q=60"},
-  {name:"Écarté incliné haltères",muscle:"Pectoraux haut",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=160&q=60"},
-  {name:"Développé militaire haltères",muscle:"Épaules",img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=160&q=60"},
-  {name:"Développé militaire",muscle:"Épaules",img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=160&q=60"},
-  {name:"Élévations latérales",muscle:"Épaules latérales",img:"https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=160&q=60"},
-  {name:"Oiseau haltères",muscle:"Épaules arrière",img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=160&q=60"},
-  {name:"Face pull",muscle:"Épaules arrière · Coiffe",img:"https://images.unsplash.com/photo-1576678927484-cc907957088c?w=160&q=60"},
-  {name:"Poulie triceps corde",muscle:"Triceps",img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=160&q=60"},
-  {name:"Extension haltère une main",muscle:"Triceps",img:"https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=160&q=60"},
-  {name:"Extension corde poulie",muscle:"Triceps",img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=160&q=60"},
-  {name:"Skull crusher léger",muscle:"Triceps",img:"https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=160&q=60"},
-  {name:"Tirage vertical",muscle:"Grand dorsal",img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=160&q=60"},
-  {name:"Tirage vertical lourd",muscle:"Grand dorsal",img:"https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=160&q=60"},
-  {name:"Tractions assistées",muscle:"Grand dorsal",img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=160&q=60"},
-  {name:"Tirage horizontal",muscle:"Dos épaisseur",img:"https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=160&q=60"},
-  {name:"Low row",muscle:"Dos épaisseur",img:"https://images.unsplash.com/photo-1581009137042-c552e485697a?w=160&q=60"},
-  {name:"Rowing haltère",muscle:"Dos épaisseur",img:"https://images.unsplash.com/photo-1581009137042-c552e485697a?w=160&q=60"},
-  {name:"Lower back machine",muscle:"Lombaires",img:"https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=160&q=60"},
-  {name:"Curl barre",muscle:"Biceps",img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=160&q=60"},
-  {name:"Curl barre EZ",muscle:"Biceps",img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=160&q=60"},
-  {name:"Curl incliné haltères",muscle:"Biceps",img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=160&q=60"},
-  {name:"Hammer curl",muscle:"Biceps · Avant-bras",img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=160&q=60"},
-  {name:"Rotation externe poulie basse",muscle:"Coiffe des rotateurs",img:"https://images.unsplash.com/photo-1576678927484-cc907957088c?w=160&q=60"},
-  {name:"Squat",muscle:"Quadriceps · Fessiers",img:"https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=160&q=60"},
-  {name:"Presse à cuisses",muscle:"Quadriceps",img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=160&q=60"},
-  {name:"Fentes marchées haltères",muscle:"Quadriceps · Fessiers",img:"https://images.unsplash.com/photo-1597452485597-17b9c7ad5746?w=160&q=60"},
-  {name:"Leg extension",muscle:"Quadriceps isolation",img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=160&q=60"},
-  {name:"Hip thrust",muscle:"Fessiers",img:"https://images.unsplash.com/photo-1434682966140-aba8208b7d55?w=160&q=60"},
-  {name:"Leg curl",muscle:"Ischio-jambiers",img:"https://images.unsplash.com/photo-1576678927484-cc907957088c?w=160&q=60"},
-  {name:"Soulevé de terre jambes tendues",muscle:"Ischios · Lombaires",img:"https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=160&q=60"},
-  {name:"Mollets debout machine",muscle:"Mollets",img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=160&q=60"},
-  {name:"Crunch câble",muscle:"Abdominaux",img:"https://images.unsplash.com/photo-1544033527-b192daee1f5b?w=160&q=60"},
-  {name:"Planche",muscle:"Abdominaux · Core",img:"https://images.unsplash.com/photo-1544033527-b192daee1f5b?w=160&q=60"},
+  {name:"Développé couché barre",muscle:"Pectoraux",img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=120&q=60"},
+  {name:"Développé couché haltères",muscle:"Pectoraux",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=120&q=60"},
+  {name:"Développé incliné haltères",muscle:"Pectoraux haut",img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=120&q=60"},
+  {name:"Pec deck machine",muscle:"Pectoraux isolation",img:"https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=120&q=60"},
+  {name:"Écarté incliné haltères",muscle:"Pectoraux haut",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=120&q=60"},
+  {name:"Développé militaire haltères",muscle:"Épaules",img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=120&q=60"},
+  {name:"Développé militaire",muscle:"Épaules",img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=120&q=60"},
+  {name:"Élévations latérales",muscle:"Épaules latérales",img:"https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=120&q=60"},
+  {name:"Oiseau haltères",muscle:"Épaules arrière",img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=120&q=60"},
+  {name:"Face pull",muscle:"Épaules arrière · Coiffe",img:"https://images.unsplash.com/photo-1576678927484-cc907957088c?w=120&q=60"},
+  {name:"Poulie triceps corde",muscle:"Triceps",img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=120&q=60"},
+  {name:"Extension haltère une main",muscle:"Triceps",img:"https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=120&q=60"},
+  {name:"Extension corde poulie",muscle:"Triceps",img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=120&q=60"},
+  {name:"Skull crusher léger",muscle:"Triceps",img:"https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=120&q=60"},
+  {name:"Tirage vertical",muscle:"Grand dorsal",img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=120&q=60"},
+  {name:"Tirage vertical lourd",muscle:"Grand dorsal",img:"https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=120&q=60"},
+  {name:"Tractions assistées",muscle:"Grand dorsal",img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=120&q=60"},
+  {name:"Tirage horizontal",muscle:"Dos épaisseur",img:"https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=120&q=60"},
+  {name:"Low row",muscle:"Dos épaisseur",img:"https://images.unsplash.com/photo-1581009137042-c552e485697a?w=120&q=60"},
+  {name:"Rowing haltère",muscle:"Dos épaisseur",img:"https://images.unsplash.com/photo-1581009137042-c552e485697a?w=120&q=60"},
+  {name:"Lower back machine",muscle:"Lombaires",img:"https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=120&q=60"},
+  {name:"Curl barre",muscle:"Biceps",img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=120&q=60"},
+  {name:"Curl barre EZ",muscle:"Biceps",img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=120&q=60"},
+  {name:"Curl incliné haltères",muscle:"Biceps",img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=120&q=60"},
+  {name:"Hammer curl",muscle:"Biceps · Avant-bras",img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=120&q=60"},
+  {name:"Rotation externe poulie basse",muscle:"Coiffe des rotateurs",img:"https://images.unsplash.com/photo-1576678927484-cc907957088c?w=120&q=60"},
+  {name:"Squat",muscle:"Quadriceps · Fessiers",img:"https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=120&q=60"},
+  {name:"Presse à cuisses",muscle:"Quadriceps",img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=120&q=60"},
+  {name:"Fentes marchées haltères",muscle:"Quadriceps · Fessiers",img:"https://images.unsplash.com/photo-1597452485597-17b9c7ad5746?w=120&q=60"},
+  {name:"Leg extension",muscle:"Quadriceps isolation",img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=120&q=60"},
+  {name:"Hip thrust",muscle:"Fessiers",img:"https://images.unsplash.com/photo-1434682966140-aba8208b7d55?w=120&q=60"},
+  {name:"Leg curl",muscle:"Ischio-jambiers",img:"https://images.unsplash.com/photo-1576678927484-cc907957088c?w=120&q=60"},
+  {name:"Soulevé de terre jambes tendues",muscle:"Ischios · Lombaires",img:"https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=120&q=60"},
+  {name:"Mollets debout machine",muscle:"Mollets",img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=120&q=60"},
+  {name:"Crunch câble",muscle:"Abdominaux",img:"https://images.unsplash.com/photo-1544033527-b192daee1f5b?w=120&q=60"},
+  {name:"Planche",muscle:"Abdominaux · Core",img:"https://images.unsplash.com/photo-1544033527-b192daee1f5b?w=120&q=60"},
 ];
 
+const U = "https://images.unsplash.com/";
 const DEF={
-  0:{name:"Lundi",label:"Push",tag:"push",color:"var(--push)",subtitle:"Pecs · Épaules · Triceps",note:"Finition : 2×15 rotations externes poulie basse — protection coiffe des rotateurs",img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=70",sections:[{title:"Pectoraux",exercises:[{name:"Développé couché barre",sets:"3 × 8-10",note:"Repos 2 min",img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=160&q=60"},{name:"Développé incliné haltères",sets:"3 × 10-12",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=160&q=60"},{name:"Pec deck machine",sets:"3 × 12",img:"https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=160&q=60"}]},{title:"Épaules",exercises:[{name:"Développé militaire haltères",sets:"3 × 10-12",img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=160&q=60"},{name:"Élévations latérales",sets:"3 × 12-15",img:"https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=160&q=60"}]},{title:"Triceps",exercises:[{name:"Poulie triceps corde",sets:"3 × 12",img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=160&q=60"},{name:"Extension haltère une main",sets:"3 × 12",img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=160&q=60"}]},{title:"Protection coiffe",exercises:[{name:"Rotation externe poulie basse",sets:"2 × 15",img:"https://images.unsplash.com/photo-1576678927484-cc907957088c?w=160&q=60"}]}]},
-  1:{name:"Mardi",label:"Pull",tag:"pull",color:"var(--pull)",subtitle:"Dos · Biceps",img:"https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=800&q=70",sections:[{title:"Dos largeur",exercises:[{name:"Tirage vertical",sets:"4 × 8-10",note:"45-50 kg",img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=160&q=60"},{name:"Tractions assistées",sets:"3 × max",img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=160&q=60"}]},{title:"Dos épaisseur",exercises:[{name:"Tirage horizontal",sets:"4 × 10",img:"https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=160&q=60"},{name:"Low row",sets:"3 × 10",note:"60-65 kg",img:"https://images.unsplash.com/photo-1581009137042-c552e485697a?w=160&q=60"},{name:"Lower back machine",sets:"3 × 12-15",img:"https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=160&q=60"}]},{title:"Biceps",exercises:[{name:"Curl barre",sets:"3 × 10",note:"24 kg",img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=160&q=60"},{name:"Hammer curl",sets:"3 × 10",img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=160&q=60"}]}]},
-  2:{name:"Mercredi",label:"Repos actif",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération",rest:true,img:"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=70",note:"Marche · Mobilité · Étirements légers. Le muscle se construit au repos."},
-  3:{name:"Jeudi",label:"Jambes",tag:"legs",color:"var(--legs)",subtitle:"Quadriceps · Ischios · Mollets",img:"https://images.unsplash.com/photo-1434682966140-aba8208b7d55?w=800&q=70",sections:[{title:"Quadriceps",exercises:[{name:"Squat",sets:"4 × 8",note:"50-60 kg",img:"https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=160&q=60"},{name:"Presse à cuisses",sets:"3 × 10",img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=160&q=60"},{name:"Fentes marchées haltères",sets:"3 × 10 / jambe",img:"https://images.unsplash.com/photo-1597452485597-17b9c7ad5746?w=160&q=60"}]},{title:"Ischios",exercises:[{name:"Leg curl",sets:"3 × 12",note:"35 kg",img:"https://images.unsplash.com/photo-1576678927484-cc907957088c?w=160&q=60"},{name:"Soulevé de terre jambes tendues",sets:"3 × 10",img:"https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=160&q=60"}]},{title:"Mollets + Abdos",exercises:[{name:"Mollets debout machine",sets:"3 × 15-20",img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=160&q=60"},{name:"Crunch câble",sets:"3 × 15",img:"https://images.unsplash.com/photo-1544033527-b192daee1f5b?w=160&q=60"}]}]},
-  4:{name:"Vendredi",label:"Force",tag:"full",color:"var(--full)",subtitle:"Force + Masse — Haut du corps",note:"Triceps retirés — récupèrent avant samedi. Focus sur la charge.",img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=70",sections:[{title:"Séance force",exercises:[{name:"Développé couché barre",sets:"4 × 6-8",img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=160&q=60"},{name:"Tirage vertical lourd",sets:"4 × 6-8",img:"https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=160&q=60"},{name:"Développé militaire",sets:"3 × 8",img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=160&q=60"},{name:"Low row",sets:"3 × 8",img:"https://images.unsplash.com/photo-1581009137042-c552e485697a?w=160&q=60"},{name:"Curl barre",sets:"3 × 8",img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=160&q=60"}]}]},
-  5:{name:"Samedi",label:"Bras",tag:"arms",color:"var(--arms)",subtitle:"Bras · Épaules · Rappel pecs",img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=800&q=70",sections:[{title:"Épaules",exercises:[{name:"Élévations latérales",sets:"4 × 15",img:"https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=160&q=60"},{name:"Oiseau haltères",sets:"3 × 12",img:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=160&q=60"}]},{title:"Biceps",exercises:[{name:"Curl barre EZ",sets:"3 × 10",img:"https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=160&q=60"},{name:"Curl incliné haltères",sets:"3 × 12",img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=160&q=60"}]},{title:"Triceps",exercises:[{name:"Extension corde poulie",sets:"3 × 12",img:"https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=160&q=60"},{name:"Skull crusher léger",sets:"3 × 12",img:"https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=160&q=60"}]},{title:"Rappel pecs",exercises:[{name:"Écarté incliné haltères",sets:"3 × 15",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=160&q=60"}]}]},
-  6:{name:"Dimanche",label:"Repos",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération complète",rest:true,img:"https://images.unsplash.com/photo-1540206395-68808572332f?w=800&q=70",note:"Repos complet. Le cycle est terminé — bien joué ! La semaine reprend lundi."},
+  0:{name:"Lundi",label:"Push",tag:"push",color:"var(--push)",subtitle:"Pecs · Épaules · Triceps",note:"Finition : 2×15 rotations externes poulie basse — protection coiffe des rotateurs",img:U+"photo-1534438327276-14e5300c3a48?w=800&q=70",sections:[
+    {title:"Pectoraux",exercises:[
+      {name:"Développé couché barre",sets:"3 × 8-10",note:"Repos 2 min",img:U+"photo-1571019614242-c5c5dee9f50b?w=120&q=60"},
+      {name:"Développé incliné haltères",sets:"3 × 10-12",img:U+"photo-1581009146145-b5ef050c2e1e?w=120&q=60"},
+      {name:"Pec deck machine",sets:"3 × 12",img:U+"photo-1574680178050-55c6a6a96e0a?w=120&q=60"},
+    ]},
+    {title:"Épaules",exercises:[
+      {name:"Développé militaire haltères",sets:"3 × 10-12",img:U+"photo-1583454110551-21f2fa2afe61?w=120&q=60"},
+      {name:"Élévations latérales",sets:"3 × 12-15",img:U+"photo-1532029837206-abbe2b7620e3?w=120&q=60"},
+    ]},
+    {title:"Triceps",exercises:[
+      {name:"Poulie triceps corde",sets:"3 × 12",img:U+"photo-1598971639058-fab3c3109a00?w=120&q=60"},
+      {name:"Extension haltère une main",sets:"3 × 12",img:U+"photo-1590487988256-9ed24133863e?w=120&q=60"},
+    ]},
+    {title:"Protection coiffe",exercises:[
+      {name:"Rotation externe poulie basse",sets:"2 × 15",img:U+"photo-1576678927484-cc907957088c?w=120&q=60"},
+    ]},
+  ]},
+  1:{name:"Mardi",label:"Pull",tag:"pull",color:"var(--pull)",subtitle:"Dos · Biceps",img:U+"photo-1603287681836-b174ce5074c2?w=800&q=70",sections:[
+    {title:"Dos largeur",exercises:[
+      {name:"Tirage vertical",sets:"4 × 8-10",note:"45-50 kg",img:U+"photo-1597452485669-2c7bb5fef90d?w=120&q=60"},
+      {name:"Tractions assistées",sets:"3 × max",img:U+"photo-1598971639058-fab3c3109a00?w=120&q=60"},
+    ]},
+    {title:"Dos épaisseur",exercises:[
+      {name:"Tirage horizontal",sets:"4 × 10",img:U+"photo-1574680096145-d05b474e2155?w=120&q=60"},
+      {name:"Low row",sets:"3 × 10",note:"60-65 kg",img:U+"photo-1581009137042-c552e485697a?w=120&q=60"},
+      {name:"Lower back machine",sets:"3 × 12-15",img:U+"photo-1534258936925-c58bed479fcb?w=120&q=60"},
+    ]},
+    {title:"Biceps",exercises:[
+      {name:"Curl barre",sets:"3 × 10",note:"24 kg",img:U+"photo-1583454110551-21f2fa2afe61?w=120&q=60"},
+      {name:"Hammer curl",sets:"3 × 10",img:U+"photo-1541534741688-6078c6bfb5c5?w=120&q=60"},
+    ]},
+  ]},
+  2:{name:"Mercredi",label:"Repos actif",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération",rest:true,img:U+"photo-1506126613408-eca07ce68773?w=800&q=70",note:"Marche · Mobilité · Étirements légers. Le muscle se construit au repos."},
+  3:{name:"Jeudi",label:"Jambes",tag:"legs",color:"var(--legs)",subtitle:"Quadriceps · Ischios · Mollets",img:U+"photo-1434682966140-aba8208b7d55?w=800&q=70",sections:[
+    {title:"Quadriceps",exercises:[
+      {name:"Squat",sets:"4 × 8",note:"50-60 kg",img:U+"photo-1574680178050-55c6a6a96e0a?w=120&q=60"},
+      {name:"Presse à cuisses",sets:"3 × 10",img:U+"photo-1597452485669-2c7bb5fef90d?w=120&q=60"},
+      {name:"Fentes marchées haltères",sets:"3 × 10 / jambe",img:U+"photo-1597452485597-17b9c7ad5746?w=120&q=60"},
+    ]},
+    {title:"Ischios",exercises:[
+      {name:"Leg curl",sets:"3 × 12",note:"35 kg",img:U+"photo-1576678927484-cc907957088c?w=120&q=60"},
+      {name:"Soulevé de terre jambes tendues",sets:"3 × 10",img:U+"photo-1603287681836-b174ce5074c2?w=120&q=60"},
+    ]},
+    {title:"Mollets + Abdos",exercises:[
+      {name:"Mollets debout machine",sets:"3 × 15-20",img:U+"photo-1571019614242-c5c5dee9f50b?w=120&q=60"},
+      {name:"Crunch câble",sets:"3 × 15",img:U+"photo-1544033527-b192daee1f5b?w=120&q=60"},
+    ]},
+  ]},
+  4:{name:"Vendredi",label:"Force",tag:"full",color:"var(--full)",subtitle:"Force + Masse",note:"Triceps retirés — récupèrent avant samedi. Focus sur la charge.",img:U+"photo-1526506118085-60ce8714f8c5?w=800&q=70",sections:[
+    {title:"Séance force",exercises:[
+      {name:"Développé couché barre",sets:"4 × 6-8",img:U+"photo-1571019614242-c5c5dee9f50b?w=120&q=60"},
+      {name:"Tirage vertical lourd",sets:"4 × 6-8",img:U+"photo-1597452485669-2c7bb5fef90d?w=120&q=60"},
+      {name:"Développé militaire",sets:"3 × 8",img:U+"photo-1583454110551-21f2fa2afe61?w=120&q=60"},
+      {name:"Low row",sets:"3 × 8",img:U+"photo-1581009137042-c552e485697a?w=120&q=60"},
+      {name:"Curl barre",sets:"3 × 8",img:U+"photo-1541534741688-6078c6bfb5c5?w=120&q=60"},
+    ]},
+  ]},
+  5:{name:"Samedi",label:"Bras",tag:"arms",color:"var(--arms)",subtitle:"Bras · Épaules · Rappel pecs",img:U+"photo-1590487988256-9ed24133863e?w=800&q=70",sections:[
+    {title:"Épaules",exercises:[
+      {name:"Élévations latérales",sets:"4 × 15",img:U+"photo-1532029837206-abbe2b7620e3?w=120&q=60"},
+      {name:"Oiseau haltères",sets:"3 × 12",img:U+"photo-1583454110551-21f2fa2afe61?w=120&q=60"},
+    ]},
+    {title:"Biceps",exercises:[
+      {name:"Curl barre EZ",sets:"3 × 10",img:U+"photo-1541534741688-6078c6bfb5c5?w=120&q=60"},
+      {name:"Curl incliné haltères",sets:"3 × 12",img:U+"photo-1590487988256-9ed24133863e?w=120&q=60"},
+    ]},
+    {title:"Triceps",exercises:[
+      {name:"Extension corde poulie",sets:"3 × 12",img:U+"photo-1598971639058-fab3c3109a00?w=120&q=60"},
+      {name:"Skull crusher léger",sets:"3 × 12",img:U+"photo-1574680096145-d05b474e2155?w=120&q=60"},
+    ]},
+    {title:"Rappel pecs",exercises:[
+      {name:"Écarté incliné haltères",sets:"3 × 15",img:U+"photo-1581009146145-b5ef050c2e1e?w=120&q=60"},
+    ]},
+  ]},
+  6:{name:"Dimanche",label:"Repos",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération complète",rest:true,img:U+"photo-1540206395-68808572332f?w=800&q=70",note:"Repos complet. Le cycle est terminé — bien joué ! La semaine reprend lundi."},
 };
 
 const DS=["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
 const MO=["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
 
-/* STATE */
 let wOff=0,selDay=null,mSi=null,mEi=null,PROG={};
 
-/* STORAGE */
 const ls=k=>{try{return JSON.parse(localStorage.getItem(k))}catch{return null}};
 const lss=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
 const sk=(w,d)=>{const m=gMon(w);return`tw_${m.getFullYear()}_${m.getMonth()}_${m.getDate()}_d${d}`};
@@ -482,12 +555,9 @@ const gck=(w,d)=>ls(sk(w,d))||{};
 const sck=(w,d,o)=>lss(sk(w,d),o);
 const gProg=()=>ls('tw_prog')||JSON.parse(JSON.stringify(DEF));
 const sProg=()=>lss('tw_prog',PROG);
-
-/* DATES */
 const gMon=off=>{const t=new Date(),dow=t.getDay(),diff=dow===0?-6:1-dow,m=new Date(t);m.setDate(t.getDate()+diff+off*7);return m};
 const isToday=d=>{const t=new Date();return d.getDate()===t.getDate()&&d.getMonth()===t.getMonth()&&d.getFullYear()===t.getFullYear()};
 
-/* LOGIN */
 function doLogin(){
   const p=document.getElementById('ip').value.trim();
   if(!p){document.getElementById('ip').focus();return}
@@ -505,15 +575,12 @@ function boot(){
   render();
 }
 
-/* PROGRESS */
 const gPr=(w,d)=>{const p=PROG[d];if(!p||p.rest)return null;const obj=gck(w,d);let tot=0,don=0;p.sections.forEach((s,si)=>s.exercises.forEach((_,ei)=>{tot++;if(obj[`${si}_${ei}`])don++;}));return{tot,don,pct:tot>0?Math.round(don/tot*100):0}};
 
-/* NAV */
 function changeWeek(dir){wOff+=dir;selDay=null;render()}
 function selD(i){selDay=i;renderStrip();renderMain()}
 function showPage(p){['Home','Stats'].forEach(x=>{document.getElementById('page'+x).classList.toggle('on',x===p);document.getElementById('nav'+x).classList.toggle('on',x===p)});if(p==='Stats')renderStats()}
 
-/* STRIP */
 function renderStrip(){
   const mon=gMon(wOff),el=document.getElementById('strip');el.innerHTML='';
   for(let i=0;i<7;i++){
@@ -529,12 +596,11 @@ function renderStrip(){
   document.getElementById('wl').textContent=`${m2.getDate()} ${MO[m2.getMonth()]} – ${su.getDate()} ${MO[su.getMonth()]}`;
 }
 
-/* MAIN */
 function renderMain(){
   const prog=PROG[selDay],mc=document.getElementById('mc');
   const isIos=/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()),isSA=window.navigator.standalone,bD=localStorage.getItem('tw_b')==='1';
   let ban='';
-  if(isIos&&!isSA&&!bD)ban=`<div class="ib"><span class="mi">download</span><span>Partage → "Sur l'écran d'accueil" pour installer</span><button onclick="disBan()"><span class="mi">close</span></button></div>`;
+  if(isIos&&!isSA&&!bD)ban=`<div class="ib"><span class="mi">download</span><span>Partage → "Sur l'écran d'accueil"</span><button onclick="disBan()"><span class="mi">close</span></button></div>`;
 
   if(prog.rest){
     mc.innerHTML=`${ban}<div class="hero"><img src="${prog.img}" alt="" loading="lazy"><div class="hov"><span class="htag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.18)"><span class="mi" style="font-size:11px">self_improvement</span>${prog.tag.toUpperCase()}</span><div class="htitle">${prog.name}</div><div class="hsub">${prog.subtitle}</div></div></div><div class="nb"><span class="mi">info</span><span>${prog.note||''}</span></div>`;
@@ -549,7 +615,7 @@ function renderMain(){
     let eh='';
     sec.exercises.forEach((ex,ei)=>{
       const done=!!obj[`${si}_${ei}`];
-      eh+=`<div class="ec ${done?'done':''}"><div class="eci"><div class="eth" onclick="openEx(${si},${ei})"><img src="${ex.img}" alt="${ex.name}" loading="lazy"><div class="playico"><span class="mi">play_circle</span></div></div><div class="eb" onclick="openEx(${si},${ei})"><div class="en">${ex.name}</div><div class="es">${ex.sets}</div>${ex.note?`<div class="enote">${ex.note}</div>`:''}<div class="ehint"><span class="mi">gif_box</span>Voir la démo GIF</div></div><div class="ea"><button class="ecb ${done?'ck':''}" onclick="togEx(${si},${ei})"><span class="mi ${done?'mif':''}">${done?'check_circle':'radio_button_unchecked'}</span></button><button class="esb" onclick="openSw(${si},${ei})"><span class="mi">swap_horiz</span></button></div></div></div>`;
+      eh+=`<div class="ec ${done?'done':''}"><div class="eci"><div class="eth" onclick="openEx(${si},${ei})"><img src="${ex.img}" alt="${ex.name}" loading="lazy"><div class="playico"><span class="mi">play_circle</span></div></div><div class="eb" onclick="openEx(${si},${ei})"><div class="en">${ex.name}</div><div class="es">${ex.sets}</div>${ex.note?`<div class="enote">${ex.note}</div>`:''}<div class="ehint"><span class="mi">gif_box</span>Voir la démo</div></div><div class="ea"><button class="ecb ${done?'ck':''}" onclick="togEx(${si},${ei})"><span class="mi ${done?'mif':''}">${done?'check_circle':'radio_button_unchecked'}</span></button><button class="esb" onclick="openSw(${si},${ei})"><span class="mi">swap_horiz</span></button></div></div></div>`;
     });
     sh+=`<div class="sl">${sec.title}</div>${eh}`;
   });
@@ -571,19 +637,28 @@ function openEx(si,ei){
   document.getElementById('emI').innerHTML=rows.map(r=>`<div class="irow"><div class="iico"><span class="mi">${r.ic}</span></div><div><div class="ilb">${r.lb}</div><div class="iv">${r.v}</div></div></div>`).join('');
   updDB(done);
   openM('exMo');
+  loadGif(ex.name);
+}
 
-  /* Load GIF — direct URL, no API call needed */
+function loadGif(name){
   const ga=document.getElementById('emG');
-  const gifUrl=GIFS[ex.name];
-  if(gifUrl){
-    ga.innerHTML=`<div class="gload"><div class="spin"></div><span>Chargement…</span></div>`;
-    const img=new Image();
-    img.onload=()=>{ga.innerHTML='';ga.appendChild(img);img.style.cssText='width:100%;display:block;border-radius:var(--rs)'};
-    img.onerror=()=>{ga.innerHTML=`<div class="gerr"><span class="mi">image_not_supported</span>Démo non disponible</div>`};
-    img.src=gifUrl;
-  } else {
-    ga.innerHTML=`<div class="gerr"><span class="mi">image_not_supported</span>Démo non disponible</div>`;
-  }
+  ga.innerHTML=`<div class="gload"><div class="spin"></div><span>Chargement de la démo…</span></div>`;
+  const gifUrl=GIFS[name];
+  const fallback=IMGS[name];
+  if(!gifUrl&&!fallback){ga.innerHTML=`<div class="gerr"><span class="mi">image_not_supported</span>Démo non disponible</div>`;return}
+  const img=new Image();
+  img.onload=()=>{ga.innerHTML='';img.style.cssText='width:100%;display:block;max-height:320px;object-fit:contain';ga.appendChild(img)};
+  img.onerror=()=>{
+    if(fallback){
+      const fb=new Image();
+      fb.onload=()=>{ga.innerHTML='';fb.style.cssText='width:100%;display:block;height:220px;object-fit:cover';ga.appendChild(fb)};
+      fb.onerror=()=>{ga.innerHTML=`<div class="gerr"><span class="mi">image_not_supported</span>Démo non disponible<small>Connexion requise</small></div>`};
+      fb.src=fallback;
+    } else {
+      ga.innerHTML=`<div class="gerr"><span class="mi">image_not_supported</span>Démo non disponible<small>Connexion requise</small></div>`;
+    }
+  };
+  img.src=gifUrl||fallback;
 }
 
 function updDB(done){
@@ -600,18 +675,12 @@ function toggleMo(){
 function swapFromMo(){closeM('exMo');openSw(mSi,mEi)}
 
 /* SWAP */
-function openSw(si,ei){
-  mSi=si;mEi=ei;
-  document.getElementById('swQ').value='';renderSwL('');
-  openM('swMo');setTimeout(()=>document.getElementById('swQ').focus(),360);
-}
+function openSw(si,ei){mSi=si;mEi=ei;document.getElementById('swQ').value='';renderSwL('');openM('swMo');setTimeout(()=>document.getElementById('swQ').focus(),360)}
 function filterSw(){renderSwL(document.getElementById('swQ').value)}
 function renderSwL(q){
   const cur=PROG[selDay].sections[mSi].exercises[mEi].name;
   const f=ALTS.filter(e=>e.name!==cur&&(q===''||e.name.toLowerCase().includes(q.toLowerCase())||e.muscle.toLowerCase().includes(q.toLowerCase())));
-  document.getElementById('swL').innerHTML=f.length
-    ?f.map(e=>`<div class="si" onclick='doSwap(${JSON.stringify(e)})'><img src="${e.img}" alt="" loading="lazy"><div class="sn"><div class="snm">${e.name}</div><div class="smu">${e.muscle}</div></div><div class="sarr"><span class="mi">arrow_forward</span></div></div>`).join('')
-    :`<div style="padding:22px;text-align:center;color:var(--t3);font-size:13px">Aucun résultat</div>`;
+  document.getElementById('swL').innerHTML=f.length?f.map(e=>`<div class="si" onclick='doSwap(${JSON.stringify(e)})'><img src="${e.img}" alt="" loading="lazy"><div class="sn"><div class="snm">${e.name}</div><div class="smu">${e.muscle}</div></div><div class="sarr"><span class="mi">arrow_forward</span></div></div>`).join(''):`<div style="padding:22px;text-align:center;color:var(--t3);font-size:13px">Aucun résultat</div>`;
 }
 function doSwap(ne){const old=PROG[selDay].sections[mSi].exercises[mEi];PROG[selDay].sections[mSi].exercises[mEi]={...old,name:ne.name,img:ne.img,note:''};sProg();closeM('swMo');renderMain()}
 
@@ -650,7 +719,6 @@ function doLogout(){
   }
 }
 
-/* MODAL UTILS */
 function openM(id){document.getElementById(id).classList.add('op');document.body.style.overflow='hidden'}
 function closeM(id){document.getElementById(id).classList.remove('op');document.body.style.overflow='';if(id==='exMo'){mSi=null;mEi=null}}
 function cmoOut(e,id){if(e.target===document.getElementById(id))closeM(id)}
@@ -660,7 +728,6 @@ function cmoOut(e,id){if(e.target===document.getElementById(id))closeM(id)}
   el.addEventListener('touchmove',e=>{if(e.touches[0].clientY-ty>90)closeM(mid)},{passive:true});
 });
 
-/* STATS */
 function renderStats(){
   const sc=document.getElementById('sc');let tS=0,tE=0,hh='',bh='';
   for(let w=0;w>=-4;w--){
