@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<!-- FIX iOS ZOOM : Ajout de maximum-scale=1.0 et user-scalable=0 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -46,7 +45,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);min-h
 .l-title{font-size:20px;font-weight:600;margin-bottom:22px;letter-spacing:-0.02em}
 .fg{margin-bottom:14px}
 .fl{font-size:12px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-/* FIX iOS ZOOM: font-size 16px */
 .fi{width:100%;padding:14px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--b1);border-radius:var(--rs);color:var(--t1);font-size:16px;font-family:'DM Sans',sans-serif;outline:none;-webkit-appearance:none;transition:all .2s ease}
 .fi:focus{border-color:var(--ac);background:rgba(212,255,51,0.05);box-shadow:0 0 0 3px rgba(212,255,51,0.1)}
 .fi::placeholder{color:var(--t3)}
@@ -151,7 +149,6 @@ select.fi option{background:#1c1c1e}
 .ex-edit{background:var(--g1);border:1px solid var(--b1);border-radius:16px;padding:14px;margin:16px 20px 0}
 .ex-edit-title{font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .ex-edit-row{display:flex;gap:10px;margin-bottom:10px}
-/* Fix Font-size 16px pour éviter le zoom iOS */
 .ex-inp{flex:1;background:rgba(0,0,0,0.3);border:1px solid var(--b1);border-radius:10px;color:var(--t1);font-size:16px;padding:12px;outline:none;font-family:'DM Sans',sans-serif;transition:border .2s; width:100%;}
 .ex-inp:focus{border-color:var(--ac)}
 .ex-save{background:var(--ac);color:#050508;border:none;border-radius:10px;padding:12px 16px;font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;width:100%}
@@ -219,7 +216,6 @@ select.fi option{background:#1c1c1e}
 <body>
 <div class="orb ob1"></div><div class="orb ob2"></div><div class="orb ob3"></div>
 
-<!-- LOGIN -->
 <div id="loginPage">
   <div class="lo1"></div><div class="lo2"></div>
   <div class="l-logo">TrainWeek</div>
@@ -247,7 +243,6 @@ select.fi option{background:#1c1c1e}
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <div class="hdr" id="hdr">
     <div class="htop">
@@ -267,7 +262,6 @@ select.fi option{background:#1c1c1e}
   <div id="pageHome" class="page on"><div class="main" id="mc"></div></div>
   <div id="pageStats" class="page"><div class="sp" id="sc"></div></div>
   
-  <!-- NOUVELLE PAGE COACH -->
   <div id="pageCoach" class="page">
     <div class="sp">
       <div class="sl">Générateur de programme IA</div>
@@ -295,7 +289,6 @@ select.fi option{background:#1c1c1e}
   </nav>
 </div>
 
-<!-- EX MODAL -->
 <div class="mo" id="exMo" onclick="cmoOut(event,'exMo')">
   <div class="ms" id="exMs">
     <div class="mh"></div>
@@ -303,7 +296,6 @@ select.fi option{background:#1c1c1e}
     
     <div class="mga" id="emG"></div>
 
-    <!-- ZONE D'ÉDITION ÉTENDUE -->
     <div class="ex-edit">
       <div class="ex-edit-title"><span class="mi" style="font-size:16px">tune</span> Personnaliser cet exercice</div>
       <div class="ex-edit-row">
@@ -326,7 +318,6 @@ select.fi option{background:#1c1c1e}
   </div>
 </div>
 
-<!-- SWAP MODAL -->
 <div class="mo" id="swMo" onclick="cmoOut(event,'swMo')">
   <div class="ms" id="swMs">
     <div class="mh"></div>
@@ -336,64 +327,69 @@ select.fi option{background:#1c1c1e}
   </div>
 </div>
 
-<!-- PROFILE MODAL -->
 <div class="mo" id="prMo" onclick="cmoOut(event,'prMo')">
   <div class="psh" id="prSh"><div id="prC"></div></div>
 </div>
 
 <script>
-/* IMAGES */
+/* ═══════════════════════════════════════════════════
+   MAPPING DES IMAGES LOCALES / UNSPLASH
+   ═══════════════════════════════════════════════════ */
 const PX = {
-  "Développé couché barre":          "photo-1571019613454-1cb2f99b2d8b",
-  "Développé couché haltères":       "photo-1581009146145-b5ef050c2e1e",
-  "Développé incliné haltères":      "photo-1534438327276-14e5300c3a48",
-  "Pec deck machine":                "photo-1574680178050-55c6a6a96e0a",
-  "Écarté incliné haltères":         "photo-1517836357463-d25dfeac3438",
-  "Développé militaire haltères":    "photo-1583454110551-21f2fa2afe61",
-  "Développé militaire":             "photo-1526506118085-60ce8714f8c5",
-  "Élévations latérales":            "photo-1532029837206-abbe2b7620e3",
-  "Oiseau haltères":                 "photo-1590487988256-9ed24133863e",
-  "Face pull":                       "photo-1597452485669-2c7bb5fef90d",
-  "Poulie triceps corde":            "photo-1598971639058-fab3c3109a00",
-  "Extension haltère une main":      "photo-1574680096145-d05b474e2155",
-  "Extension corde poulie":          "photo-1581009146145-b5ef050c2e1e",
-  "Skull crusher léger":             "photo-1534438327276-14e5300c3a48",
-  "Rotation externe poulie basse":   "photo-1576678927484-cc907957088c",
-  "Tirage vertical":                 "photo-1603287681836-b174ce5074c2",
-  "Tirage vertical lourd":           "photo-1598971639058-fab3c3109a00",
-  "Tractions assistées":             "photo-1598971639058-fab3c3109a00",
-  "Tirage horizontal":               "photo-1581009137042-c552e485697a",
-  "Low row":                         "photo-1581009137042-c552e485697a",
-  "Rowing haltère":                  "photo-1506126613408-eca07ce68773",
-  "Lower back machine":              "photo-1534258936925-c58bed479fcb",
-  "Curl barre":                      "photo-1583454110551-21f2fa2afe61",
-  "Curl barre EZ":                   "photo-1541534741688-6078c6bfb5c5",
-  "Curl incliné haltères":           "photo-1590487988256-9ed24133863e",
-  "Hammer curl":                     "photo-1541534741688-6078c6bfb5c5",
-  "Squat":                           "photo-1574680178050-55c6a6a96e0a",
-  "Presse à cuisses":                "photo-1597452485669-2c7bb5fef90d",
-  "Fentes marchées haltères":        "photo-1597452485597-17b9c7ad5746",
-  "Leg extension":                   "photo-1534258936925-c58bed479fcb",
-  "Hip thrust":                      "photo-1434682966140-aba8208b7d55",
-  "Leg curl":                        "photo-1576678927484-cc907957088c",
-  "Soulevé de terre jambes tendues": "photo-1603287681836-b174ce5074c2",
-  "Mollets debout machine":          "photo-1571019614242-c5c5dee9f50b",
-  "Crunch câble":                    "photo-1544033527-b192daee1f5b",
-  "Planche":                         "photo-1544033527-b192daee1f5b",
+  "Développé couché barre":          "images/developpe-couche.gif",
+  "Développé couché haltères":       "images/developpe-couche-halteres-exercice-musculation.gif",
+  "Développé incliné haltères":      "images/developpe-couche-halteres-exercice-musculation.gif",
+  "Pec deck machine":                "photo-1574680178050-55c6a6a96e0a", // Gardé Unsplash par défaut
+  "Écarté incliné haltères":         "images/developpe-couche-halteres-exercice-musculation.gif",
+  "Développé militaire haltères":    "images/developpe-epaule-halteres.gif",
+  "Développé militaire":             "images/developpe-militaire-exercice-musculation.gif",
+  "Élévations latérales":            "images/03341301-Dumbbell-Lateral-Raise_shoulder_720.gif",
+  "Oiseau haltères":                 "images/oiseau-assis-sur-banc.gif",
+  "Face pull":                       "images/Face-Pull.gif",
+  "Poulie triceps corde":            "images/tríceps-pulley.gif",
+  "Extension haltère une main":      "images/images.jpeg",
+  "Extension corde poulie":          "images/02011301-Cable-Pushdown_Upper-Arms_720.gif",
+  "Skull crusher léger":             "images/00611301-Barbell-Lying-Triceps-Extension_Upper-Arms_360.gif",
+  "Rotation externe poulie basse":   "images/rotation-externe-epaule-poulie.gif",
+  "Tirage vertical":                 "images/tirage-vertical-poitrine.gif",
+  "Tirage vertical lourd":           "images/tirage-vertical-poitrine.gif",
+  "Tractions assistées":             "images/exercice-traction-musculation-dos-.gif",
+  "Tirage horizontal":               "images/images-2.jpeg",
+  "Low row":                         "images/6d937ff1cb05cd56dab8eff75d89c7bf.gif",
+  "Rowing haltère":                  "images/rowing-haltere-un-bras.gif",
+  "Lower back machine":              "images/Back-Hyperextension.gif",
+  "Curl barre":                      "images/curl-barre.gif",
+  "Curl barre EZ":                   "images/curl-au-pupitre-barre-ez-larry-scott.gif",
+  "Curl incliné haltères":           "images/curl-haltere-incline.gif",
+  "Hammer curl":                     "images/Hammer-Curl.gif",
+  "Squat":                           "images/BARBELL-SQUAT.gif",
+  "Presse à cuisses":                "images/images-3.jpeg",
+  "Fentes marchées haltères":        "images/fentes-avant-exercice-musculation.gif",
+  "Leg extension":                   "images/leg-extension.gif",
+  "Hip thrust":                      "images/Barbell-Hip-Thrust.gif",
+  "Leg curl":                        "photo-1576678927484-cc907957088c", // Gardé Unsplash
+  "Soulevé de terre jambes tendues": "images/images-4.jpeg",
+  "Mollets debout machine":          "images/images-5.jpeg",
+  "Crunch câble":                    "images/25272.gif",
+  "Planche":                         "images/planche-abdos.gif",
 };
 
-// Logique pour gérer les URLs personnalisées
 function finalImg(ex, isModal) {
   if (ex.customImg && ex.customImg.startsWith('http')) return ex.customImg;
-  const v = PX[ex.name] || "photo-1534258936925-c58bed479fcb";
-  const size = isModal ? "w=600&q=80" : "w=120&q=70";
-  return `https://images.unsplash.com/${v}?${size}&fit=crop`;
+  const v = PX[ex.name];
+  if (v) {
+    if (v.startsWith('images/') || v.startsWith('http')) {
+      return v;
+    }
+    const size = isModal ? "w=600&q=80" : "w=120&q=70";
+    return `https://images.unsplash.com/${v}?${size}&fit=crop`;
+  }
+  return "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=120&q=70";
 }
 
 const INFO={
   "Développé couché barre":{m:"Pectoraux · Triceps",t:"Descends lentement",r:"2 min",d:"Intermédiaire"},
-  "Squat":{m:"Quadriceps · Fessiers",t:"Genoux dans l'axe des pieds",r:"2 min",d:"Intermédiaire"},
-  // (J'ai raccourci pour la lisibilité, ça garde la structure)
+  "Squat":{m:"Quadriceps · Fessiers",t:"Genoux dans l'axe des pieds",r:"2 min",d:"Intermédiaire"}
 };
 
 const ALTS=[
@@ -528,14 +524,12 @@ function openEx(si,ei){
   document.getElementById('emT').textContent=cName;
   document.getElementById('emG').innerHTML=`<img src="${finalImg(ex, true)}" alt="img"><div class="mga-label"><span class="mi">photo_camera</span>${cName}</div>`;
   
-  // Peupler l'édition
   document.getElementById('editName').value = ex.customName || '';
   document.getElementById('editSets').value = ex.customSets || ex.sets;
   document.getElementById('editWeight').value = ex.customWeight || '';
   document.getElementById('editRest').value = ex.customRest || '';
   document.getElementById('editImg').value = ex.customImg || '';
 
-  // Infos
   const actRest = ex.customRest || inf.r || "Non défini";
   const rows=[inf.m&&{ic:'exercise',lb:'Muscles ciblés',v:inf.m}, {ic:'timer',lb:'Temps de repos',v:actRest}].filter(Boolean);
   document.getElementById('emI').innerHTML=rows.map(r=>`<div class="irow"><div class="iico"><span class="mi">${r.ic}</span></div><div><div class="ilb">${r.lb}</div><div class="iv">${r.v}</div></div></div>`).join('');
@@ -564,7 +558,7 @@ function saveExDetails() {
     btn.innerHTML = oldHtml;
     btn.style.background = "var(--ac)";
     renderMain();
-    openEx(mSi,mEi); // Refresh modal
+    openEx(mSi,mEi); 
   }, 800);
 }
 
@@ -638,13 +632,9 @@ Demande utilisateur (Objectif ${prof.objectif}): ${prompt}`;
   if(!res) return;
 
   try {
-    // Nettoyer la réponse de l'IA (enlever les blocs markdown ```json)
     let cleanJson = res.replace(/```json/g, '').replace(/```/g, '').trim();
     const newProg = JSON.parse(cleanJson);
-    
-    // Vérif basique
     if(!newProg["0"] || !newProg["6"]) throw new Error("Format Invalide");
-    
     PROG = newProg;
     sProg();
     alert("Succès ! Ton nouveau programme a été généré et sauvegardé.");
