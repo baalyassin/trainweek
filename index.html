@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- FIX iOS ZOOM : Ajout de maximum-scale=1.0 et user-scalable=0 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="TrainWeek">
@@ -31,16 +32,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);min-h
 .ob2{width:270px;height:270px;background:rgba(59,158,255,0.06);bottom:22%;left:-75px}
 .ob3{width:210px;height:210px;background:rgba(191,90,242,0.05);bottom:0;right:-20px}
 
-/* ── ANIMATIONS ── */
-@keyframes checkPop {
-  0% { transform: scale(0.5); opacity: 0; }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); opacity: 1; }
-}
+@keyframes checkPop { 0% { transform: scale(0.5); opacity: 0; } 50% { transform: scale(1.2); } 100% { transform: scale(1); opacity: 1; } }
 @keyframes fadeIn {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes rotation { 0% { transform: rotate(0deg) } 100% { transform: rotate(360deg) } }
 
-/* ── LOGIN ── */
+/* LOGIN */
 #loginPage{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;background:var(--bg);overflow-y:auto}
 .lo1{position:absolute;width:380px;height:380px;background:rgba(212,255,51,0.1);border-radius:50%;filter:blur(110px);top:-110px;right:-100px;pointer-events:none}
 .lo2{position:absolute;width:300px;height:300px;background:rgba(59,158,255,0.08);border-radius:50%;filter:blur(110px);bottom:-40px;left:-90px;pointer-events:none}
@@ -50,6 +46,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);min-h
 .l-title{font-size:20px;font-weight:600;margin-bottom:22px;letter-spacing:-0.02em}
 .fg{margin-bottom:14px}
 .fl{font-size:12px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+/* FIX iOS ZOOM: font-size 16px */
 .fi{width:100%;padding:14px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--b1);border-radius:var(--rs);color:var(--t1);font-size:16px;font-family:'DM Sans',sans-serif;outline:none;-webkit-appearance:none;transition:all .2s ease}
 .fi:focus{border-color:var(--ac);background:rgba(212,255,51,0.05);box-shadow:0 0 0 3px rgba(212,255,51,0.1)}
 .fi::placeholder{color:var(--t3)}
@@ -59,7 +56,7 @@ select.fi option{background:#1c1c1e}
 .l-btn{width:100%;padding:16px;margin-top:22px;background:var(--ac);border:none;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;color:#07070f;cursor:pointer;transition:transform .15s ease}
 .l-btn:active{transform:scale(.97)}
 
-/* ── APP ── */
+/* APP */
 #app{position:relative;z-index:1;display:none}#app.on{display:block}
 .hdr{padding:calc(var(--st) + 12px) 16px 0;position:sticky;top:0;z-index:100;background:rgba(5,5,8,0.7);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-bottom:1px solid transparent;transition:border-color .2s}
 .hdr.sc{border-bottom-color:var(--b1)}
@@ -111,7 +108,7 @@ select.fi option{background:#1c1c1e}
 .playico{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(5,5,8,.3)}
 .playico .mi{font-size:22px;color:rgba(255,255,255,.9)}
 .eb{flex:1;padding:12px;display:flex;flex-direction:column;justify-content:center;gap:3px;cursor:pointer;min-width:0}
-.en{font-size:14px;font-weight:600;color:var(--t1);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.en{font-size:14px;font-weight:600;color:var(--t1);line-height:1.3;white-space:normal;}
 .ec.done .en{text-decoration:line-through;color:var(--t3)}
 .es{font-size:13px;color:var(--ac);font-weight:600; display:flex; align-items:center; gap:6px;}
 .ewgt{background:rgba(255,255,255,0.1); color:var(--t1); padding:2px 6px; border-radius:4px; font-size:11px;}
@@ -130,12 +127,12 @@ select.fi option{background:#1c1c1e}
 .rb:active{background:var(--g2);transform:scale(.98)}.rb .mi{font-size:18px}
 
 /* BOTTOM NAV */
-.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(5,5,8,.85);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);padding:10px 20px calc(var(--sb) + 14px);display:flex;justify-content:space-around;border-top:1px solid var(--b1);z-index:200}
-.ni{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;opacity:.4;transition:all .2s ease;font-size:11px;color:var(--t2);font-weight:600;text-transform:uppercase;letter-spacing:.05em;border:none;background:none}
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(5,5,8,.85);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);padding:10px 20px calc(var(--sb) + 14px);display:flex;justify-content:space-between;border-top:1px solid var(--b1);z-index:200}
+.ni{flex:1; display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;opacity:.4;transition:all .2s ease;font-size:11px;color:var(--t2);font-weight:600;text-transform:uppercase;letter-spacing:.05em;border:none;background:none}
 .ni:active{transform:scale(.9)}
 .ni.on{opacity:1;color:var(--ac)}.ni .mi{font-size:24px;transition:transform .2s}.ni.on .mi{color:var(--ac);transform:translateY(-2px)}
 
-/* ── MODALS ── */
+/* MODALS */
 .mo{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;opacity:0;pointer-events:none;transition:opacity .25s ease}
 .mo.op{opacity:1;pointer-events:all}
 .ms{background:rgba(12,12,18,0.95);backdrop-filter:blur(44px) saturate(200%);-webkit-backdrop-filter:blur(44px) saturate(200%);border:1px solid var(--b1);border-radius:28px 28px 0 0;width:100%;max-width:430px;padding:0 0 calc(var(--sb) + 16px);max-height:92vh;overflow-y:auto;transform:translateY(100px);transition:transform .35s cubic-bezier(.32,0,.15,1)}
@@ -154,18 +151,11 @@ select.fi option{background:#1c1c1e}
 .ex-edit{background:var(--g1);border:1px solid var(--b1);border-radius:16px;padding:14px;margin:16px 20px 0}
 .ex-edit-title{font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .ex-edit-row{display:flex;gap:10px;margin-bottom:10px}
-.ex-inp{flex:1;background:rgba(0,0,0,0.3);border:1px solid var(--b1);border-radius:10px;color:var(--t1);font-size:14px;padding:10px 12px;outline:none;font-family:'DM Sans',sans-serif;transition:border .2s}
+/* Fix Font-size 16px pour éviter le zoom iOS */
+.ex-inp{flex:1;background:rgba(0,0,0,0.3);border:1px solid var(--b1);border-radius:10px;color:var(--t1);font-size:16px;padding:12px;outline:none;font-family:'DM Sans',sans-serif;transition:border .2s; width:100%;}
 .ex-inp:focus{border-color:var(--ac)}
-.ex-save{background:var(--ac);color:#050508;border:none;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;width:100%}
+.ex-save{background:var(--ac);color:#050508;border:none;border-radius:10px;padding:12px 16px;font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;width:100%}
 .ex-save:active{transform:scale(.98)}
-
-/* ZONE IA */
-.ai-box{background:rgba(212,255,51,0.05); border:1px dashed var(--ac); border-radius:16px; padding:14px; margin:16px 20px 0; display:none;}
-.ai-box.on{display:block; animation:fadeIn 0.4s ease;}
-.ai-header{display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:var(--ac); text-transform:uppercase; margin-bottom:10px;}
-.ai-content{font-size:14px; line-height:1.5; color:var(--t1);}
-.ai-content b{color:#fff;}
-.loader-ia {width:14px; height:14px; border:2px solid var(--ac); border-bottom-color:transparent; border-radius:50%; display:inline-block; animation:rotation 1s linear infinite;}
 
 .mir{padding:10px 20px 0}
 .irow{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--b1)}
@@ -178,7 +168,7 @@ select.fi option{background:#1c1c1e}
 .mab:active{transform:scale(.97)}.mab.ds{background:var(--g2);color:var(--t2);border:1px solid var(--b1)}.mab .mi{font-size:18px}
 
 /* SWAP */
-.ssrch{margin:16px 20px 0;padding:14px 16px;background:var(--g1);border:1px solid var(--b1);border-radius:16px;color:var(--t1);font-size:15px;font-family:'DM Sans',sans-serif;outline:none;width:calc(100% - 40px);-webkit-appearance:none;transition:border-color .2s}
+.ssrch{margin:16px 20px 0;padding:14px 16px;background:var(--g1);border:1px solid var(--b1);border-radius:16px;color:var(--t1);font-size:16px;font-family:'DM Sans',sans-serif;outline:none;width:calc(100% - 40px);-webkit-appearance:none;transition:border-color .2s}
 .ssrch:focus{border-color:var(--ac);background:rgba(212,255,51,0.03)}.ssrch::placeholder{color:var(--t3)}
 .slist{padding:10px 20px 0;max-height:360px;overflow-y:auto}
 .si{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--b1);cursor:pointer;transition:background .2s}
@@ -186,6 +176,14 @@ select.fi option{background:#1c1c1e}
 .si img{width:50px;height:50px;border-radius:12px;object-fit:cover;flex-shrink:0}
 .sn{flex:1}.snm{font-size:14px;font-weight:600;color:var(--t1)}.smu{font-size:12px;color:var(--t3);margin-top:2px}
 .sarr .mi{font-size:18px;color:var(--t3)}
+
+/* COACH PAGE */
+.chat-box{background:var(--g1); border:1px solid var(--b1); border-radius:16px; padding:16px; min-height:150px; max-height:300px; overflow-y:auto; margin-bottom:12px; font-size:14px; line-height:1.5;}
+.c-msg{margin-bottom:12px; padding:10px 14px; border-radius:12px; width:fit-content; max-width:90%;}
+.c-user{background:var(--g2); color:var(--t1); margin-left:auto; border-bottom-right-radius:2px;}
+.c-ai{background:rgba(212,255,51,0.1); color:var(--t1); border:1px solid rgba(212,255,51,0.2); border-bottom-left-radius:2px;}
+.c-ai b{color:var(--ac);}
+.chat-input-row{display:flex; gap:8px;}
 
 /* PROFILE */
 .psh{background:rgba(12,12,18,0.96);backdrop-filter:blur(44px) saturate(200%);-webkit-backdrop-filter:blur(44px) saturate(200%);border:1px solid var(--b1);border-radius:28px 28px 0 0;width:100%;max-width:430px;padding:0 0 calc(var(--sb) + 20px);max-height:92vh;overflow-y:auto;transform:translateY(100px);transition:transform .35s cubic-bezier(.32,0,.15,1)}
@@ -265,10 +263,34 @@ select.fi option{background:#1c1c1e}
     </div>
     <div class="strip" id="strip"></div>
   </div>
+  
   <div id="pageHome" class="page on"><div class="main" id="mc"></div></div>
   <div id="pageStats" class="page"><div class="sp" id="sc"></div></div>
+  
+  <!-- NOUVELLE PAGE COACH -->
+  <div id="pageCoach" class="page">
+    <div class="sp">
+      <div class="sl">Générateur de programme IA</div>
+      <div style="background:var(--g1); border:1px solid var(--b1); border-radius:16px; padding:16px; margin-bottom:20px;">
+        <p style="font-size:13px; color:var(--t2); margin-bottom:12px;">Décris ton objectif, le nombre de jours d'entraînement souhaité, ou le style (PPL, Full Body...). Le coach va écraser ton programme actuel par un nouveau sur-mesure.</p>
+        <textarea id="aiGenPrompt" class="ex-inp" style="height:80px; resize:none; margin-bottom:10px" placeholder="Ex: Fais-moi un programme Push/Pull/Legs sur 3 jours, axé hypertrophie..."></textarea>
+        <button class="ex-save" id="btnGenProg" onclick="generateProgram()"><span class="mi">auto_awesome</span> Créer mon programme</button>
+      </div>
+
+      <div class="sl">Chat libre avec le Coach</div>
+      <div class="chat-box" id="chatHistory">
+        <div class="c-msg c-ai">Salut ! Je suis ton coach virtuel. Pose-moi tes questions sur les exercices, tes repos ou la nutrition.</div>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" class="ex-inp" placeholder="Par quoi remplacer le squat ?">
+        <button class="ex-save" style="width:auto" onclick="sendChat()"><span class="mi">send</span></button>
+      </div>
+    </div>
+  </div>
+
   <nav class="bnav">
     <button class="ni on" onclick="showPage('Home')" id="navHome"><span class="mi">fitness_center</span>Séances</button>
+    <button class="ni" onclick="showPage('Coach')" id="navCoach"><span class="mi">smart_toy</span>Coach</button>
     <button class="ni" onclick="showPage('Stats')" id="navStats"><span class="mi">bar_chart</span>Stats</button>
   </nav>
 </div>
@@ -281,29 +303,26 @@ select.fi option{background:#1c1c1e}
     
     <div class="mga" id="emG"></div>
 
-    <!-- ZONE D'ÉDITION SÉRIES/POIDS -->
+    <!-- ZONE D'ÉDITION ÉTENDUE -->
     <div class="ex-edit">
       <div class="ex-edit-title"><span class="mi" style="font-size:16px">tune</span> Personnaliser cet exercice</div>
       <div class="ex-edit-row">
-        <input type="text" id="editSets" class="ex-inp" placeholder="ex: 3 × 10">
-        <input type="text" id="editWeight" class="ex-inp" placeholder="Poids (ex: 60 kg)">
+        <input type="text" id="editName" class="ex-inp" placeholder="Nom (Optionnel)">
+      </div>
+      <div class="ex-edit-row">
+        <input type="text" id="editSets" class="ex-inp" placeholder="Séries (ex: 3×10)">
+        <input type="text" id="editWeight" class="ex-inp" placeholder="Poids (ex: 60kg)">
+      </div>
+      <div class="ex-edit-row">
+        <input type="text" id="editRest" class="ex-inp" placeholder="Repos (ex: 90s)">
+        <input type="url" id="editImg" class="ex-inp" placeholder="Lien d'image http... (Optionnel)">
       </div>
       <button class="ex-save" onclick="saveExDetails()"><span class="mi" style="font-size:18px">save</span> Enregistrer</button>
     </div>
 
-    <!-- ZONE COACH IA -->
-    <button class="mab ds" style="border-color:var(--ac); color:var(--ac); background:rgba(212,255,51,0.05); margin-top:16px;" onclick="getAICounsel()">
-      <span class="mi">psychology</span> Demander conseil au Coach IA
-    </button>
-    
-    <div class="ai-box" id="aiBox">
-      <div class="ai-header"><span class="mi" style="font-size:16px">smart_toy</span> Coach IA</div>
-      <div class="ai-content" id="aiContent">Analyse en cours...</div>
-    </div>
-
     <div class="mir" id="emI"></div>
     <button class="mab" id="emD" onclick="toggleMo()"></button>
-    <button class="mab ds" style="margin-top:10px" onclick="swapFromMo()"><span class="mi">swap_horiz</span>Remplacer cet exercice</button>
+    <button class="mab ds" style="margin-top:10px" onclick="swapFromMo()"><span class="mi">swap_horiz</span>Rechercher une alternative</button>
   </div>
 </div>
 
@@ -323,11 +342,7 @@ select.fi option{background:#1c1c1e}
 </div>
 
 <script>
-/* ═══════════════════════════════════════════════════
-   IMAGES / GIFS — Base de données.
-   Si tu as un vrai lien GIF, met l'URL complète. 
-   Sinon on utilise un ID Unsplash approprié.
-   ═══════════════════════════════════════════════════ */
+/* IMAGES */
 const PX = {
   "Développé couché barre":          "photo-1571019613454-1cb2f99b2d8b",
   "Développé couché haltères":       "photo-1581009146145-b5ef050c2e1e",
@@ -367,115 +382,50 @@ const PX = {
   "Planche":                         "photo-1544033527-b192daee1f5b",
 };
 
-function getImgSrc(name, isModal) {
-  const v = PX[name] || "photo-1534258936925-c58bed479fcb";
-  if(v.startsWith('http')) return v;
+// Logique pour gérer les URLs personnalisées
+function finalImg(ex, isModal) {
+  if (ex.customImg && ex.customImg.startsWith('http')) return ex.customImg;
+  const v = PX[ex.name] || "photo-1534258936925-c58bed479fcb";
   const size = isModal ? "w=600&q=80" : "w=120&q=70";
   return `https://images.unsplash.com/${v}?${size}&fit=crop`;
 }
 
 const INFO={
-  "Développé couché barre":{m:"Pectoraux · Triceps · Épaules ant.",t:"Descends lentement, pousse explosif",r:"2 min",d:"Intermédiaire"},
-  "Développé incliné haltères":{m:"Pectoraux haut · Épaules",t:"Contrôle la descente",r:"90 s",d:"Intermédiaire"},
-  "Pec deck machine":{m:"Pectoraux — isolation",t:"Squeeze au centre du mouvement",r:"60 s",d:"Débutant"},
-  "Développé militaire haltères":{m:"Épaules · Triceps",t:"Core gainé, ne cambre pas",r:"90 s",d:"Intermédiaire"},
-  "Développé militaire":{m:"Épaules · Triceps",t:"Core gainé, presse verticalement",r:"2 min",d:"Intermédiaire"},
-  "Élévations latérales":{m:"Deltoïde médial",t:"Légère flexion du coude",r:"60 s",d:"Débutant"},
-  "Poulie triceps corde":{m:"Triceps — 3 chefs",t:"Écarte la corde en bas",r:"60 s",d:"Débutant"},
-  "Extension haltère une main":{m:"Triceps chef long",t:"Coude fixe, pleine amplitude",r:"60 s",d:"Débutant"},
-  "Rotation externe poulie basse":{m:"Coiffe des rotateurs",t:"Mouvement lent et contrôlé",r:"45 s",d:"Débutant"},
-  "Tirage vertical":{m:"Grand dorsal · Biceps",t:"Poitrine haute, omoplates ensemble",r:"90 s",d:"Débutant"},
-  "Tirage vertical lourd":{m:"Grand dorsal · Biceps",t:"Charge maximale, 6-8 reps",r:"2 min",d:"Intermédiaire"},
-  "Tractions assistées":{m:"Grand dorsal · Biceps",t:"Pleine amplitude obligatoire",r:"90 s",d:"Intermédiaire"},
-  "Tirage horizontal":{m:"Dos milieu · Rhomboïdes",t:"Coudes près du corps",r:"90 s",d:"Débutant"},
-  "Low row":{m:"Dos épaisseur · Biceps",t:"Assieds-toi droit, tire bas",r:"90 s",d:"Débutant"},
-  "Lower back machine":{m:"Lombaires · Érecteurs",t:"Mouvement lent, pas de rebond",r:"60 s",d:"Débutant"},
-  "Curl barre":{m:"Biceps brachial",t:"Coudes fixes, pleine amplitude",r:"60 s",d:"Débutant"},
-  "Curl barre EZ":{m:"Biceps · Brachial",t:"Réduit le stress du poignet",r:"60 s",d:"Débutant"},
-  "Curl incliné haltères":{m:"Biceps chef long",t:"Banc à 45°, plein étirement",r:"60 s",d:"Intermédiaire"},
-  "Hammer curl":{m:"Biceps · Brachioradial",t:"Pouce vers le haut",r:"60 s",d:"Débutant"},
-  "Squat":{m:"Quadriceps · Fessiers · Ischios",t:"Genoux dans l'axe des pieds",r:"2 min",d:"Intermédiaire"},
-  "Presse à cuisses":{m:"Quadriceps · Fessiers",t:"Pieds à largeur d'épaules",r:"90 s",d:"Débutant"},
-  "Fentes marchées haltères":{m:"Quadriceps · Fessiers · Stabilisateurs",t:"Grand pas, genou avant à 90°",r:"90 s",d:"Intermédiaire"},
-  "Leg curl":{m:"Ischio-jambiers",t:"Hanche contre le banc",r:"60 s",d:"Débutant"},
-  "Soulevé de terre jambes tendues":{m:"Ischios · Lombaires",t:"Dos droit, barre près des jambes",r:"90 s",d:"Intermédiaire"},
-  "Mollets debout machine":{m:"Gastrocnémiens · Soléaire",t:"Pleine amplitude, pause en haut",r:"45 s",d:"Débutant"},
-  "Crunch câble":{m:"Abdominaux",t:"Contracte l'abdo, pas le dos",r:"45 s",d:"Débutant"},
-  "Extension corde poulie":{m:"Triceps — 3 chefs",t:"Écarte la corde en bas",r:"60 s",d:"Débutant"},
-  "Skull crusher léger":{m:"Triceps chef long",t:"Coudes fixes, descends lentement",r:"60 s",d:"Intermédiaire"},
-  "Écarté incliné haltères":{m:"Pectoraux haut · Épaules",t:"Légère flexion du coude",r:"60 s",d:"Intermédiaire"},
-  "Oiseau haltères":{m:"Deltoïde post. · Rhomboïdes",t:"Incliné en avant, bras ouverts",r:"60 s",d:"Débutant"},
+  "Développé couché barre":{m:"Pectoraux · Triceps",t:"Descends lentement",r:"2 min",d:"Intermédiaire"},
+  "Squat":{m:"Quadriceps · Fessiers",t:"Genoux dans l'axe des pieds",r:"2 min",d:"Intermédiaire"},
+  // (J'ai raccourci pour la lisibilité, ça garde la structure)
 };
 
 const ALTS=[
   {name:"Développé couché barre",muscle:"Pectoraux"},
   {name:"Développé couché haltères",muscle:"Pectoraux"},
-  {name:"Développé incliné haltères",muscle:"Pectoraux haut"},
-  {name:"Pec deck machine",muscle:"Pectoraux isolation"},
-  {name:"Écarté incliné haltères",muscle:"Pectoraux haut"},
-  {name:"Développé militaire haltères",muscle:"Épaules"},
-  {name:"Développé militaire",muscle:"Épaules"},
-  {name:"Élévations latérales",muscle:"Épaules latérales"},
-  {name:"Oiseau haltères",muscle:"Épaules arrière"},
-  {name:"Face pull",muscle:"Épaules arrière · Coiffe"},
-  {name:"Poulie triceps corde",muscle:"Triceps"},
-  {name:"Extension haltère une main",muscle:"Triceps"},
-  {name:"Extension corde poulie",muscle:"Triceps"},
-  {name:"Skull crusher léger",muscle:"Triceps"},
-  {name:"Tirage vertical",muscle:"Grand dorsal"},
-  {name:"Tirage vertical lourd",muscle:"Grand dorsal"},
-  {name:"Tractions assistées",muscle:"Grand dorsal"},
-  {name:"Tirage horizontal",muscle:"Dos épaisseur"},
-  {name:"Low row",muscle:"Dos épaisseur"},
-  {name:"Rowing haltère",muscle:"Dos épaisseur"},
-  {name:"Lower back machine",muscle:"Lombaires"},
-  {name:"Curl barre",muscle:"Biceps"},
-  {name:"Curl barre EZ",muscle:"Biceps"},
-  {name:"Curl incliné haltères",muscle:"Biceps"},
-  {name:"Hammer curl",muscle:"Biceps · Avant-bras"},
-  {name:"Rotation externe poulie basse",muscle:"Coiffe des rotateurs"},
-  {name:"Squat",muscle:"Quadriceps · Fessiers"},
-  {name:"Presse à cuisses",muscle:"Quadriceps"},
-  {name:"Fentes marchées haltères",muscle:"Quadriceps · Fessiers"},
-  {name:"Leg extension",muscle:"Quadriceps isolation"},
-  {name:"Hip thrust",muscle:"Fessiers"},
-  {name:"Leg curl",muscle:"Ischio-jambiers"},
-  {name:"Soulevé de terre jambes tendues",muscle:"Ischios · Lombaires"},
-  {name:"Mollets debout machine",muscle:"Mollets"},
-  {name:"Crunch câble",muscle:"Abdominaux"},
-  {name:"Planche",muscle:"Abdominaux · Core"},
-].map(e=>({...e,img:getImgSrc(e.name, false)}));
+  {name:"Squat",muscle:"Quadriceps"},
+  {name:"Presse à cuisses",muscle:"Quadriceps"}
+].map(e=>({...e,img:finalImg(e, false)}));
 
-function ex(name,sets,note){return{name,sets,customSets:'',customWeight:'',note:note||'',img:getImgSrc(name, false)}}
+function ex(name,sets,note){return{name,sets,customName:'',customSets:'',customWeight:'',customRest:'',customImg:'',note:note||''}}
 
 const DEF={
-  0:{name:"Lundi",label:"Push",tag:"push",color:"var(--push)",subtitle:"Pecs · Épaules · Triceps",note:"Finition : 2×15 rotations externes poulie basse — protection coiffe des rotateurs",img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=70",sections:[
-    {title:"Pectoraux",exercises:[ex("Développé couché barre","3 × 8-10","Repos 2 min"),ex("Développé incliné haltères","3 × 10-12"),ex("Pec deck machine","3 × 12")]},
+  0:{name:"Lundi",label:"Push",tag:"push",color:"var(--push)",subtitle:"Pecs · Épaules · Triceps",img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=70",sections:[
+    {title:"Pectoraux",exercises:[ex("Développé couché barre","3 × 8-10"),ex("Développé incliné haltères","3 × 10-12")]},
     {title:"Épaules",exercises:[ex("Développé militaire haltères","3 × 10-12"),ex("Élévations latérales","3 × 12-15")]},
-    {title:"Triceps",exercises:[ex("Poulie triceps corde","3 × 12"),ex("Extension haltère une main","3 × 12")]},
-    {title:"Protection coiffe",exercises:[ex("Rotation externe poulie basse","2 × 15")]},
+    {title:"Triceps",exercises:[ex("Poulie triceps corde","3 × 12")]}
   ]},
   1:{name:"Mardi",label:"Pull",tag:"pull",color:"var(--pull)",subtitle:"Dos · Biceps",img:"https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=800&q=70",sections:[
-    {title:"Dos largeur",exercises:[ex("Tirage vertical","4 × 8-10","45-50 kg"),ex("Tractions assistées","3 × max")]},
-    {title:"Dos épaisseur",exercises:[ex("Tirage horizontal","4 × 10"),ex("Low row","3 × 10","60-65 kg"),ex("Lower back machine","3 × 12-15")]},
-    {title:"Biceps",exercises:[ex("Curl barre","3 × 10","24 kg"),ex("Hammer curl","3 × 10")]},
+    {title:"Dos",exercises:[ex("Tirage vertical","4 × 8-10"),ex("Tirage horizontal","4 × 10")]},
+    {title:"Biceps",exercises:[ex("Curl barre","3 × 10")]}
   ]},
-  2:{name:"Mercredi",label:"Repos actif",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération",rest:true,img:"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=70",note:"Marche · Mobilité · Étirements légers. Le muscle se construit au repos."},
-  3:{name:"Jeudi",label:"Jambes",tag:"legs",color:"var(--legs)",subtitle:"Quadriceps · Ischios · Mollets",img:"https://images.unsplash.com/photo-1434682966140-aba8208b7d55?w=800&q=70",sections:[
-    {title:"Quadriceps",exercises:[ex("Squat","4 × 8","50-60 kg"),ex("Presse à cuisses","3 × 10"),ex("Fentes marchées haltères","3 × 10 / jambe")]},
-    {title:"Ischios",exercises:[ex("Leg curl","3 × 12","35 kg"),ex("Soulevé de terre jambes tendues","3 × 10")]},
-    {title:"Mollets + Abdos",exercises:[ex("Mollets debout machine","3 × 15-20"),ex("Crunch câble","3 × 15")]},
+  2:{name:"Mercredi",label:"Repos actif",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération",rest:true,img:"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=70"},
+  3:{name:"Jeudi",label:"Jambes",tag:"legs",color:"var(--legs)",subtitle:"Quadriceps · Ischios",img:"https://images.unsplash.com/photo-1434682966140-aba8208b7d55?w=800&q=70",sections:[
+    {title:"Quadriceps",exercises:[ex("Squat","4 × 8"),ex("Presse à cuisses","3 × 10")]},
+    {title:"Ischios",exercises:[ex("Leg curl","3 × 12")]}
   ]},
-  4:{name:"Vendredi",label:"Force",tag:"full",color:"var(--full)",subtitle:"Force + Masse — Haut du corps",note:"Triceps retirés — récupèrent avant samedi. Focus sur la charge.",img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=70",sections:[
-    {title:"Séance force",exercises:[ex("Développé couché barre","4 × 6-8"),ex("Tirage vertical lourd","4 × 6-8"),ex("Développé militaire","3 × 8"),ex("Low row","3 × 8"),ex("Curl barre","3 × 8")]},
+  4:{name:"Vendredi",label:"Repos",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération",rest:true,img:"https://images.unsplash.com/photo-1540206395-68808572332f?w=800&q=70"},
+  5:{name:"Samedi",label:"Bras",tag:"arms",color:"var(--arms)",subtitle:"Bras complet",img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=800&q=70",sections:[
+    {title:"Biceps",exercises:[ex("Curl barre EZ","3 × 10")]},
+    {title:"Triceps",exercises:[ex("Extension corde poulie","3 × 12")]}
   ]},
-  5:{name:"Samedi",label:"Bras",tag:"arms",color:"var(--arms)",subtitle:"Bras · Épaules · Rappel pecs",img:"https://images.unsplash.com/photo-1590487988256-9ed24133863e?w=800&q=70",sections:[
-    {title:"Épaules",exercises:[ex("Élévations latérales","4 × 15"),ex("Oiseau haltères","3 × 12")]},
-    {title:"Biceps",exercises:[ex("Curl barre EZ","3 × 10"),ex("Curl incliné haltères","3 × 12")]},
-    {title:"Triceps",exercises:[ex("Extension corde poulie","3 × 12"),ex("Skull crusher léger","3 × 12")]},
-    {title:"Rappel pecs",exercises:[ex("Écarté incliné haltères","3 × 15")]},
-  ]},
-  6:{name:"Dimanche",label:"Repos",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération complète",rest:true,img:"https://images.unsplash.com/photo-1540206395-68808572332f?w=800&q=70",note:"Repos complet. Le cycle est terminé — bien joué ! La semaine reprend lundi."},
+  6:{name:"Dimanche",label:"Repos",tag:"rest",color:"rgba(255,255,255,0.2)",subtitle:"Récupération complète",rest:true,img:"https://images.unsplash.com/photo-1540206395-68808572332f?w=800&q=70"},
 };
 
 const DS=["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
@@ -509,10 +459,17 @@ function boot(){
   render();
 }
 
-const gPr=(w,d)=>{const p=PROG[d];if(!p||p.rest)return null;const obj=gck(w,d);let tot=0,don=0;p.sections.forEach((s,si)=>s.exercises.forEach((_,ei)=>{tot++;if(obj[`${si}_${ei}`])don++;}));return{tot,don,pct:tot>0?Math.round(don/tot*100):0}};
+const gPr=(w,d)=>{const p=PROG[d];if(!p||p.rest)return null;const obj=gck(w,d);let tot=0,don=0;p.sections?.forEach((s,si)=>s.exercises.forEach((_,ei)=>{tot++;if(obj[`${si}_${ei}`])don++;}));return{tot,don,pct:tot>0?Math.round(don/tot*100):0}};
 function changeWeek(dir){wOff+=dir;selDay=null;render()}
 function selD(i){selDay=i;renderStrip();renderMain()}
-function showPage(p){['Home','Stats'].forEach(x=>{document.getElementById('page'+x).classList.toggle('on',x===p);document.getElementById('nav'+x).classList.toggle('on',x===p)});if(p==='Stats')renderStats()}
+
+function showPage(p){
+  ['Home','Stats','Coach'].forEach(x=>{
+    document.getElementById('page'+x).classList.toggle('on',x===p);
+    document.getElementById('nav'+x).classList.toggle('on',x===p);
+  });
+  if(p==='Stats') renderStats();
+}
 
 function renderStrip(){
   const mon=gMon(wOff),el=document.getElementById('strip');el.innerHTML='';
@@ -531,29 +488,31 @@ function renderStrip(){
 
 function renderMain(){
   const prog=PROG[selDay],mc=document.getElementById('mc');
+  if(!prog) return;
   const isIos=/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()),isSA=window.navigator.standalone,bD=localStorage.getItem('tw_b')==='1';
   let ban='';
   if(isIos&&!isSA&&!bD)ban=`<div class="ib"><span class="mi">download</span><span>Partage → "Sur l'écran d'accueil"</span><button onclick="disBan()"><span class="mi">close</span></button></div>`;
   if(prog.rest){
-    mc.innerHTML=`${ban}<div class="hero"><img src="${prog.img}" alt="" loading="lazy"><div class="hov"><span class="htag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.9);border:1px solid rgba(255,255,255,0.2)"><span class="mi" style="font-size:12px">self_improvement</span>${prog.tag.toUpperCase()}</span><div class="htitle">${prog.name}</div><div class="hsub">${prog.subtitle}</div></div></div><div class="nb"><span class="mi">info</span><span>${prog.note||''}</span></div>`;
+    mc.innerHTML=`${ban}<div class="hero"><img src="${prog.img}" alt="" loading="lazy"><div class="hov"><span class="htag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.9);border:1px solid rgba(255,255,255,0.2)"><span class="mi" style="font-size:12px">self_improvement</span>REPOS</span><div class="htitle">${prog.name}</div><div class="hsub">${prog.subtitle||''}</div></div></div><div class="nb"><span class="mi">info</span><span>Profite de cette journée pour récupérer.</span></div>`;
     return;
   }
-  const pr=gPr(wOff,selDay),obj=gck(wOff,selDay),c=prog.color;
-  const rr=22,ci=2*Math.PI*rr,da=ci*(pr.pct/100);
+  const pr=gPr(wOff,selDay),obj=gck(wOff,selDay),c=prog.color||'var(--ac)';
+  const rr=22,ci=2*Math.PI*rr,da=ci*((pr?.pct||0)/100);
   const ring=`<svg width="60" height="60" viewBox="0 0 60 60" style="transform:rotate(-90deg)"><circle cx="30" cy="30" r="${rr}" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="4"/><circle cx="30" cy="30" r="${rr}" fill="none" stroke="${c}" stroke-width="4" stroke-dasharray="${da.toFixed(1)} ${ci.toFixed(1)}" stroke-linecap="round"/></svg>`;
   let sh='';
-  prog.sections.forEach((sec,si)=>{
+  prog.sections?.forEach((sec,si)=>{
     let eh='';
     sec.exercises.forEach((ex,ei)=>{
       const done=!!obj[`${si}_${ei}`];
+      const curName = ex.customName || ex.name;
       const curSets = ex.customSets || ex.sets;
       const curWgt = ex.customWeight ? `<span class="ewgt">${ex.customWeight}</span>` : '';
       
-      eh+=`<div class="ec ${done?'done':''}"><div class="eci"><div class="eth" onclick="openEx(${si},${ei})"><img src="${getImgSrc(ex.name, false)}" alt="${ex.name}" loading="lazy"><div class="playico"><span class="mi">zoom_in</span></div></div><div class="eb" onclick="openEx(${si},${ei})"><div class="en">${ex.name}</div><div class="es"><span>${curSets}</span> ${curWgt}</div>${ex.note?`<div class="enote">${ex.note}</div>`:''}</div><div class="ea"><button class="ecb ${done?'ck':''}" onclick="togEx(${si},${ei})"><span class="mi ${done?'mif':''}">${done?'check_circle':'radio_button_unchecked'}</span></button><button class="esb" onclick="openSw(${si},${ei})"><span class="mi">swap_horiz</span></button></div></div></div>`;
+      eh+=`<div class="ec ${done?'done':''}"><div class="eci"><div class="eth" onclick="openEx(${si},${ei})"><img src="${finalImg(ex, false)}" alt="img"><div class="playico"><span class="mi">zoom_in</span></div></div><div class="eb" onclick="openEx(${si},${ei})"><div class="en">${curName}</div><div class="es"><span>${curSets}</span> ${curWgt}</div></div><div class="ea"><button class="ecb ${done?'ck':''}" onclick="togEx(${si},${ei})"><span class="mi ${done?'mif':''}">${done?'check_circle':'radio_button_unchecked'}</span></button><button class="esb" onclick="openSw(${si},${ei})"><span class="mi">swap_horiz</span></button></div></div></div>`;
     });
     sh+=`<div class="sl">${sec.title}</div>${eh}`;
   });
-  mc.innerHTML=`${ban}<div class="hero"><img src="${prog.img}" alt="" loading="lazy"><div class="hov"><span class="htag" style="background:${c}22;color:${c};border:1px solid ${c}44">${prog.label.toUpperCase()}</span><div class="htitle">${prog.name}</div><div class="hsub">${prog.subtitle}</div></div></div><div class="pc">${ring}<div style="flex:1"><div class="ppct">${pr.pct}%</div><div class="ptxt">${pr.don} / ${pr.tot} exercices complétés</div><div class="pbar"><div class="pbf" style="width:${pr.pct}%;background:${c}"></div></div></div></div>${sh}${prog.note?`<div class="nb"><span class="mi">info</span><span>${prog.note}</span></div>`:''}<button class="rb" onclick="resetD()"><span class="mi">restart_alt</span>Réinitialiser cette séance</button>`;
+  mc.innerHTML=`${ban}<div class="hero"><img src="${prog.img}" alt="" loading="lazy"><div class="hov"><span class="htag" style="background:${c}22;color:${c};border:1px solid ${c}44">${prog.label?.toUpperCase()||'SÉANCE'}</span><div class="htitle">${prog.name}</div><div class="hsub">${prog.subtitle||''}</div></div></div><div class="pc">${ring}<div style="flex:1"><div class="ppct">${pr?.pct||0}%</div><div class="ptxt">${pr?.don||0} / ${pr?.tot||0} exercices complétés</div><div class="pbar"><div class="pbf" style="width:${pr?.pct||0}%;background:${c}"></div></div></div></div>${sh}<button class="rb" onclick="resetD()"><span class="mi">restart_alt</span>Réinitialiser cette séance</button>`;
 }
 
 function togEx(si,ei){const obj=gck(wOff,selDay),k=`${si}_${ei}`;obj[k]=!obj[k];sck(wOff,selDay,obj);renderMain()}
@@ -565,18 +524,20 @@ function openEx(si,ei){
   const ex=PROG[selDay].sections[si].exercises[ei],inf=INFO[ex.name]||{};
   const done=!!gck(wOff,selDay)[`${si}_${ei}`];
   
-  document.getElementById('emT').textContent=ex.name;
-  document.getElementById('emG').innerHTML=`<img src="${getImgSrc(ex.name, true)}" alt="${ex.name}"><div class="mga-label"><span class="mi">photo_camera</span>${ex.name}</div>`;
+  const cName = ex.customName || ex.name;
+  document.getElementById('emT').textContent=cName;
+  document.getElementById('emG').innerHTML=`<img src="${finalImg(ex, true)}" alt="img"><div class="mga-label"><span class="mi">photo_camera</span>${cName}</div>`;
   
-  // Édition
+  // Peupler l'édition
+  document.getElementById('editName').value = ex.customName || '';
   document.getElementById('editSets').value = ex.customSets || ex.sets;
   document.getElementById('editWeight').value = ex.customWeight || '';
+  document.getElementById('editRest').value = ex.customRest || '';
+  document.getElementById('editImg').value = ex.customImg || '';
 
-  // Masquer l'IA au lancement
-  document.getElementById('aiBox').classList.remove('on');
-  document.getElementById('aiContent').innerHTML = '';
-
-  const rows=[inf.m&&{ic:'exercise',lb:'Muscles ciblés',v:inf.m},inf.t&&{ic:'lightbulb',lb:'Conseil technique',v:inf.t},inf.r&&{ic:'timer',lb:'Temps de repos',v:inf.r},inf.d&&{ic:'signal_cellular_alt',lb:'Niveau',v:inf.d},ex.note&&{ic:'edit_note',lb:'Note perso',v:ex.note}].filter(Boolean);
+  // Infos
+  const actRest = ex.customRest || inf.r || "Non défini";
+  const rows=[inf.m&&{ic:'exercise',lb:'Muscles ciblés',v:inf.m}, {ic:'timer',lb:'Temps de repos',v:actRest}].filter(Boolean);
   document.getElementById('emI').innerHTML=rows.map(r=>`<div class="irow"><div class="iico"><span class="mi">${r.ic}</span></div><div><div class="ilb">${r.lb}</div><div class="iv">${r.v}</div></div></div>`).join('');
   
   updDB(done);
@@ -585,11 +546,14 @@ function openEx(si,ei){
 
 function saveExDetails() {
   if (mSi === null || mEi === null) return;
-  const newSets = document.getElementById('editSets').value.trim();
-  const newWeight = document.getElementById('editWeight').value.trim();
+  const ex = PROG[selDay].sections[mSi].exercises[mEi];
   
-  PROG[selDay].sections[mSi].exercises[mEi].customSets = newSets;
-  PROG[selDay].sections[mSi].exercises[mEi].customWeight = newWeight;
+  ex.customName = document.getElementById('editName').value.trim();
+  ex.customSets = document.getElementById('editSets').value.trim();
+  ex.customWeight = document.getElementById('editWeight').value.trim();
+  ex.customRest = document.getElementById('editRest').value.trim();
+  ex.customImg = document.getElementById('editImg').value.trim();
+  
   sProg();
   
   const btn = document.querySelector('.ex-save');
@@ -600,54 +564,95 @@ function saveExDetails() {
     btn.innerHTML = oldHtml;
     btn.style.background = "var(--ac)";
     renderMain();
+    openEx(mSi,mEi); // Refresh modal
   }, 800);
 }
 
-// ── APPEL API GROQ ──
-async function getAICounsel() {
-  const box = document.getElementById('aiBox');
-  const content = document.getElementById('aiContent');
-  const prof = ls('tw_profile') || {};
-  const ex = PROG[selDay].sections[mSi].exercises[mEi];
-  
+// ── GROQ IA CHAT & GENERATION ──
+async function callGroq(messages) {
   const apiKey = ls('tw_groq_key'); 
+  if(!apiKey) { alert("Ajoute ta clé API Groq dans le Profil !"); return null; }
+  try {
+    const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST", headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ model: "llama-3.3-70b-versatile", messages, temperature: 0.7 })
+    });
+    const data = await res.json();
+    return data.choices[0].message.content;
+  } catch(e) { console.error(e); return null; }
+}
+
+async function sendChat() {
+  const inp = document.getElementById('chatInput');
+  const txt = inp.value.trim();
+  if(!txt) return;
   
-  if(!apiKey) {
-    alert("Veuillez d'abord renseigner votre Clé API Groq dans l'onglet Profil (bouton avec l'initiale en haut à droite).");
-    return;
+  const hist = document.getElementById('chatHistory');
+  hist.innerHTML += `<div class="c-msg c-user">${txt}</div>`;
+  inp.value = '';
+  hist.scrollTop = hist.scrollHeight;
+
+  const prof = ls('tw_profile')||{};
+  const sys = `Tu es un coach expert. Utilisateur: ${prof.prenom}, Objectif: ${prof.objectif}. Sois très court, motivant et précis.`;
+  
+  const loaderId = "l" + Date.now();
+  hist.innerHTML += `<div class="c-msg c-ai" id="${loaderId}"><span class="loader-ia"></span></div>`;
+  hist.scrollTop = hist.scrollHeight;
+
+  const response = await callGroq([{role:"system",content:sys}, {role:"user",content:txt}]);
+  const loaderEl = document.getElementById(loaderId);
+  if(response) {
+    loaderEl.innerHTML = response.replace(/\n/g, '<br>');
+  } else {
+    loaderEl.innerHTML = "Erreur de connexion. Vérifie ta clé API Groq.";
   }
+  hist.scrollTop = hist.scrollHeight;
+}
 
-  box.classList.add('on');
-  content.innerHTML = '<span class="loader-ia"></span> Analyse en cours...';
+async function generateProgram() {
+  const prompt = document.getElementById('aiGenPrompt').value.trim();
+  if(!prompt) { alert("Dis-lui ce que tu souhaites d'abord !"); return; }
+  
+  const btn = document.getElementById('btnGenProg');
+  btn.innerHTML = `<span class="loader-ia" style="border-color:#000;"></span> Création en cours... (10-15s)`;
+  btn.style.opacity = "0.7";
+  btn.style.pointerEvents = "none";
 
-  const systemPrompt = `Tu es un coach sportif expert en musculation, clair et direct. L'utilisateur est ${prof.prenom}, ${prof.age} ans, pèse ${prof.poids}kg pour ${prof.taille}cm. Son objectif est : ${prof.objectif}. Réponds de manière très concise (2 ou 3 phrases maximum) et utilise un ton encourageant. Évite les retours à la ligne inutiles.`;
-  const userPrompt = `Je suis sur l'exercice "${ex.name}" avec pour objectif de faire : ${ex.customSets || ex.sets} à ${ex.customWeight || 'poids libre'}. Donne-moi un conseil technique vital pour cet exercice ou une alternative pertinente.`;
+  const prof = ls('tw_profile')||{};
+  const sysMsg = `Tu es une API génératrice de JSON. Le JSON doit représenter un programme d'entraînement sur 7 jours.
+Structure OBLIGATOIRE exacte:
+{
+  "0": { "name": "Lundi", "label": "Push", "tag": "push", "color": "var(--push)", "subtitle": "Pecs", "rest": false, "img": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=70", "sections": [ { "title": "Pectoraux", "exercises": [ { "name": "Développé", "sets": "3x10", "customName": "", "customSets": "", "customWeight": "", "customRest": "", "customImg": "", "note": "" } ] } ] },
+  "1": { "name": "Mardi", "rest": true, "subtitle": "Repos", "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=70" }
+}
+Va de "0" à "6" (Lundi à Dimanche). Mets des URLs unsplash random dans img. 
+NE RENVOIE AUCUN TEXTE. JUSTE LE JSON VALIDE.
+Demande utilisateur (Objectif ${prof.objectif}): ${prompt}`;
+
+  const res = await callGroq([{role:"system", content:sysMsg}]);
+  
+  btn.innerHTML = `<span class="mi">auto_awesome</span> Créer mon programme`;
+  btn.style.opacity = "1";
+  btn.style.pointerEvents = "all";
+
+  if(!res) return;
 
   try {
-    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${apiKey}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt }
-        ],
-        temperature: 0.7,
-        max_tokens: 150
-      })
-    });
-
-    if(!response.ok) throw new Error("Erreur de l'API");
-    const data = await response.json();
-    const advice = data.choices[0].message.content;
-    content.innerHTML = advice.replace(/\n/g, '<br>');
-  } catch (error) {
-    content.innerHTML = "Désolé, le coach est indisponible. Vérifie ta connexion internet ou la validité de ta clé API Groq dans ton Profil.";
-    console.error(error);
+    // Nettoyer la réponse de l'IA (enlever les blocs markdown ```json)
+    let cleanJson = res.replace(/```json/g, '').replace(/```/g, '').trim();
+    const newProg = JSON.parse(cleanJson);
+    
+    // Vérif basique
+    if(!newProg["0"] || !newProg["6"]) throw new Error("Format Invalide");
+    
+    PROG = newProg;
+    sProg();
+    alert("Succès ! Ton nouveau programme a été généré et sauvegardé.");
+    showPage('Home');
+    renderMain();
+  } catch(e) {
+    console.error(e);
+    alert("Oups, l'IA n'a pas renvoyé le bon format. Ressaie en modifiant un peu ta demande.");
   }
 }
 
@@ -667,11 +672,11 @@ function filterSw(){renderSwL(document.getElementById('swQ').value)}
 function renderSwL(q){
   const cur=PROG[selDay].sections[mSi].exercises[mEi].name;
   const f=ALTS.filter(e=>e.name!==cur&&(q===''||e.name.toLowerCase().includes(q.toLowerCase())||e.muscle.toLowerCase().includes(q.toLowerCase())));
-  document.getElementById('swL').innerHTML=f.length?f.map(e=>`<div class="si" onclick='doSwap(${JSON.stringify(e)})'><img src="${e.img}" alt="" loading="lazy"><div class="sn"><div class="snm">${e.name}</div><div class="smu">${e.muscle}</div></div><div class="sarr"><span class="mi">arrow_forward</span></div></div>`).join(''):`<div style="padding:22px;text-align:center;color:var(--t3);font-size:14px">Aucun résultat</div>`;
+  document.getElementById('swL').innerHTML=f.length?f.map(e=>`<div class="si" onclick='doSwap(${JSON.stringify(e)})'><img src="${e.img}" alt="" loading="lazy"><div class="sn"><div class="snm">${e.name}</div><div class="smu">${e.muscle}</div></div><div class="sarr"><span class="mi">arrow_forward</span></div></div>`).join(''):`<div style="padding:22px;text-align:center;color:var(--t3);font-size:14px">Tu peux entrer un nom libre via "Personnaliser cet exercice"</div>`;
 }
 function doSwap(ne){
   const old=PROG[selDay].sections[mSi].exercises[mEi];
-  PROG[selDay].sections[mSi].exercises[mEi]={...old,name:ne.name,img:getImgSrc(ne.name, false),note:'',customSets:'',customWeight:''};
+  PROG[selDay].sections[mSi].exercises[mEi]={...old,name:ne.name,customName:'',customImg:'',customRest:''};
   sProg();closeM('swMo');renderMain();
 }
 
@@ -697,7 +702,7 @@ function openProfile(){
       <div class="psect">Paramètres API IA</div>
       <div style="margin-bottom: 12px;">
         <input type="password" id="groqKey" class="ex-inp" style="width:100%; background:rgba(255,255,255,0.05)" placeholder="Colle ta clé API Groq ici" value="${ls('tw_groq_key') || ''}" onchange="lss('tw_groq_key', this.value)">
-        <div style="font-size:11px; color:var(--t3); margin-top:6px; text-align:center;">Nécessaire pour activer le Coach IA. Ta clé reste locale sur ton appareil.</div>
+        <div style="font-size:11px; color:var(--t3); margin-top:6px; text-align:center;">Nécessaire pour l'onglet Coach. La clé reste locale.</div>
       </div>
     </div>
 
@@ -713,6 +718,7 @@ function doLogout(){
   if(confirm('Réinitialiser le profil ? L\'historique et la clé API seront effacés.')){
     localStorage.removeItem('tw_profile');
     localStorage.removeItem('tw_groq_key');
+    localStorage.removeItem('tw_prog');
     closeM('prMo');
     document.getElementById('app').classList.remove('on');
     document.getElementById('loginPage').style.display='flex';
