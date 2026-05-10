@@ -37,6 +37,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);min-h
   50% { transform: scale(1.2); }
   100% { transform: scale(1); opacity: 1; }
 }
+@keyframes fadeIn {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── LOGIN ── */
 #loginPage{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;background:var(--bg);overflow-y:auto}
@@ -83,7 +84,7 @@ select.fi option{background:#1c1c1e}
 .dd{width:5px;height:5px;border-radius:50%;background:var(--t3)}.dp.act .dd{background:rgba(5,5,8,.4)}
 .main{padding:0 16px calc(var(--sb) + 94px)}
 
-/* HERO */
+/* HERO & PROGRESS */
 .hero{border-radius:var(--r);overflow:hidden;margin-bottom:16px;position:relative;background:var(--g1);border:1px solid var(--b1)}
 .hero img{width:100%;height:200px;object-fit:cover;display:block;filter:brightness(.45) saturate(1.2)}
 .hov{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(to top,rgba(5,5,8,1) 0%,rgba(5,5,8,.3) 60%,transparent 100%)}
@@ -91,8 +92,6 @@ select.fi option{background:#1c1c1e}
 .htag .mi{font-size:12px}
 .htitle{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:1px;line-height:1;color:#fff;margin-bottom:4px}
 .hsub{font-size:14px;color:rgba(255,255,255,.65)}
-
-/* PROGRESS */
 .pc{background:var(--g1);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--b1);border-radius:var(--rs);padding:16px;margin-bottom:16px;display:flex;align-items:center;gap:16px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
 .ppct{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--ac);line-height:1}
 .ptxt{font-size:13px;color:var(--t2);margin-top:4px}
@@ -113,10 +112,9 @@ select.fi option{background:#1c1c1e}
 .eb{flex:1;padding:12px;display:flex;flex-direction:column;justify-content:center;gap:3px;cursor:pointer;min-width:0}
 .en{font-size:14px;font-weight:600;color:var(--t1);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ec.done .en{text-decoration:line-through;color:var(--t3)}
-.es{font-size:13px;color:var(--ac);font-weight:600}
+.es{font-size:13px;color:var(--ac);font-weight:600; display:flex; align-items:center; gap:6px;}
+.ewgt{background:rgba(255,255,255,0.1); color:var(--t1); padding:2px 6px; border-radius:4px; font-size:11px;}
 .enote{font-size:12px;color:var(--t3);margin-top:2px}
-.ehint{font-size:11px;color:var(--t3);margin-top:4px;display:flex;align-items:center;gap:3px}
-.ehint .mi{font-size:13px}
 .ea{display:flex;flex-direction:column;border-left:1px solid var(--b1);width:50px}
 .ecb{flex:1;background:none;border:none;border-bottom:1px solid var(--b1);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--t3);transition:all .2s ease}
 .ecb:last-child{border-bottom:none}.ecb:active{background:var(--g2)}
@@ -129,9 +127,6 @@ select.fi option{background:#1c1c1e}
 .nb .mi{color:var(--ac);flex-shrink:0;font-size:18px;margin-top:1px}
 .rb{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;background:var(--g1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--b1);border-radius:var(--rs);color:var(--t3);font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:20px;transition:background .2s,transform .1s}
 .rb:active{background:var(--g2);transform:scale(.98)}.rb .mi{font-size:18px}
-.ib{background:rgba(212,255,51,0.08);border:1px solid rgba(212,255,51,0.2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:var(--rs);padding:12px 16px;margin-bottom:16px;font-size:14px;color:var(--t1);display:flex;align-items:center;gap:10px}
-.ib .mi{color:var(--ac);font-size:20px;flex-shrink:0}.ib span{flex:1}
-.ib button{background:none;border:none;color:var(--t3);cursor:pointer;display:flex;padding:4px}
 
 /* BOTTOM NAV */
 .bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(5,5,8,.85);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);padding:10px 20px calc(var(--sb) + 14px);display:flex;justify-content:space-around;border-top:1px solid var(--b1);z-index:200}
@@ -149,17 +144,21 @@ select.fi option{background:#1c1c1e}
 .mt{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.5px;color:var(--t1);line-height:1.15;flex:1}
 .mc{width:32px;height:32px;background:var(--g2);border:1px solid var(--b1);border-radius:50%;color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .15s}
 .mc:active{transform:scale(.9)}.mc .mi{font-size:16px}
-.mbadge{display:inline-flex;align-items:center;gap:5px;padding:5px 14px;border-radius:99px;background:var(--ac);color:#050508;font-size:13px;font-weight:700;margin:12px 20px 0}
-.mbadge .mi{font-size:14px}
 
-/* EX IMAGE in modal */
+/* EX MODAL IMAGE & EDIT */
 .mga{margin:16px 20px 0;border-radius:16px;overflow:hidden;background:#0d0d18;border:1px solid var(--b1);height:240px;position:relative}
 .mga img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.85)}
-.mga-label{position:absolute;bottom:12px;left:14px;background:rgba(5,5,8,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:5px 12px;border-radius:99px;font-size:12px;font-weight:600;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:6px}
-.mga-label .mi{font-size:14px;color:var(--ac)}
 
-/* INFO */
-.mir{padding:14px 20px 0}
+/* EDIT BLOCK */
+.ex-edit{background:var(--g1);border:1px solid var(--b1);border-radius:16px;padding:14px;margin:16px 20px 0}
+.ex-edit-title{font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.ex-edit-row{display:flex;gap:10px;margin-bottom:10px}
+.ex-inp{flex:1;background:rgba(0,0,0,0.3);border:1px solid var(--b1);border-radius:10px;color:var(--t1);font-size:14px;padding:10px 12px;outline:none;font-family:'DM Sans',sans-serif;transition:border .2s}
+.ex-inp:focus{border-color:var(--ac)}
+.ex-save{background:var(--ac);color:#050508;border:none;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;width:100%}
+.ex-save:active{transform:scale(.98)}
+
+.mir{padding:10px 20px 0}
 .irow{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--b1)}
 .irow:last-child{border-bottom:none}
 .iico{width:36px;height:36px;background:var(--g2);border:1px solid var(--b1);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -208,7 +207,6 @@ select.fi option{background:#1c1c1e}
 .bfll{height:100%;border-radius:99px;background:var(--ac);transition:width .5s cubic-bezier(.4,0,.2,1)}
 .bpct{font-size:12px;color:var(--t3);font-weight:600;width:32px;flex-shrink:0}
 .page{display:none}.page.on{display:block;animation:fadeIn 0.3s ease}
-@keyframes fadeIn {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
@@ -271,8 +269,19 @@ select.fi option{background:#1c1c1e}
   <div class="ms" id="exMs">
     <div class="mh"></div>
     <div class="mhdr"><div class="mt" id="emT"></div><button class="mc" onclick="closeM('exMo')"><span class="mi">close</span></button></div>
-    <div id="emB"></div>
+    
     <div class="mga" id="emG"></div>
+
+    <!-- NOUVEAU : ZONE D'ÉDITION SÉRIES/POIDS -->
+    <div class="ex-edit">
+      <div class="ex-edit-title"><span class="mi" style="font-size:16px">tune</span> Personnaliser cet exercice</div>
+      <div class="ex-edit-row">
+        <input type="text" id="editSets" class="ex-inp" placeholder="ex: 3 × 10">
+        <input type="text" id="editWeight" class="ex-inp" placeholder="Poids (ex: 60 kg)">
+      </div>
+      <button class="ex-save" onclick="saveExDetails()"><span class="mi" style="font-size:18px">save</span> Enregistrer</button>
+    </div>
+
     <div class="mir" id="emI"></div>
     <button class="mab" id="emD" onclick="toggleMo()"></button>
     <button class="mab ds" style="margin-top:10px" onclick="swapFromMo()"><span class="mi">swap_horiz</span>Remplacer cet exercice</button>
@@ -296,57 +305,63 @@ select.fi option{background:#1c1c1e}
 
 <script>
 /* ═══════════════════════════════════════════════════
-   IMAGES — chaque exercice a sa vraie photo Unsplash
-   Taille card: ?w=120&q=70  |  Taille modale: ?w=600&q=80
+   IMAGES / GIFS — Base de données.
+   Si tu as un vrai lien GIF, met l'URL complète. 
+   Sinon on utilise un ID Unsplash approprié.
    ═══════════════════════════════════════════════════ */
 const PX = {
   /* PECTORAUX */
-  "Développé couché barre":          {c:"photo-1571019614242-c5c5dee9f50b",m:"photo-1571019614242-c5c5dee9f50b"},
-  "Développé couché haltères":       {c:"photo-1581009146145-b5ef050c2e1e",m:"photo-1581009146145-b5ef050c2e1e"},
-  "Développé incliné haltères":      {c:"photo-1534438327276-14e5300c3a48",m:"photo-1534438327276-14e5300c3a48"},
-  "Pec deck machine":                {c:"photo-1574680178050-55c6a6a96e0a",m:"photo-1574680178050-55c6a6a96e0a"},
-  "Écarté incliné haltères":         {c:"photo-1534438327276-14e5300c3a48",m:"photo-1534438327276-14e5300c3a48"},
+  "Développé couché barre":          "photo-1571019613454-1cb2f99b2d8b",
+  "Développé couché haltères":       "photo-1581009146145-b5ef050c2e1e",
+  "Développé incliné haltères":      "photo-1534438327276-14e5300c3a48",
+  "Pec deck machine":                "photo-1574680178050-55c6a6a96e0a",
+  "Écarté incliné haltères":         "photo-1517836357463-d25dfeac3438",
   /* ÉPAULES */
-  "Développé militaire haltères":    {c:"photo-1583454110551-21f2fa2afe61",m:"photo-1583454110551-21f2fa2afe61"},
-  "Développé militaire":             {c:"photo-1526506118085-60ce8714f8c5",m:"photo-1526506118085-60ce8714f8c5"},
-  "Élévations latérales":            {c:"photo-1532029837206-abbe2b7620e3",m:"photo-1532029837206-abbe2b7620e3"},
-  "Oiseau haltères":                 {c:"photo-1590487988256-9ed24133863e",m:"photo-1590487988256-9ed24133863e"},
-  "Face pull":                       {c:"photo-1597452485669-2c7bb5fef90d",m:"photo-1597452485669-2c7bb5fef90d"},
+  "Développé militaire haltères":    "photo-1583454110551-21f2fa2afe61",
+  "Développé militaire":             "photo-1526506118085-60ce8714f8c5",
+  "Élévations latérales":            "photo-1532029837206-abbe2b7620e3",
+  "Oiseau haltères":                 "photo-1590487988256-9ed24133863e",
+  "Face pull":                       "photo-1597452485669-2c7bb5fef90d",
   /* TRICEPS */
-  "Poulie triceps corde":            {c:"photo-1598971639058-fab3c3109a00",m:"photo-1598971639058-fab3c3109a00"},
-  "Extension haltère une main":      {c:"photo-1574680096145-d05b474e2155",m:"photo-1574680096145-d05b474e2155"},
-  "Extension corde poulie":          {c:"photo-1598971639058-fab3c3109a00",m:"photo-1598971639058-fab3c3109a00"},
-  "Skull crusher léger":             {c:"photo-1574680096145-d05b474e2155",m:"photo-1574680096145-d05b474e2155"},
+  "Poulie triceps corde":            "photo-1598971639058-fab3c3109a00",
+  "Extension haltère une main":      "photo-1574680096145-d05b474e2155",
+  "Extension corde poulie":          "photo-1581009146145-b5ef050c2e1e",
+  "Skull crusher léger":             "photo-1534438327276-14e5300c3a48",
   /* COIFFE */
-  "Rotation externe poulie basse":   {c:"photo-1576678927484-cc907957088c",m:"photo-1576678927484-cc907957088c"},
+  "Rotation externe poulie basse":   "photo-1576678927484-cc907957088c",
   /* DOS */
-  "Tirage vertical":                 {c:"photo-1597452485669-2c7bb5fef90d",m:"photo-1597452485669-2c7bb5fef90d"},
-  "Tirage vertical lourd":           {c:"photo-1603287681836-b174ce5074c2",m:"photo-1603287681836-b174ce5074c2"},
-  "Tractions assistées":             {c:"photo-1598971639058-fab3c3109a00",m:"photo-1598971639058-fab3c3109a00"},
-  "Tirage horizontal":               {c:"photo-1581009137042-c552e485697a",m:"photo-1581009137042-c552e485697a"},
-  "Low row":                         {c:"photo-1581009137042-c552e485697a",m:"photo-1581009137042-c552e485697a"},
-  "Rowing haltère":                  {c:"photo-1581009137042-c552e485697a",m:"photo-1581009137042-c552e485697a"},
-  "Lower back machine":              {c:"photo-1534258936925-c58bed479fcb",m:"photo-1534258936925-c58bed479fcb"},
+  "Tirage vertical":                 "photo-1603287681836-b174ce5074c2",
+  "Tirage vertical lourd":           "photo-1598971639058-fab3c3109a00",
+  "Tractions assistées":             "photo-1598971639058-fab3c3109a00",
+  "Tirage horizontal":               "photo-1581009137042-c552e485697a",
+  "Low row":                         "photo-1581009137042-c552e485697a",
+  "Rowing haltère":                  "photo-1506126613408-eca07ce68773",
+  "Lower back machine":              "photo-1534258936925-c58bed479fcb",
   /* BICEPS */
-  "Curl barre":                      {c:"photo-1583454110551-21f2fa2afe61",m:"photo-1583454110551-21f2fa2afe61"},
-  "Curl barre EZ":                   {c:"photo-1541534741688-6078c6bfb5c5",m:"photo-1541534741688-6078c6bfb5c5"},
-  "Curl incliné haltères":           {c:"photo-1590487988256-9ed24133863e",m:"photo-1590487988256-9ed24133863e"},
-  "Hammer curl":                     {c:"photo-1541534741688-6078c6bfb5c5",m:"photo-1541534741688-6078c6bfb5c5"},
+  "Curl barre":                      "photo-1583454110551-21f2fa2afe61",
+  "Curl barre EZ":                   "photo-1541534741688-6078c6bfb5c5",
+  "Curl incliné haltères":           "photo-1590487988256-9ed24133863e",
+  "Hammer curl":                     "photo-1541534741688-6078c6bfb5c5",
   /* JAMBES */
-  "Squat":                           {c:"photo-1574680178050-55c6a6a96e0a",m:"photo-1574680178050-55c6a6a96e0a"},
-  "Presse à cuisses":                {c:"photo-1597452485669-2c7bb5fef90d",m:"photo-1597452485669-2c7bb5fef90d"},
-  "Fentes marchées haltères":        {c:"photo-1597452485597-17b9c7ad5746",m:"photo-1597452485597-17b9c7ad5746"},
-  "Leg extension":                   {c:"photo-1597452485669-2c7bb5fef90d",m:"photo-1597452485669-2c7bb5fef90d"},
-  "Hip thrust":                      {c:"photo-1434682966140-aba8208b7d55",m:"photo-1434682966140-aba8208b7d55"},
-  "Leg curl":                        {c:"photo-1576678927484-cc907957088c",m:"photo-1576678927484-cc907957088c"},
-  "Soulevé de terre jambes tendues": {c:"photo-1603287681836-b174ce5074c2",m:"photo-1603287681836-b174ce5074c2"},
-  "Mollets debout machine":          {c:"photo-1571019614242-c5c5dee9f50b",m:"photo-1571019614242-c5c5dee9f50b"},
-  "Crunch câble":                    {c:"photo-1544033527-b192daee1f5b",m:"photo-1544033527-b192daee1f5b"},
-  "Planche":                         {c:"photo-1544033527-b192daee1f5b",m:"photo-1544033527-b192daee1f5b"},
+  "Squat":                           "photo-1574680178050-55c6a6a96e0a",
+  "Presse à cuisses":                "photo-1597452485669-2c7bb5fef90d",
+  "Fentes marchées haltères":        "photo-1597452485597-17b9c7ad5746",
+  "Leg extension":                   "photo-1534258936925-c58bed479fcb",
+  "Hip thrust":                      "photo-1434682966140-aba8208b7d55",
+  "Leg curl":                        "photo-1576678927484-cc907957088c",
+  "Soulevé de terre jambes tendues": "photo-1603287681836-b174ce5074c2",
+  "Mollets debout machine":          "photo-1571019614242-c5c5dee9f50b",
+  "Crunch câble":                    "photo-1544033527-b192daee1f5b",
+  "Planche":                         "photo-1544033527-b192daee1f5b",
 };
 
-function imgC(name){const p=PX[name];return p?`https://images.unsplash.com/${p.c}?w=120&q=70`:`https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=120&q=70`}
-function imgM(name){const p=PX[name];return p?`https://images.unsplash.com/${p.m}?w=600&q=80`:`https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=600&q=80`}
+// Fonction pour récupérer l'image (Supporte les vrais URLs GIF ou les IDs Unsplash)
+function getImgSrc(name, isModal) {
+  const v = PX[name] || "photo-1534258936925-c58bed479fcb";
+  if(v.startsWith('http')) return v; // Si c'est un lien direct (ex: .gif)
+  const size = isModal ? "w=600&q=80" : "w=120&q=70";
+  return `https://images.unsplash.com/${v}?${size}&fit=crop`;
+}
 
 const INFO={
   "Développé couché barre":{m:"Pectoraux · Triceps · Épaules ant.",t:"Descends lentement, pousse explosif",r:"2 min",d:"Intermédiaire"},
@@ -418,10 +433,10 @@ const ALTS=[
   {name:"Mollets debout machine",muscle:"Mollets"},
   {name:"Crunch câble",muscle:"Abdominaux"},
   {name:"Planche",muscle:"Abdominaux · Core"},
-].map(e=>({...e,img:imgC(e.name)}));
+].map(e=>({...e,img:getImgSrc(e.name, false)}));
 
 const U="https://images.unsplash.com/";
-function ex(name,sets,note){return{name,sets,note:note||'',img:imgC(name)}}
+function ex(name,sets,note){return{name,sets,customSets:'',customWeight:'',note:note||'',img:getImgSrc(name, false)}}
 
 const DEF={
   0:{name:"Lundi",label:"Push",tag:"push",color:"var(--push)",subtitle:"Pecs · Épaules · Triceps",note:"Finition : 2×15 rotations externes poulie basse — protection coiffe des rotateurs",img:U+"photo-1534438327276-14e5300c3a48?w=800&q=70",sections:[
@@ -521,7 +536,10 @@ function renderMain(){
     let eh='';
     sec.exercises.forEach((ex,ei)=>{
       const done=!!obj[`${si}_${ei}`];
-      eh+=`<div class="ec ${done?'done':''}"><div class="eci"><div class="eth" onclick="openEx(${si},${ei})"><img src="${ex.img}" alt="${ex.name}" loading="lazy"><div class="playico"><span class="mi">zoom_in</span></div></div><div class="eb" onclick="openEx(${si},${ei})"><div class="en">${ex.name}</div><div class="es">${ex.sets}</div>${ex.note?`<div class="enote">${ex.note}</div>`:''}<div class="ehint"><span class="mi">info</span>Détails</div></div><div class="ea"><button class="ecb ${done?'ck':''}" onclick="togEx(${si},${ei})"><span class="mi ${done?'mif':''}">${done?'check_circle':'radio_button_unchecked'}</span></button><button class="esb" onclick="openSw(${si},${ei})"><span class="mi">swap_horiz</span></button></div></div></div>`;
+      const curSets = ex.customSets || ex.sets;
+      const curWgt = ex.customWeight ? `<span class="ewgt">${ex.customWeight}</span>` : '';
+      
+      eh+=`<div class="ec ${done?'done':''}"><div class="eci"><div class="eth" onclick="openEx(${si},${ei})"><img src="${getImgSrc(ex.name, false)}" alt="${ex.name}" loading="lazy"><div class="playico"><span class="mi">zoom_in</span></div></div><div class="eb" onclick="openEx(${si},${ei})"><div class="en">${ex.name}</div><div class="es"><span>${curSets}</span> ${curWgt}</div>${ex.note?`<div class="enote">${ex.note}</div>`:''}</div><div class="ea"><button class="ecb ${done?'ck':''}" onclick="togEx(${si},${ei})"><span class="mi ${done?'mif':''}">${done?'check_circle':'radio_button_unchecked'}</span></button><button class="esb" onclick="openSw(${si},${ei})"><span class="mi">swap_horiz</span></button></div></div></div>`;
     });
     sh+=`<div class="sl">${sec.title}</div>${eh}`;
   });
@@ -536,14 +554,44 @@ function openEx(si,ei){
   mSi=si;mEi=ei;
   const ex=PROG[selDay].sections[si].exercises[ei],inf=INFO[ex.name]||{};
   const done=!!gck(wOff,selDay)[`${si}_${ei}`];
+  
   document.getElementById('emT').textContent=ex.name;
-  document.getElementById('emB').innerHTML=`<div class="mbadge"><span class="mi" style="font-size:14px">fitness_center</span>${ex.sets}</div>`;
-  // Grande image dans la modale
-  document.getElementById('emG').innerHTML=`<img src="${imgM(ex.name)}" alt="${ex.name}"><div class="mga-label"><span class="mi">photo_camera</span>${ex.name}</div>`;
+  
+  // Image Grande (Prêt pour GIF si URL fournie dans PX)
+  document.getElementById('emG').innerHTML=`<img src="${getImgSrc(ex.name, true)}" alt="${ex.name}"><div class="mga-label"><span class="mi">photo_camera</span>${ex.name}</div>`;
+  
+  // Peupler les champs d'édition
+  document.getElementById('editSets').value = ex.customSets || ex.sets;
+  document.getElementById('editWeight').value = ex.customWeight || '';
+
+  // Infos texte
   const rows=[inf.m&&{ic:'exercise',lb:'Muscles ciblés',v:inf.m},inf.t&&{ic:'lightbulb',lb:'Conseil technique',v:inf.t},inf.r&&{ic:'timer',lb:'Temps de repos',v:inf.r},inf.d&&{ic:'signal_cellular_alt',lb:'Niveau',v:inf.d},ex.note&&{ic:'edit_note',lb:'Note perso',v:ex.note}].filter(Boolean);
   document.getElementById('emI').innerHTML=rows.map(r=>`<div class="irow"><div class="iico"><span class="mi">${r.ic}</span></div><div><div class="ilb">${r.lb}</div><div class="iv">${r.v}</div></div></div>`).join('');
+  
   updDB(done);
   openM('exMo');
+}
+
+function saveExDetails() {
+  if (mSi === null || mEi === null) return;
+  const newSets = document.getElementById('editSets').value.trim();
+  const newWeight = document.getElementById('editWeight').value.trim();
+  
+  PROG[selDay].sections[mSi].exercises[mEi].customSets = newSets;
+  PROG[selDay].sections[mSi].exercises[mEi].customWeight = newWeight;
+  sProg();
+  
+  // Animation visuelle bouton de sauvegarde
+  const btn = document.querySelector('.ex-save');
+  const oldHtml = btn.innerHTML;
+  btn.innerHTML = `<span class="mi" style="font-size:18px">check</span> Enregistré !`;
+  btn.style.background = "var(--legs)"; // Vert
+  
+  setTimeout(() => {
+    btn.innerHTML = oldHtml;
+    btn.style.background = "var(--ac)";
+    renderMain();
+  }, 800);
 }
 
 function updDB(done){
@@ -566,7 +614,7 @@ function renderSwL(q){
 }
 function doSwap(ne){
   const old=PROG[selDay].sections[mSi].exercises[mEi];
-  PROG[selDay].sections[mSi].exercises[mEi]={...old,name:ne.name,img:imgC(ne.name),note:''};
+  PROG[selDay].sections[mSi].exercises[mEi]={...old,name:ne.name,img:getImgSrc(ne.name, false),note:'',customSets:'',customWeight:''};
   sProg();closeM('swMo');renderMain();
 }
 
